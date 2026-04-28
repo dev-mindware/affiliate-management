@@ -1,0 +1,697 @@
+2026-04-28 07:41:26 | INFO     | app.main:add_security_headers:43 - GET / - 200 (0.0012s)
+2026-04-28 07:42:41 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0004s)
+2026-04-28 07:42:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0464s)
+2026-04-28 07:46:02 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0011s)
+2026-04-28 07:46:04 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0351s)
+2026-04-28 07:49:36 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:49:36 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:49:36 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:08 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:08 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:08 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:09 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:09 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:10 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:10 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:11 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:11 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:12 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:59 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:59 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:52:59 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:00 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:00 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:53:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:05 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:05 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:06 | WARNING  | logging:callHandlers:1736 - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pytest\__main__.py", line 5, in <module>
+    raise SystemExit(pytest.console_main())
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\config\__init__.py", line 197, in console_main
+    code = main()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\config\__init__.py", line 174, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 319, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 272, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 326, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 351, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 226, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 265, in call_runtest_hook
+    return CallInfo.from_call(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 345, in from_call
+    result: Optional[TResult] = func()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 266, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 173, in pytest_runtest_call
+    item.runtest()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pytest_asyncio\plugin.py", line 440, in runtest
+    super().runtest()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\python.py", line 1836, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\python.py", line 193, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pytest_asyncio\plugin.py", line 907, in inner
+    _loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\slowapi\extension.py", line 734, in async_wrapper
+    response = await func(*args, **kwargs)  # type: ignore
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\auth.py", line 30, in register
+    affiliate = await affiliate_service.register_affiliate(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\affiliate_service.py", line 22, in register_affiliate
+    password_hash=auth_service.get_password_hash(password),
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\auth_service.py", line 40, in get_password_hash
+    return pwd_context.hash(password)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-04-28 07:54:06 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '<unknown>'
+2026-04-28 07:54:06 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 07:54:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:07 | WARNING  | logging:callHandlers:1736 - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pytest\__main__.py", line 5, in <module>
+    raise SystemExit(pytest.console_main())
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\config\__init__.py", line 197, in console_main
+    code = main()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\config\__init__.py", line 174, in main
+    ret: Union[ExitCode, int] = config.hook.pytest_cmdline_main(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 319, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 272, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 326, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\main.py", line 351, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 114, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 133, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 226, in call_and_report
+    call = call_runtest_hook(item, when, **kwds)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 265, in call_runtest_hook
+    return CallInfo.from_call(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 345, in from_call
+    result: Optional[TResult] = func()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 266, in <lambda>
+    lambda: ihook(item=item, **kwds), when=when, reraise=reraise
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\runner.py", line 173, in pytest_runtest_call
+    item.runtest()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pytest_asyncio\plugin.py", line 440, in runtest
+    super().runtest()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\python.py", line 1836, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\_pytest\python.py", line 193, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\pytest_asyncio\plugin.py", line 907, in inner
+    _loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\slowapi\extension.py", line 734, in async_wrapper
+    response = await func(*args, **kwargs)  # type: ignore
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\auth.py", line 30, in register
+    affiliate = await affiliate_service.register_affiliate(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\affiliate_service.py", line 22, in register_affiliate
+    password_hash=auth_service.get_password_hash(password),
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\auth_service.py", line 40, in get_password_hash
+    return pwd_context.hash(password)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\utils\handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2026-04-28 07:54:07 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '<unknown>'
+2026-04-28 07:54:07 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:07 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:07 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/ranking - 200 (0.1063s)
+2026-04-28 07:54:07 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/ranking "HTTP/1.1 200 OK"
+2026-04-28 07:54:07 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:07 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:54:07 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0617s)
+2026-04-28 07:54:07 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 07:54:07 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:00 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:00 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 07:55:01 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.4839s)
+2026-04-28 07:55:01 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:01 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.4133s)
+2026-04-28 07:55:01 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:8]
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[9:33]
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[34:42]
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[43:59]
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:55:01 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 07:55:02 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 403 (0.3996s)
+2026-04-28 07:55:02 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login "HTTP/1.1 403 Forbidden"
+2026-04-28 07:55:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:02 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/ranking - 200 (0.0057s)
+2026-04-28 07:55:02 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/ranking "HTTP/1.1 200 OK"
+2026-04-28 07:55:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:55:02 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0645s)
+2026-04-28 07:55:02 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 07:55:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[73:78]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[80:89]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[90:96]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[97:110]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[111:117]
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:56:50 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 07:56:50 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 401 (0.1596s)
+2026-04-28 07:57:24 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0005s)
+2026-04-28 07:57:24 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0521s)
+2026-04-28 07:59:43 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:43 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:43 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 07:59:43 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:44 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3014s)
+2026-04-28 07:59:44 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:44 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3140s)
+2026-04-28 07:59:44 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:8]
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[9:33]
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[34:42]
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[43:59]
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 07:59:44 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 07:59:45 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 403 (0.3321s)
+2026-04-28 07:59:45 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login "HTTP/1.1 403 Forbidden"
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/ranking - 200 (0.0869s)
+2026-04-28 07:59:45 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/ranking "HTTP/1.1 200 OK"
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 07:59:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0692s)
+2026-04-28 07:59:45 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 07:59:45 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:04 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:04 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:04 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:00:04 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:00:04 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:05 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3294s)
+2026-04-28 08:00:05 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:05 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3364s)
+2026-04-28 08:00:05 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:8]
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[9:33]
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[34:42]
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[43:59]
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:00:05 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 403 (0.3538s)
+2026-04-28 08:00:05 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login "HTTP/1.1 403 Forbidden"
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:05 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:06 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3038s)
+2026-04-28 08:00:06 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 08:00:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:06 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/ranking - 200 (0.0062s)
+2026-04-28 08:00:06 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/ranking "HTTP/1.1 200 OK"
+2026-04-28 08:00:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:00:06 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0516s)
+2026-04-28 08:00:06 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 08:00:06 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:01:22 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0004s)
+2026-04-28 08:01:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0288s)
+2026-04-28 08:01:49 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:01:49 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:01:49 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3520s)
+2026-04-28 08:02:17 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:02:17 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 08:02:17 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 08:02:17 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:02:17 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:02:17 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 422 (0.0022s)
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:03:02 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:03:03 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2567s)
+2026-04-28 08:03:17 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0301s)
+2026-04-28 08:03:20 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0070s)
+2026-04-28 08:04:06 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.2800s)
+2026-04-28 08:04:27 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0092s)
+2026-04-28 08:05:07 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/approvals/3fa85f64-5717-4562-b3fc-2c963f66afa6/approve - 404 (0.0108s)
+2026-04-28 08:05:18 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0089s)
+2026-04-28 08:05:21 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0095s)
+2026-04-28 08:05:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0086s)
+2026-04-28 08:05:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/approvals/pending - 200 (0.0089s)
+2026-04-28 08:05:50 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/approvals/7c5bf2f8-1909-47ed-98ad-9907d2b8bcda/approve - 200 (0.0226s)
+2026-04-28 08:08:38 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:38 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:39 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:08:39 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:08:39 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:39 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3083s)
+2026-04-28 08:08:39 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 08:08:39 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:39 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3085s)
+2026-04-28 08:08:40 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:8]
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[9:33]
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[34:42]
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[43:59]
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:08:40 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 403 (0.3583s)
+2026-04-28 08:08:40 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login "HTTP/1.1 403 Forbidden"
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3110s)
+2026-04-28 08:08:40 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/ranking - 200 (0.0741s)
+2026-04-28 08:08:40 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/ranking "HTTP/1.1 200 OK"
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:08:40 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0512s)
+2026-04-28 08:08:40 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 08:08:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:09:14 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0003s)
+2026-04-28 08:09:14 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0315s)
+2026-04-28 08:09:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 401 (0.0025s)
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:09:40 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:09:40 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.3434s)
+2026-04-28 08:16:48 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:16:48 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:16:48 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:16:48 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:16:49 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:16:49 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0506s)
+2026-04-28 08:16:49 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 08:16:49 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:17:07 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0806s)
+2026-04-28 08:20:18 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0016s)
+2026-04-28 08:20:18 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0338s)
+2026-04-28 08:21:08 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0895s)
+2026-04-28 08:21:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 401 (0.0018s)
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:21:59 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:21:59 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2588s)
+2026-04-28 08:22:03 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0157s)
+2026-04-28 08:22:21 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0003s)
+2026-04-28 08:22:21 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0361s)
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:56]
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[57:65]
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[66:74]
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:22:54 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:22:54 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2402s)
+2026-04-28 08:23:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0111s)
+2026-04-28 08:23:28 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/leads/ - 200 (0.0176s)
+2026-04-28 08:24:38 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/leads/ - 200 (0.0393s)
+2026-04-28 08:24:46 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/leads/ - 200 (0.0121s)
+2026-04-28 08:25:03 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/wallet/ - 200 (0.0144s)
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:25:28 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:25:29 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2239s)
+2026-04-28 08:25:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0182s)
+2026-04-28 08:26:32 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/7c4902fe-1d1c-4535-b522-40f2b9ca0eb6/status - 200 (0.0357s)
+2026-04-28 08:26:51 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0284s)
+2026-04-28 08:27:32 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/7c4902fe-1d1c-4535-b522-40f2b9ca0eb6/status - 200 (0.0177s)
+2026-04-28 08:27:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0113s)
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:52 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3120s)
+2026-04-28 08:52:52 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:52 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.3443s)
+2026-04-28 08:52:53 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/register "HTTP/1.1 200 OK"
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:8]
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[9:33]
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[34:42]
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[43:59]
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-28 08:52:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 403 (0.3081s)
+2026-04-28 08:52:53 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login "HTTP/1.1 403 Forbidden"
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.2930s)
+2026-04-28 08:52:53 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:53 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/ranking - 200 (0.0788s)
+2026-04-28 08:52:54 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/ranking "HTTP/1.1 200 OK"
+2026-04-28 08:52:54 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:54 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:52:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0550s)
+2026-04-28 08:52:54 | INFO     | logging:callHandlers:1736 - HTTP Request: GET http://test/api/v1/public/services "HTTP/1.1 200 OK"
+2026-04-28 08:52:54 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:54:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:54:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:54:40 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:54:40 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:54:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:54:40 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:55:36 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:55:36 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:55:36 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 08:55:36 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 08:55:37 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 08:55:37 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.2936s)
+2026-04-28 08:55:37 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 08:55:38 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:00:21 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:00:21 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:00:22 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 09:00:22 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 09:00:22 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:00:22 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3332s)
+2026-04-28 09:00:22 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 09:00:23 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/8b809e17-c498-423e-baa7-9dfcb05fb3d2/status - 200 (0.1712s)
+2026-04-28 09:00:23 | INFO     | logging:callHandlers:1736 - HTTP Request: PATCH http://test/api/v1/admin/leads/8b809e17-c498-423e-baa7-9dfcb05fb3d2/status "HTTP/1.1 200 OK"
+2026-04-28 09:00:23 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/8b809e17-c498-423e-baa7-9dfcb05fb3d2/status - 200 (0.1743s)
+2026-04-28 09:00:23 | INFO     | logging:callHandlers:1736 - HTTP Request: PATCH http://test/api/v1/admin/leads/8b809e17-c498-423e-baa7-9dfcb05fb3d2/status "HTTP/1.1 200 OK"
+2026-04-28 09:00:23 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:01 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 09:03:01 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 09:03:01 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:02 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3339s)
+2026-04-28 09:03:02 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 09:03:02 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/627c1564-b6a7-4b15-bb7c-2d39e670a74f/status - 200 (0.1872s)
+2026-04-28 09:03:02 | INFO     | logging:callHandlers:1736 - HTTP Request: PATCH http://test/api/v1/admin/leads/627c1564-b6a7-4b15-bb7c-2d39e670a74f/status "HTTP/1.1 200 OK"
+2026-04-28 09:03:02 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/627c1564-b6a7-4b15-bb7c-2d39e670a74f/status - 200 (0.1841s)
+2026-04-28 09:03:02 | INFO     | logging:callHandlers:1736 - HTTP Request: PATCH http://test/api/v1/admin/leads/627c1564-b6a7-4b15-bb7c-2d39e670a74f/status "HTTP/1.1 200 OK"
+2026-04-28 09:03:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:02 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:03 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3240s)
+2026-04-28 09:03:03 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 09:03:03 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:28 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:28 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:28 | DEBUG    | logging:callHandlers:1736 - detected 'bcrypt' backend, version '4.0.1'
+2026-04-28 09:03:28 | DEBUG    | logging:callHandlers:1736 - 'bcrypt' backend lacks $2$ support, enabling workaround
+2026-04-28 09:03:28 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:29 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3103s)
+2026-04-28 09:03:29 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 09:03:29 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/33f66f52-00dd-4bba-ac9e-a28c33a47263/status - 200 (0.1665s)
+2026-04-28 09:03:29 | INFO     | logging:callHandlers:1736 - HTTP Request: PATCH http://test/api/v1/admin/leads/33f66f52-00dd-4bba-ac9e-a28c33a47263/status "HTTP/1.1 200 OK"
+2026-04-28 09:03:29 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/33f66f52-00dd-4bba-ac9e-a28c33a47263/status - 200 (0.1743s)
+2026-04-28 09:03:29 | INFO     | logging:callHandlers:1736 - HTTP Request: PATCH http://test/api/v1/admin/leads/33f66f52-00dd-4bba-ac9e-a28c33a47263/status "HTTP/1.1 200 OK"
+2026-04-28 09:03:29 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:29 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:03:30 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.3315s)
+2026-04-28 09:03:30 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/auth/login/json "HTTP/1.1 200 OK"
+2026-04-28 09:03:30 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/leads/ - 200 (0.2040s)
+2026-04-28 09:03:30 | INFO     | logging:callHandlers:1736 - HTTP Request: POST http://test/api/v1/admin/leads/ "HTTP/1.1 200 OK"
+2026-04-28 09:03:30 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
+2026-04-28 09:34:04 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0005s)
+2026-04-28 09:34:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0431s)
