@@ -708,3 +708,139 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-04-30 16:56:36 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0012s)
 2026-04-30 16:56:36 | INFO     | app.main:add_security_headers:43 - GET /.well-known/appspecific/com.chrome.devtools.json - 404 (0.0013s)
 2026-04-30 16:56:38 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.1725s)
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:19 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:26 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0009s)
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:26 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:30 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.1210s)
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:43 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:14:47 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:19:59 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-04-30 17:22:33 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-04-30 17:27:16 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0020s)
+2026-04-30 17:27:16 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.2023s)
+2026-04-30 17:29:17 | DEBUG    | logging:callHandlers:1736 - detected 'argon2_cffi' backend, version '23.1.0', with support for 0x13 argon2 hashes
+2026-04-30 17:29:17 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.4502s)
