@@ -695,3 +695,12 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-04-28 09:03:30 | DEBUG    | logging:callHandlers:1736 - Using proactor: IocpProactor
 2026-04-28 09:34:04 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0005s)
 2026-04-28 09:34:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0431s)
+2026-04-30 13:22:41 | INFO     | app.main:add_security_headers:43 - GET / - 200 (0.0010s)
+2026-04-30 13:22:41 | INFO     | app.main:add_security_headers:43 - GET /favicon.ico - 404 (0.0005s)
+2026-04-30 13:22:45 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0003s)
+2026-04-30 13:22:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0379s)
+2026-04-30 15:44:59 | INFO     | app.main:add_security_headers:43 - GET / - 200 (0.0010s)
+2026-04-30 15:45:01 | INFO     | app.main:add_security_headers:43 - GET /favicon.ico - 404 (0.0007s)
+2026-04-30 15:45:05 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0004s)
+2026-04-30 15:45:06 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0003s)
+2026-04-30 15:45:06 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0555s)
