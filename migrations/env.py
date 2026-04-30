@@ -16,6 +16,14 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+import os
+database_url = os.environ.get("DATABASE_URL")
+if database_url:
+    if database_url.startswith("postgresql://"):
+        database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    config.set_main_option("sqlalchemy.url", database_url)
+
+
 # add your model's MetaData object here
 # for 'autogenerate' support
 from app.database import Base
