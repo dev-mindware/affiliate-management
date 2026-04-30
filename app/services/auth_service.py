@@ -10,7 +10,8 @@ from app.models.user import User, UserRole
 from app.models.affiliate import Affiliate, AffiliateStatus
 from app.models.token_blacklist import TokenBlacklist
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
+
 ALGORITHM = "HS256"
 
 def create_access_token(subject: Union[str, Any], expires_delta: timedelta = None) -> str:
@@ -38,6 +39,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
+
 
 async def get_user_by_email(db: AsyncSession, email: str) -> Optional[User]:
     result = await db.execute(select(User).where(User.email == email))

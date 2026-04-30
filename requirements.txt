@@ -6,7 +6,9 @@ asyncpg==0.30.0
 pydantic[email]==2.9.2
 pydantic-settings==2.5.2
 python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
+passlib[argon2]==1.7.4
+argon2-cffi==23.1.0
+
 python-multipart==0.0.9
 redis==5.0.1
 celery==5.3.6
