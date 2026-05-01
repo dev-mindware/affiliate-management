@@ -11,7 +11,7 @@ async def paginate(
     db: AsyncSession,
     query,
     page: int,
-    size: int,
+    limit: int,
 ) -> dict:
     # 1. Count total items
     count_query = select(func.count()).select_from(query.subquery())
@@ -19,17 +19,17 @@ async def paginate(
     total = total_result.scalar() or 0
     
     # 2. Fetch page items
-    offset = (page - 1) * size
-    items_query = query.offset(offset).limit(size)
+    offset = (page - 1) * limit
+    items_query = query.offset(offset).limit(limit)
     result = await db.execute(items_query)
     items = result.scalars().all()
     
-    pages = ceil(total / size) if total > 0 else 1
+    pages = ceil(total / limit) if total > 0 else 1
     
     return {
         "items": items,
         "total": total,
         "page": page,
-        "size": size,
+        "limit": limit,
         "pages": pages
     }

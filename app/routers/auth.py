@@ -81,7 +81,7 @@ async def _perform_login(response: Response, db: AsyncSession, email: str, passw
     refresh_token, jti = auth_service.create_refresh_token(subject=user.id)
     
     response.set_cookie(
-        key="refresh_token",
+        key="mw.af.rt.v1",
         value=refresh_token,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600,
@@ -101,7 +101,7 @@ async def refresh(
     response: Response,
     db: AsyncSession = Depends(get_db)
 ):
-    refresh_token = request.cookies.get("refresh_token")
+    refresh_token = request.cookies.get("mw.af.rt.v1")
     if not refresh_token:
         raise HTTPException(status_code=401, detail="Refresh token ausente")
     
@@ -125,7 +125,7 @@ async def refresh(
     new_refresh_token, new_jti = auth_service.create_refresh_token(subject=user_id)
     
     response.set_cookie(
-        key="refresh_token",
+        key="mw.af.rt.v1",
         value=new_refresh_token,
         httponly=True,
         max_age=settings.REFRESH_TOKEN_EXPIRE_DAYS * 24 * 3600,
@@ -143,7 +143,7 @@ async def refresh(
 
 @router.post("/logout", response_model=Msg)
 async def logout(request: Request, response: Response, db: AsyncSession = Depends(get_db)):
-    refresh_token = request.cookies.get("refresh_token")
+    refresh_token = request.cookies.get("mw.af.rt.v1")
     if refresh_token:
         try:
             payload = jwt.decode(refresh_token, settings.SECRET_KEY, algorithms=[auth_service.ALGORITHM])
@@ -154,7 +154,7 @@ async def logout(request: Request, response: Response, db: AsyncSession = Depend
         except:
             pass
             
-    response.delete_cookie("refresh_token")
+    response.delete_cookie("mw.af.rt.v1")
     return {"msg": "Sessão encerrada com sucesso"}
 
 @router.get("/me")

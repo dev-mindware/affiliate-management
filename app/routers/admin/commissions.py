@@ -27,7 +27,7 @@ async def list_commissions(
     # Order by creation date descending
     query = query.order_by(Commission.created_at.desc())
     
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)
 
 @router.post("/", response_model=CommissionResponse)
 async def manual_register_sale(

@@ -53,7 +53,7 @@ async def list_leads(
     # Order by creation date descending
     query = query.order_by(LeadNotification.created_at.desc())
     
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)
 
 @router.patch("/{lead_id}/status", response_model=LeadResponse)
 async def update_lead_status(

@@ -18,7 +18,7 @@ async def list_services(
     admin=Depends(get_current_active_admin)
 ):
     query = select(Service).order_by(Service.nome)
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)
 
 @router.post("/", response_model=ServiceResponse)
 async def create_service(

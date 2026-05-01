@@ -29,4 +29,4 @@ async def list_active_services(
     db: AsyncSession = Depends(get_db)
 ):
     query = select(Service).where(Service.ativo == True)
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)

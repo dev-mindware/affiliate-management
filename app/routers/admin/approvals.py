@@ -20,7 +20,7 @@ async def list_pending_affiliates(
     admin=Depends(get_current_active_admin)
 ):
     query = select(Affiliate).where(Affiliate.status == AffiliateStatus.PENDING_APPROVAL)
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)
 
 @router.post("/{affiliate_id}/approve", response_model=AffiliateResponse)
 async def approve_affiliate(

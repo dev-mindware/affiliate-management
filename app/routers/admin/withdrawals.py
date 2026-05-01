@@ -28,7 +28,7 @@ async def list_withdrawals(
     # Order by creation date descending
     query = query.order_by(WithdrawalRequest.created_at.desc())
     
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)
 
 @router.post("/{withdrawal_id}/approve", response_model=WithdrawalResponse)
 async def approve_withdrawal(

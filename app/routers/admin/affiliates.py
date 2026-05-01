@@ -26,7 +26,7 @@ async def list_affiliates(
     # Order by creation date descending
     query = query.order_by(Affiliate.created_at.desc())
     
-    return await paginate(db, query, params.page, params.size)
+    return await paginate(db, query, params.page, params.limit)
 
 @router.get("/{affiliate_id}", response_model=AffiliateResponse)
 async def get_affiliate_details(
