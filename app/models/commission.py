@@ -42,5 +42,9 @@ class Commission(Base):
     service: Mapped["Service"] = relationship("Service")
     lead: Mapped[Optional["LeadNotification"]] = relationship("LeadNotification")
 
+    @property
+    def affiliate_nome(self) -> Optional[str]:
+        return self.affiliate.nome_completo if self.affiliate else None
+
     def __repr__(self) -> str:
         return f"<Commission {self.id} - {self.status}>"

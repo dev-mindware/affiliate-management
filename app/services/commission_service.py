@@ -36,6 +36,10 @@ async def create_commission(
         notas=notas
     )
     db.add(commission)
+    
+    # Update wallet (add to pending balance)
+    await wallet_service.add_pending_commission(db, affiliate_id, Decimal(str(service.comissao)))
+    
     await db.flush()
     return commission
 
@@ -66,8 +70,8 @@ async def approve_commission(db: AsyncSession, commission_id: uuid.UUID) -> Comm
     commission.status = CommissionStatus.APPROVED
     commission.approved_at = datetime.utcnow()
     
-    # Update wallet (pending balance)
-    await wallet_service.add_pending_commission(db, commission.affiliate_id, Decimal(str(commission.valor_comissao)))
+    # Update wallet: move from pending to available balance
+    await wallet_service.confirm_commission_payment(db, commission.affiliate_id, Decimal(str(commission.valor_comissao)))
     
     await db.flush()
     return commission
@@ -82,6 +86,9 @@ async def reject_commission(db: AsyncSession, commission_id: uuid.UUID, notas: s
     
     commission.status = CommissionStatus.REJECTED
     commission.notas = notas
+    
+    # Update wallet: remove from pending balance
+    await wallet_service.remove_pending_commission(db, commission.affiliate_id, Decimal(str(commission.valor_comissao)))
     
     await db.flush()
     return commission

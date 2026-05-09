@@ -30,5 +30,9 @@ class LeadNotification(Base):
     affiliate: Mapped["Affiliate"] = relationship("Affiliate", back_populates="leads")
     service: Mapped["Service"] = relationship("Service")
 
+    @property
+    def affiliate_nome(self) -> Optional[str]:
+        return self.affiliate.nome_completo if self.affiliate else None
+
     def __repr__(self) -> str:
         return f"<Lead {self.client_nome} - {self.status}>"

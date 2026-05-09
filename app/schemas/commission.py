@@ -22,6 +22,7 @@ class CommissionResponse(CommissionBase):
     
     id: uuid.UUID
     affiliate_id: uuid.UUID
+    affiliate_nome: Optional[str] = None
     valor_servico: float
     valor_comissao: float
     status: CommissionStatus

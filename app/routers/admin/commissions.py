@@ -9,6 +9,7 @@ from app.models.commission import Commission, CommissionStatus
 from app.schemas.commission import CommissionResponse, CommissionCreate
 from app.schemas.common import PaginationParams, PaginatedResponse
 from app.utils.pagination import paginate
+from sqlalchemy.orm import selectinload
 from app.services import commission_service
 
 router = APIRouter()
@@ -20,7 +21,7 @@ async def list_commissions(
     db: AsyncSession = Depends(get_db),
     admin=Depends(get_current_active_admin)
 ):
-    query = select(Commission)
+    query = select(Commission).options(selectinload(Commission.affiliate))
     if status:
         query = query.where(Commission.status == status)
     

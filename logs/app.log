@@ -1223,3 +1223,1765 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2026-04-30 19:24:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0012s)
 2026-04-30 19:24:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0268s)
 2026-04-30 19:24:51 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/dashboard/kpis - 200 (0.0305s)
+2026-05-08 07:09:39 | DEBUG    | logging:callHandlers:1736 - detected 'argon2_cffi' backend, version '23.1.0', with support for 0x13 argon2 hashes
+2026-05-08 07:09:39 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.6785s)
+2026-05-08 07:09:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0194s)
+2026-05-08 07:09:40 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0140s)
+2026-05-08 07:10:28 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0158s)
+2026-05-08 07:11:19 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.1962s)
+2026-05-08 07:11:19 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0156s)
+2026-05-08 07:11:20 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0216s)
+2026-05-08 07:12:31 | INFO     | app.main:add_security_headers:43 - GET / - 200 (0.0018s)
+2026-05-08 07:12:33 | INFO     | app.main:add_security_headers:43 - GET /favicon.ico - 404 (0.0019s)
+2026-05-08 07:12:34 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0006s)
+2026-05-08 07:12:36 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.1707s)
+2026-05-08 07:12:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/refresh - 401 (0.0019s)
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:48]
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[49:57]
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[58:72]
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-08 07:13:22 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-05-08 07:13:22 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2115s)
+2026-05-08 07:13:25 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/refresh - 200 (0.0418s)
+2026-05-08 07:23:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0229s)
+2026-05-08 07:24:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0141s)
+2026-05-08 07:24:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/dashboard/kpis - 200 (0.1391s)
+2026-05-08 07:24:59 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.2202s)
+2026-05-08 07:24:59 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0154s)
+2026-05-08 07:25:12 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0148s)
+2026-05-08 07:25:12 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/dashboard/kpis - 200 (0.0326s)
+2026-05-08 07:25:23 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0016s)
+2026-05-08 07:25:23 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0487s)
+2026-05-08 07:25:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0011s)
+2026-05-08 07:25:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0638s)
+2026-05-08 07:26:00 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0014s)
+2026-05-08 07:26:00 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0253s)
+2026-05-08 07:26:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0017s)
+2026-05-08 07:26:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0569s)
+2026-05-08 07:27:19 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0012s)
+2026-05-08 07:27:19 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0270s)
+2026-05-08 07:27:22 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/services - 307 (0.0015s)
+2026-05-08 07:27:22 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/services/ - 200 (0.0683s)
+2026-05-08 07:27:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0010s)
+2026-05-08 07:27:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0230s)
+2026-05-08 07:27:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0010s)
+2026-05-08 07:27:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0215s)
+2026-05-08 07:27:48 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/services/5 - 405 (0.0017s)
+2026-05-08 07:27:49 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/services/5 - 405 (0.0009s)
+2026-05-08 07:27:50 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/services/5 - 405 (0.0009s)
+2026-05-08 07:27:51 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/services/5 - 405 (0.0010s)
+2026-05-08 07:27:51 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/services/5 - 405 (0.0011s)
+2026-05-08 07:27:52 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/services/5 - 405 (0.0009s)
+2026-05-08 07:28:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0012s)
+2026-05-08 07:28:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0237s)
+2026-05-08 07:28:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0015s)
+2026-05-08 07:28:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0281s)
+2026-05-08 07:28:12 | INFO     | app.main:add_security_headers:43 - PUT /api/v1/admin/services/5 - 200 (0.0558s)
+2026-05-08 07:28:12 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0014s)
+2026-05-08 07:28:12 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0198s)
+2026-05-08 07:28:26 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0007s)
+2026-05-08 07:28:26 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0223s)
+2026-05-08 07:29:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0015s)
+2026-05-08 07:29:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0227s)
+2026-05-08 07:34:34 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0016s)
+2026-05-08 07:34:34 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0314s)
+2026-05-08 07:35:12 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0158s)
+2026-05-08 07:35:34 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0142s)
+2026-05-08 07:35:34 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0008s)
+2026-05-08 07:35:34 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0237s)
+2026-05-08 07:35:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/services - 307 (0.0011s)
+2026-05-08 07:35:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/services/ - 200 (0.0462s)
+2026-05-08 07:35:53 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0010s)
+2026-05-08 07:35:53 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0185s)
+2026-05-08 07:36:01 | INFO     | app.main:add_security_headers:43 - DELETE /api/v1/admin/services/6 - 200 (0.0429s)
+2026-05-08 07:36:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0019s)
+2026-05-08 07:36:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0207s)
+2026-05-08 07:36:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0016s)
+2026-05-08 07:36:10 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0235s)
+2026-05-08 07:36:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0012s)
+2026-05-08 07:36:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0229s)
+2026-05-08 07:36:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0007s)
+2026-05-08 07:36:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0233s)
+2026-05-08 07:37:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0011s)
+2026-05-08 07:37:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0219s)
+2026-05-08 07:38:21 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0008s)
+2026-05-08 07:38:21 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0213s)
+2026-05-08 07:44:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0022s)
+2026-05-08 07:44:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 401 (0.0073s)
+2026-05-08 07:44:50 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/refresh - 200 (0.0387s)
+2026-05-08 07:44:50 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0017s)
+2026-05-08 07:44:50 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0178s)
+2026-05-08 07:49:07 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0169s)
+2026-05-08 07:49:35 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0169s)
+2026-05-08 07:49:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0155s)
+2026-05-08 07:49:44 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0010s)
+2026-05-08 07:49:44 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0234s)
+2026-05-08 07:49:52 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0013s)
+2026-05-08 07:49:52 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0246s)
+2026-05-08 07:49:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0010s)
+2026-05-08 07:49:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0214s)
+2026-05-08 07:51:06 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/register - 200 (0.2645s)
+2026-05-08 07:51:11 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0013s)
+2026-05-08 07:51:11 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0032s)
+2026-05-08 07:51:11 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0349s)
+2026-05-08 07:51:11 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.2631s)
+2026-05-08 07:51:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0011s)
+2026-05-08 07:51:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0148s)
+2026-05-08 07:51:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0018s)
+2026-05-08 07:51:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0453s)
+2026-05-08 07:52:38 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0014s)
+2026-05-08 07:52:38 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0271s)
+2026-05-08 07:52:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0018s)
+2026-05-08 07:52:43 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0586s)
+2026-05-08 07:53:02 | INFO     | app.main:add_security_headers:43 - POST /api/v1/admin/approvals/382837e5-ed69-4082-9c23-7b460b9bdb4f/approve - 200 (0.0548s)
+2026-05-08 07:53:02 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:53:02 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0198s)
+2026-05-08 07:53:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0019s)
+2026-05-08 07:53:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0262s)
+2026-05-08 07:53:27 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0152s)
+2026-05-08 07:53:27 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0018s)
+2026-05-08 07:53:27 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0227s)
+2026-05-08 07:54:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:54:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0252s)
+2026-05-08 07:54:04 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:54:04 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0267s)
+2026-05-08 07:54:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:54:05 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0231s)
+2026-05-08 07:54:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0018s)
+2026-05-08 07:54:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0177s)
+2026-05-08 07:54:13 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0019s)
+2026-05-08 07:54:13 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0194s)
+2026-05-08 07:54:15 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:54:15 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0240s)
+2026-05-08 07:54:17 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0017s)
+2026-05-08 07:54:17 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0257s)
+2026-05-08 07:54:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:54:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0230s)
+2026-05-08 07:54:23 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:54:24 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0213s)
+2026-05-08 07:54:28 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0010s)
+2026-05-08 07:54:28 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0212s)
+2026-05-08 07:54:30 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0009s)
+2026-05-08 07:54:30 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0194s)
+2026-05-08 07:55:58 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0011s)
+2026-05-08 07:55:58 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0310s)
+2026-05-08 07:56:03 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0149s)
+2026-05-08 07:56:03 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:56:03 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0309s)
+2026-05-08 07:58:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-08 07:58:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0353s)
+2026-05-08 08:01:53 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/affiliates/382837e5-ed69-4082-9c23-7b460b9bdb4f/status - 401 (0.0042s)
+2026-05-08 08:01:53 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/refresh - 200 (0.0458s)
+2026-05-08 08:01:53 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/affiliates/382837e5-ed69-4082-9c23-7b460b9bdb4f/status - 200 (0.0714s)
+2026-05-08 08:01:53 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0013s)
+2026-05-08 08:01:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0250s)
+2026-05-08 08:03:59 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0014s)
+2026-05-08 08:03:59 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0386s)
+2026-05-08 08:04:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0024s)
+2026-05-08 08:04:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0417s)
+2026-05-08 08:04:50 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0021s)
+2026-05-08 08:04:50 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0349s)
+2026-05-09 15:03:48 | DEBUG    | logging:callHandlers:1736 - detected 'argon2_cffi' backend, version '23.1.0', with support for 0x13 argon2 hashes
+2026-05-09 15:03:48 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login/json - 200 (0.8909s)
+2026-05-09 15:03:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0255s)
+2026-05-09 15:03:49 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0170s)
+2026-05-09 15:03:49 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/dashboard/kpis - 200 (0.1255s)
+2026-05-09 15:03:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0021s)
+2026-05-09 15:03:54 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0760s)
+2026-05-09 15:03:56 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services - 307 (0.0013s)
+2026-05-09 15:03:56 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 200 (0.0475s)
+2026-05-09 15:04:08 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0014s)
+2026-05-09 15:04:08 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0362s)
+2026-05-09 15:04:17 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/affiliates/382837e5-ed69-4082-9c23-7b460b9bdb4f/status - 200 (0.0813s)
+2026-05-09 15:04:17 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0017s)
+2026-05-09 15:04:17 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0220s)
+2026-05-09 15:04:28 | INFO     | app.main:add_security_headers:43 - GET / - 200 (0.0021s)
+2026-05-09 15:04:28 | INFO     | app.main:add_security_headers:43 - GET /favicon.ico - 404 (0.0021s)
+2026-05-09 15:04:34 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0010s)
+2026-05-09 15:04:34 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.1454s)
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:56]
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[57:65]
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[66:74]
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 15:05:04 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-05-09 15:05:04 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2074s)
+2026-05-09 15:05:50 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/services/ - 403 (0.0107s)
+2026-05-09 15:06:04 | INFO     | app.main:add_security_headers:43 - GET /api/v1/public/services - 200 (0.0383s)
+2026-05-09 15:06:14 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/leads/ - 200 (0.0770s)
+2026-05-09 15:06:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0009s)
+2026-05-09 15:06:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0257s)
+2026-05-09 15:06:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0008s)
+2026-05-09 15:06:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0229s)
+2026-05-09 15:06:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0018s)
+2026-05-09 15:06:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0427s)
+2026-05-09 15:06:52 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0012s)
+2026-05-09 15:06:52 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0249s)
+2026-05-09 15:10:18 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0014s)
+2026-05-09 15:10:19 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0370s)
+2026-05-09 15:10:24 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/fe2ce9aa-4407-4b9c-bca8-f730c9163a34/status - 200 (0.0819s)
+2026-05-09 15:10:24 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0010s)
+2026-05-09 15:10:24 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0238s)
+2026-05-09 15:10:30 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0012s)
+2026-05-09 15:10:30 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0263s)
+2026-05-09 15:10:58 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/commissions/ - 200 (0.0251s)
+2026-05-09 15:11:44 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0011s)
+2026-05-09 15:11:44 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0257s)
+2026-05-09 15:11:57 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0016s)
+2026-05-09 15:11:57 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0277s)
+2026-05-09 15:12:01 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/fe2ce9aa-4407-4b9c-bca8-f730c9163a34/status - 200 (0.0954s)
+2026-05-09 15:12:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0010s)
+2026-05-09 15:12:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0317s)
+2026-05-09 15:12:07 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0013s)
+2026-05-09 15:12:07 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0228s)
+2026-05-09 15:12:26 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0019s)
+2026-05-09 15:12:26 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0711s)
+2026-05-09 15:12:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/wallet/ - 200 (0.0290s)
+2026-05-09 15:12:47 | INFO     | app.main:add_security_headers:43 - GET /docs - 200 (0.0011s)
+2026-05-09 15:12:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/openapi.json - 200 (0.0047s)
+2026-05-09 15:13:31 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/wallet/ - 401 (0.0020s)
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:56]
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[57:65]
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[66:74]
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 15:13:51 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-05-09 15:13:51 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2155s)
+2026-05-09 15:13:57 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/wallet/ - 200 (0.0216s)
+2026-05-09 15:14:14 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/wallet/ - 200 (0.0189s)
+2026-05-09 15:14:26 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/commissions/ - 200 (0.0213s)
+2026-05-09 15:14:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0013s)
+2026-05-09 15:14:39 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0250s)
+2026-05-09 15:14:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0030s)
+2026-05-09 15:14:41 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0234s)
+2026-05-09 15:15:33 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0012s)
+2026-05-09 15:15:33 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0266s)
+2026-05-09 15:16:35 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/wallet/withdraw - 400 (0.0298s)
+2026-05-09 15:16:46 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/wallet/withdraw - 400 (0.0221s)
+2026-05-09 15:16:53 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0010s)
+2026-05-09 15:16:53 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0238s)
+2026-05-09 15:16:59 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0019s)
+2026-05-09 15:16:59 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0238s)
+2026-05-09 15:17:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0013s)
+2026-05-09 15:17:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0244s)
+2026-05-09 15:23:38 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0021s)
+2026-05-09 15:23:38 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 401 (0.0045s)
+2026-05-09 15:23:42 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/refresh - 200 (0.1414s)
+2026-05-09 15:23:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0009s)
+2026-05-09 15:23:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0958s)
+2026-05-09 15:36:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0025s)
+2026-05-09 15:36:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.3335s)
+2026-05-09 15:36:51 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0019s)
+2026-05-09 15:36:51 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0564s)
+2026-05-09 16:07:16 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0010s)
+2026-05-09 16:07:16 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 401 (0.0033s)
+2026-05-09 16:07:16 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/refresh - 200 (0.0395s)
+2026-05-09 16:07:16 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0012s)
+2026-05-09 16:07:16 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0216s)
+2026-05-09 16:08:14 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/leads/ - 401 (0.0053s)
+2026-05-09 16:08:18 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0013s)
+2026-05-09 16:08:18 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0225s)
+2026-05-09 16:08:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0166s)
+2026-05-09 16:08:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0015s)
+2026-05-09 16:08:25 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0308s)
+2026-05-09 16:08:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates - 307 (0.0012s)
+2026-05-09 16:08:29 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/affiliates/ - 200 (0.0683s)
+2026-05-09 16:08:31 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0012s)
+2026-05-09 16:08:31 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0232s)
+2026-05-09 16:08:56 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/leads/ - 401 (0.0038s)
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[0:10]
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[11:19]
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[20:28]
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[29:56]
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_start with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_name with data[57:65]
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_data with data[66:74]
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_field_end with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-05-09 16:09:12 | DEBUG    | logging:callHandlers:1736 - detected 'argon2_cffi' backend, version '23.1.0', with support for 0x13 argon2 hashes
+2026-05-09 16:09:13 | INFO     | app.main:add_security_headers:43 - POST /api/v1/auth/login - 200 (0.2488s)
+2026-05-09 16:09:19 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/leads/ - 200 (0.0783s)
+2026-05-09 16:09:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0016s)
+2026-05-09 16:09:22 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0228s)
+2026-05-09 16:09:55 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0015s)
+2026-05-09 16:09:55 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0252s)
+2026-05-09 16:09:58 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/7d9c0486-6e45-49d3-80b7-f2d90974552b/status - 200 (0.1084s)
+2026-05-09 16:09:58 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0017s)
+2026-05-09 16:09:58 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0256s)
+2026-05-09 16:10:03 | INFO     | app.main:add_security_headers:43 - PATCH /api/v1/admin/leads/7d9c0486-6e45-49d3-80b7-f2d90974552b/status - 200 (0.1164s)
+2026-05-09 16:10:04 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads - 307 (0.0012s)
+2026-05-09 16:10:04 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/leads/ - 200 (0.0302s)
+2026-05-09 16:10:08 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0010s)
+2026-05-09 16:10:08 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.0273s)
+2026-05-09 16:10:21 | INFO     | app.main:add_security_headers:43 - GET /api/v1/affiliate/wallet/ - 200 (0.0240s)
+2026-05-09 16:10:36 | INFO     | app.main:add_security_headers:43 - POST /api/v1/affiliate/wallet/withdraw - 200 (0.4666s)
+2026-05-09 16:10:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions - 307 (0.0018s)
+2026-05-09 16:10:42 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/commissions/ - 200 (0.3687s)
+2026-05-09 16:10:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0011s)
+2026-05-09 16:10:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0499s)
+2026-05-09 16:11:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0169s)
+2026-05-09 16:11:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0010s)
+2026-05-09 16:11:09 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0252s)
+2026-05-09 16:13:44 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0171s)
+2026-05-09 16:13:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0006s)
+2026-05-09 16:13:48 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.1934s)
+2026-05-09 16:16:13 | INFO     | app.main:add_security_headers:43 - GET /api/v1/auth/me - 200 (0.0179s)
+2026-05-09 16:16:14 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0022s)
+2026-05-09 16:16:14 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0255s)
+2026-05-09 16:16:20 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0018s)
+2026-05-09 16:16:20 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0250s)
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_part_begin with no data
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_header_field with data[42:61]
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_header_value with data[63:118]
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_header_end with no data
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_header_field with data[120:132]
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_header_value with data[134:149]
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_header_end with no data
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_headers_finished with no data
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_part_data with data[153:40101]
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_part_end with no data
+2026-05-09 16:16:39 | DEBUG    | logging:callHandlers:1736 - Calling on_end with no data
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from creating-client-class.iot-data to creating-client-class.iot-data-plane
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from before-call.apigateway to before-call.api-gateway
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from request-created.machinelearning.Predict to request-created.machine-learning.Predict
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from before-parameter-build.autoscaling.CreateLaunchConfiguration to before-parameter-build.auto-scaling.CreateLaunchConfiguration
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from before-parameter-build.route53 to before-parameter-build.route-53
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from request-created.cloudsearchdomain.Search to request-created.cloudsearch-domain.Search
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from docs.*.autoscaling.CreateLaunchConfiguration.complete-section to docs.*.auto-scaling.CreateLaunchConfiguration.complete-section
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from before-parameter-build.logs.CreateExportTask to before-parameter-build.cloudwatch-logs.CreateExportTask
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from docs.*.logs.CreateExportTask.complete-section to docs.*.cloudwatch-logs.CreateExportTask.complete-section
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from before-parameter-build.cloudsearchdomain.Search to before-parameter-build.cloudsearch-domain.Search
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Changing event name from docs.*.cloudsearchdomain.Search.complete-section to docs.*.cloudsearch-domain.Search.complete-section
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Loading JSON file: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\data\endpoints.json
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Loading JSON file: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\data\sdk-default-configuration.json
+2026-05-09 16:16:40 | DEBUG    | logging:callHandlers:1736 - Event choose-service-name: calling handler <function handle_service_name_alias at 0x000001D920FC51C0>
+2026-05-09 16:16:41 | DEBUG    | logging:callHandlers:1736 - Loading JSON file: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\data\s3\2006-03-01\service-2.json.gz
+2026-05-09 16:16:41 | DEBUG    | logging:callHandlers:1736 - Loading JSON file: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\data\s3\2006-03-01\endpoint-rule-set-1.json.gz
+2026-05-09 16:16:41 | DEBUG    | logging:callHandlers:1736 - Loading JSON file: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\data\partitions.json
+2026-05-09 16:16:41 | DEBUG    | logging:callHandlers:1736 - Event creating-client-class.s3: calling handler <function add_generate_presigned_post at 0x000001D920F1E0C0>
+2026-05-09 16:16:41 | DEBUG    | logging:callHandlers:1736 - Event creating-client-class.s3: calling handler <function lazy_call.<locals>._handler at 0x000001D92101BD80>
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Event creating-client-class.s3: calling handler <function add_generate_presigned_url at 0x000001D920F1DE40>
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Creating a regex based endpoint for s3, auto
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Setting s3 timeout as (60, 60)
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Loading JSON file: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\data\_retry.json
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Registering retry handlers for service: s3
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Registering S3 region redirector handler
+2026-05-09 16:16:42 | DEBUG    | logging:callHandlers:1736 - Registering S3Express Identity Resolver
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <function validate_ascii_metadata at 0x000001D920FC67A0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <function sse_md5 at 0x000001D920FC5A80>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <function convert_body_to_file_like_object at 0x000001D920FC71A0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <function validate_bucket_name at 0x000001D920FC59E0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <function remove_bucket_from_url_paths_from_model at 0x000001D920FC7BA0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <bound method S3RegionRedirectorv2.annotate_request_context of <botocore.utils.S3RegionRedirectorv2 object at 0x000001D9216CBE00>>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <bound method ClientCreator._inject_s3_input_parameters of <botocore.client.ClientCreator object at 0x000001D921061D30>>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-parameter-build.s3.PutObject: calling handler <function generate_idempotent_uuid at 0x000001D920FC5800>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-endpoint-resolution.s3: calling handler <function customize_endpoint_resolver_builtins at 0x000001D920FC7D80>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-endpoint-resolution.s3: calling handler <bound method S3RegionRedirectorv2.redirect_from_cache of <botocore.utils.S3RegionRedirectorv2 object at 0x000001D9216CBE00>>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Calling endpoint provider with parameters: {'Bucket': 'mindware-affiliates', 'Region': 'auto', 'UseFIPS': False, 'UseDualStack': False, 'Endpoint': 'https://your-account-id.r2.cloudflarestorage.com', 'ForcePathStyle': True, 'Accelerate': False, 'UseGlobalEndpoint': False, 'Key': 'proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf', 'DisableMultiRegionAccessPoints': False, 'UseArnRegion': True}
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Endpoint provider result: https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Selecting from endpoint provider's list of auth schemes: "sigv4". User selected auth scheme is: "s3v4"
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Selected auth type "v4" as "s3v4" with signing context params: {'region': 'auto', 'signing_name': 's3', 'disableDoubleEncoding': True}
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-call.s3.PutObject: calling handler <function conditionally_calculate_checksum at 0x000001D920D53CE0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-call.s3.PutObject: calling handler <function add_expect_header at 0x000001D920FC5DA0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Adding expect 100 continue header to request.
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-call.s3.PutObject: calling handler <bound method S3ExpressIdentityResolver.apply_signing_cache_key of <botocore.utils.S3ExpressIdentityResolver object at 0x000001D921974050>>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-call.s3.PutObject: calling handler <function add_recursion_detection_header at 0x000001D920FC5440>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-call.s3.PutObject: calling handler <function inject_api_version_header_if_needed at 0x000001D920FC72E0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Making request for OperationModel(name=PutObject) with params: {'url_path': '/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf', 'query_string': {}, 'method': 'PUT', 'headers': {'Content-Type': 'application/pdf', 'User-Agent': 'Boto3/1.34.44 md/Botocore#1.34.162 ua/2.0 os/windows#11 md/arch#amd64 lang/python#3.13.1 md/pyimpl#CPython cfg/retry-mode#legacy Botocore/1.34.162', 'Content-MD5': 'ofvg6+XsZ5iRBJ/HqOqs6g==', 'Expect': '100-continue'}, 'body': <_io.BytesIO object at 0x000001D921EA2570>, 'auth_path': '/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf', 'url': 'https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf', 'context': {'client_region': 'auto', 'client_config': <botocore.config.Config object at 0x000001D92163AD50>, 'has_streaming_input': True, 'auth_type': 's3v4', 's3_redirect': {'redirected': False, 'bucket': 'mindware-affiliates', 'params': {'Bucket': 'mindware-affiliates', 'Key': 'proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf', 'Body': <_io.BytesIO object at 0x000001D921EA2570>, 'ContentType': 'application/pdf'}}, 'input_params': {'Bucket': 'mindware-affiliates', 'Key': 'proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf'}, 'signing': {'region': 'auto', 'signing_name': 's3', 'disableDoubleEncoding': True}, 'endpoint_properties': {'authSchemes': [{'disableDoubleEncoding': True, 'name': 'sigv4', 'signingName': 's3', 'signingRegion': 'auto'}]}}}
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000001D9216C9A90>>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event choose-signer.s3.PutObject: calling handler <function set_operation_specific_signer at 0x000001D920FC56C0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <function remove_arn_from_signing_path at 0x000001D920FC7CE0>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <bound method S3ExpressIdentityResolver.resolve_s3express_identity of <botocore.utils.S3ExpressIdentityResolver object at 0x000001D921974050>>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Calculating signature using v4 auth.
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - CanonicalRequest:
+PUT
+/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf
+
+content-md5:ofvg6+XsZ5iRBJ/HqOqs6g==
+content-type:application/pdf
+host:your-account-id.r2.cloudflarestorage.com
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20260509T151643Z
+
+content-md5;content-type;host;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - StringToSign:
+AWS4-HMAC-SHA256
+20260509T151643Z
+20260509/auto/s3/aws4_request
+288ccc20302b6fb78283882e12d046fa9b3237abc6e04cdd9b1bff8c824cc3c8
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Signature:
+00ec57df6da4fca63bcceb9650a833b30117879fb211301786c217d60ffecfa7
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <function add_retry_headers at 0x000001D920FC7B00>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Sending http request: <AWSPreparedRequest stream_output=False, method=PUT, url=https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf, headers={'Content-Type': b'application/pdf', 'User-Agent': b'Boto3/1.34.44 md/Botocore#1.34.162 ua/2.0 os/windows#11 md/arch#amd64 lang/python#3.13.1 md/pyimpl#CPython cfg/retry-mode#legacy Botocore/1.34.162', 'Content-MD5': b'ofvg6+XsZ5iRBJ/HqOqs6g==', 'Expect': b'100-continue', 'X-Amz-Date': b'20260509T151643Z', 'X-Amz-Content-SHA256': b'UNSIGNED-PAYLOAD', 'Authorization': b'AWS4-HMAC-SHA256 Credential=your-access-key/20260509/auto/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=00ec57df6da4fca63bcceb9650a833b30117879fb211301786c217d60ffecfa7', 'amz-sdk-invocation-id': b'ff121650-060b-4f0b-80d6-faf11cb290dc', 'amz-sdk-request': b'attempt=1', 'Content-Length': '39948'}>
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Certificate path: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\certifi\cacert.pem
+2026-05-09 16:16:43 | DEBUG    | logging:callHandlers:1736 - Starting new HTTPS connection (1): your-account-id.r2.cloudflarestorage.com:443
+2026-05-09 16:16:45 | DEBUG    | logging:callHandlers:1736 - Exception received when sending HTTP request.
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 197, in _send_request
+    success_response, exception = self._get_response(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 239, in _get_response
+    success_response, exception = self._do_get_response(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:46 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000001D9216CBCB0>
+2026-05-09 16:16:46 | DEBUG    | logging:callHandlers:1736 - retry needed, retryable exception caught: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 200, in _send_request
+    while self._needs_retry(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 352, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 284, in __call__
+    should_retry = self._should_retry(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 307, in _should_retry
+    return self._checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 363, in __call__
+    checker_response = checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:46 | DEBUG    | logging:callHandlers:1736 - Retry needed, action of: 0.9880132892882532
+2026-05-09 16:16:46 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <bound method S3RegionRedirectorv2.redirect_from_error of <botocore.utils.S3RegionRedirectorv2 object at 0x000001D9216CBE00>>
+2026-05-09 16:16:46 | DEBUG    | logging:callHandlers:1736 - Response received to retry, sleeping for 0.9880132892882532 seconds
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Rewinding stream: <_io.BytesIO object at 0x000001D921EA2570>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000001D9216C9A90>>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Event choose-signer.s3.PutObject: calling handler <function set_operation_specific_signer at 0x000001D920FC56C0>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <function remove_arn_from_signing_path at 0x000001D920FC7CE0>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <bound method S3ExpressIdentityResolver.resolve_s3express_identity of <botocore.utils.S3ExpressIdentityResolver object at 0x000001D921974050>>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Calculating signature using v4 auth.
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - CanonicalRequest:
+PUT
+/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf
+
+content-md5:ofvg6+XsZ5iRBJ/HqOqs6g==
+content-type:application/pdf
+host:your-account-id.r2.cloudflarestorage.com
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20260509T151647Z
+
+content-md5;content-type;host;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - StringToSign:
+AWS4-HMAC-SHA256
+20260509T151647Z
+20260509/auto/s3/aws4_request
+b86d304f3171646bba8513f734c57e9ccb4553108b5c42adc5d320b33c56ac4b
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Signature:
+5493e70b7679d22baa2845066705b59793ae455f3659e347993461cd484dafbc
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <function add_retry_headers at 0x000001D920FC7B00>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Sending http request: <AWSPreparedRequest stream_output=False, method=PUT, url=https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf, headers={'Content-Type': b'application/pdf', 'User-Agent': b'Boto3/1.34.44 md/Botocore#1.34.162 ua/2.0 os/windows#11 md/arch#amd64 lang/python#3.13.1 md/pyimpl#CPython cfg/retry-mode#legacy Botocore/1.34.162', 'Content-MD5': b'ofvg6+XsZ5iRBJ/HqOqs6g==', 'Expect': b'100-continue', 'X-Amz-Date': b'20260509T151647Z', 'X-Amz-Content-SHA256': b'UNSIGNED-PAYLOAD', 'Authorization': b'AWS4-HMAC-SHA256 Credential=your-access-key/20260509/auto/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=5493e70b7679d22baa2845066705b59793ae455f3659e347993461cd484dafbc', 'amz-sdk-invocation-id': b'ff121650-060b-4f0b-80d6-faf11cb290dc', 'amz-sdk-request': b'attempt=2; max=5', 'Content-Length': '39948'}>
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Certificate path: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\certifi\cacert.pem
+2026-05-09 16:16:47 | DEBUG    | logging:callHandlers:1736 - Starting new HTTPS connection (2): your-account-id.r2.cloudflarestorage.com:443
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Exception received when sending HTTP request.
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 216, in _send_request
+    success_response, exception = self._get_response(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 239, in _get_response
+    success_response, exception = self._do_get_response(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000001D9216CBCB0>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - retry needed, retryable exception caught: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 200, in _send_request
+    while self._needs_retry(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 352, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 284, in __call__
+    should_retry = self._should_retry(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 307, in _should_retry
+    return self._checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 363, in __call__
+    checker_response = checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Retry needed, action of: 0.06707059493538958
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <bound method S3RegionRedirectorv2.redirect_from_error of <botocore.utils.S3RegionRedirectorv2 object at 0x000001D9216CBE00>>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Response received to retry, sleeping for 0.06707059493538958 seconds
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Rewinding stream: <_io.BytesIO object at 0x000001D921EA2570>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000001D9216C9A90>>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event choose-signer.s3.PutObject: calling handler <function set_operation_specific_signer at 0x000001D920FC56C0>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <function remove_arn_from_signing_path at 0x000001D920FC7CE0>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <bound method S3ExpressIdentityResolver.resolve_s3express_identity of <botocore.utils.S3ExpressIdentityResolver object at 0x000001D921974050>>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Calculating signature using v4 auth.
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - CanonicalRequest:
+PUT
+/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf
+
+content-md5:ofvg6+XsZ5iRBJ/HqOqs6g==
+content-type:application/pdf
+host:your-account-id.r2.cloudflarestorage.com
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20260509T151649Z
+
+content-md5;content-type;host;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - StringToSign:
+AWS4-HMAC-SHA256
+20260509T151649Z
+20260509/auto/s3/aws4_request
+700e76d66cfdbcfcf0369b4cce9215961f0ac2789d62d299f7a801985da8f03b
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Signature:
+ad1db3f8d02b21805af5bc9e519d7116e3ca6a9885de1000b6a359bde4dbb3eb
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <function add_retry_headers at 0x000001D920FC7B00>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Sending http request: <AWSPreparedRequest stream_output=False, method=PUT, url=https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf, headers={'Content-Type': b'application/pdf', 'User-Agent': b'Boto3/1.34.44 md/Botocore#1.34.162 ua/2.0 os/windows#11 md/arch#amd64 lang/python#3.13.1 md/pyimpl#CPython cfg/retry-mode#legacy Botocore/1.34.162', 'Content-MD5': b'ofvg6+XsZ5iRBJ/HqOqs6g==', 'Expect': b'100-continue', 'X-Amz-Date': b'20260509T151649Z', 'X-Amz-Content-SHA256': b'UNSIGNED-PAYLOAD', 'Authorization': b'AWS4-HMAC-SHA256 Credential=your-access-key/20260509/auto/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=ad1db3f8d02b21805af5bc9e519d7116e3ca6a9885de1000b6a359bde4dbb3eb', 'amz-sdk-invocation-id': b'ff121650-060b-4f0b-80d6-faf11cb290dc', 'amz-sdk-request': b'attempt=3; max=5', 'Content-Length': '39948'}>
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Certificate path: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\certifi\cacert.pem
+2026-05-09 16:16:49 | DEBUG    | logging:callHandlers:1736 - Starting new HTTPS connection (3): your-account-id.r2.cloudflarestorage.com:443
+2026-05-09 16:16:50 | DEBUG    | logging:callHandlers:1736 - Exception received when sending HTTP request.
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 216, in _send_request
+    success_response, exception = self._get_response(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 239, in _get_response
+    success_response, exception = self._do_get_response(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:50 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000001D9216CBCB0>
+2026-05-09 16:16:50 | DEBUG    | logging:callHandlers:1736 - retry needed, retryable exception caught: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 200, in _send_request
+    while self._needs_retry(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 352, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 284, in __call__
+    should_retry = self._should_retry(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 307, in _should_retry
+    return self._checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 363, in __call__
+    checker_response = checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:50 | DEBUG    | logging:callHandlers:1736 - Retry needed, action of: 2.796030679060864
+2026-05-09 16:16:50 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <bound method S3RegionRedirectorv2.redirect_from_error of <botocore.utils.S3RegionRedirectorv2 object at 0x000001D9216CBE00>>
+2026-05-09 16:16:50 | DEBUG    | logging:callHandlers:1736 - Response received to retry, sleeping for 2.796030679060864 seconds
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Rewinding stream: <_io.BytesIO object at 0x000001D921EA2570>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000001D9216C9A90>>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Event choose-signer.s3.PutObject: calling handler <function set_operation_specific_signer at 0x000001D920FC56C0>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <function remove_arn_from_signing_path at 0x000001D920FC7CE0>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <bound method S3ExpressIdentityResolver.resolve_s3express_identity of <botocore.utils.S3ExpressIdentityResolver object at 0x000001D921974050>>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Calculating signature using v4 auth.
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - CanonicalRequest:
+PUT
+/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf
+
+content-md5:ofvg6+XsZ5iRBJ/HqOqs6g==
+content-type:application/pdf
+host:your-account-id.r2.cloudflarestorage.com
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20260509T151653Z
+
+content-md5;content-type;host;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - StringToSign:
+AWS4-HMAC-SHA256
+20260509T151653Z
+20260509/auto/s3/aws4_request
+7ac5cee565a8b3b8f093097b5d207a38b522341da4b104c091dad17184677b24
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Signature:
+aad3d12374c1f0e15060a0a67aab566ffa12f3b7582e6ac4403cab550ca1d1ea
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <function add_retry_headers at 0x000001D920FC7B00>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Sending http request: <AWSPreparedRequest stream_output=False, method=PUT, url=https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf, headers={'Content-Type': b'application/pdf', 'User-Agent': b'Boto3/1.34.44 md/Botocore#1.34.162 ua/2.0 os/windows#11 md/arch#amd64 lang/python#3.13.1 md/pyimpl#CPython cfg/retry-mode#legacy Botocore/1.34.162', 'Content-MD5': b'ofvg6+XsZ5iRBJ/HqOqs6g==', 'Expect': b'100-continue', 'X-Amz-Date': b'20260509T151653Z', 'X-Amz-Content-SHA256': b'UNSIGNED-PAYLOAD', 'Authorization': b'AWS4-HMAC-SHA256 Credential=your-access-key/20260509/auto/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=aad3d12374c1f0e15060a0a67aab566ffa12f3b7582e6ac4403cab550ca1d1ea', 'amz-sdk-invocation-id': b'ff121650-060b-4f0b-80d6-faf11cb290dc', 'amz-sdk-request': b'attempt=4; max=5', 'Content-Length': '39948'}>
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Certificate path: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\certifi\cacert.pem
+2026-05-09 16:16:53 | DEBUG    | logging:callHandlers:1736 - Starting new HTTPS connection (4): your-account-id.r2.cloudflarestorage.com:443
+2026-05-09 16:16:55 | DEBUG    | logging:callHandlers:1736 - Exception received when sending HTTP request.
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 216, in _send_request
+    success_response, exception = self._get_response(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 239, in _get_response
+    success_response, exception = self._do_get_response(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:55 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000001D9216CBCB0>
+2026-05-09 16:16:55 | DEBUG    | logging:callHandlers:1736 - retry needed, retryable exception caught: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 200, in _send_request
+    while self._needs_retry(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 352, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 284, in __call__
+    should_retry = self._should_retry(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 307, in _should_retry
+    return self._checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 363, in __call__
+    checker_response = checker(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 247, in __call__
+    return self._check_caught_exception(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:16:55 | DEBUG    | logging:callHandlers:1736 - Retry needed, action of: 4.807202872473227
+2026-05-09 16:16:55 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <bound method S3RegionRedirectorv2.redirect_from_error of <botocore.utils.S3RegionRedirectorv2 object at 0x000001D9216CBE00>>
+2026-05-09 16:16:55 | DEBUG    | logging:callHandlers:1736 - Response received to retry, sleeping for 4.807202872473227 seconds
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Rewinding stream: <_io.BytesIO object at 0x000001D921EA2570>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <bound method RequestSigner.handler of <botocore.signers.RequestSigner object at 0x000001D9216C9A90>>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Event choose-signer.s3.PutObject: calling handler <function set_operation_specific_signer at 0x000001D920FC56C0>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <function remove_arn_from_signing_path at 0x000001D920FC7CE0>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Event before-sign.s3.PutObject: calling handler <bound method S3ExpressIdentityResolver.resolve_s3express_identity of <botocore.utils.S3ExpressIdentityResolver object at 0x000001D921974050>>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Calculating signature using v4 auth.
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - CanonicalRequest:
+PUT
+/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf
+
+content-md5:ofvg6+XsZ5iRBJ/HqOqs6g==
+content-type:application/pdf
+host:your-account-id.r2.cloudflarestorage.com
+x-amz-content-sha256:UNSIGNED-PAYLOAD
+x-amz-date:20260509T151659Z
+
+content-md5;content-type;host;x-amz-content-sha256;x-amz-date
+UNSIGNED-PAYLOAD
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - StringToSign:
+AWS4-HMAC-SHA256
+20260509T151659Z
+20260509/auto/s3/aws4_request
+fc98fcb4701ceb7098e3ef691441277d55693a7336e8ceafa1d69a273380230e
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Signature:
+607a27735cb080b03c7bd48efd5391b8fee591adb6f4de27058e1e08c0aed958
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Event request-created.s3.PutObject: calling handler <function add_retry_headers at 0x000001D920FC7B00>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Sending http request: <AWSPreparedRequest stream_output=False, method=PUT, url=https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf, headers={'Content-Type': b'application/pdf', 'User-Agent': b'Boto3/1.34.44 md/Botocore#1.34.162 ua/2.0 os/windows#11 md/arch#amd64 lang/python#3.13.1 md/pyimpl#CPython cfg/retry-mode#legacy Botocore/1.34.162', 'Content-MD5': b'ofvg6+XsZ5iRBJ/HqOqs6g==', 'Expect': b'100-continue', 'X-Amz-Date': b'20260509T151659Z', 'X-Amz-Content-SHA256': b'UNSIGNED-PAYLOAD', 'Authorization': b'AWS4-HMAC-SHA256 Credential=your-access-key/20260509/auto/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=607a27735cb080b03c7bd48efd5391b8fee591adb6f4de27058e1e08c0aed958', 'amz-sdk-invocation-id': b'ff121650-060b-4f0b-80d6-faf11cb290dc', 'amz-sdk-request': b'attempt=5; max=5', 'Content-Length': '39948'}>
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Certificate path: C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\certifi\cacert.pem
+2026-05-09 16:16:59 | DEBUG    | logging:callHandlers:1736 - Starting new HTTPS connection (5): your-account-id.r2.cloudflarestorage.com:443
+2026-05-09 16:17:01 | DEBUG    | logging:callHandlers:1736 - Exception received when sending HTTP request.
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 796, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connection.py", line 975, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 483, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\ssl_.py", line 527, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+  File "C:\Python313\Lib\ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+  File "C:\Python313\Lib\ssl.py", line 1076, in _create
+    self.do_handshake()
+  File "C:\Python313\Lib\ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+
+ssl.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 464, in send
+    urllib_response = conn.urlopen(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\retry.py", line 465, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+
+urllib3.exceptions.SSLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=30488, pipe_handle=584)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\spawn.py", line 135, in _main
+    return self._bootstrap(parent_sentinel)
+  File "C:\Python313\Lib\multiprocessing\process.py", line 313, in _bootstrap
+    self.run()
+  File "C:\Python313\Lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 78, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\uvicorn\server.py", line 62, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Python313\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 707, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 678, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2033, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\fastapi\routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\routers\admin\withdrawals.py", line 52, in approve_withdrawal
+    proof_url = await storage_service.upload_file(file)
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\app\services\storage_service.py", line 31, in upload_file
+    self.s3.put_object(
+
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 999, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\client.py", line 1023, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 216, in _send_request
+    success_response, exception = self._get_response(
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 239, in _get_response
+    success_response, exception = self._do_get_response(
+> File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 279, in _do_get_response
+    http_response = self._send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\endpoint.py", line 375, in _send
+    return self.http_session.send(request)
+  File "C:\Users\JonataoCardoso\Documents\GitHub\affiliate-management\.venv\Lib\site-packages\botocore\httpsession.py", line 491, in send
+    raise SSLError(endpoint_url=request.url, error=e)
+
+botocore.exceptions.SSLError: SSL validation failed for https://your-account-id.r2.cloudflarestorage.com/mindware-affiliates/proofs/8288aea0-b684-4749-b46c-4c3bf39f77e4.pdf [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 alert handshake failure (_ssl.c:1018)
+2026-05-09 16:17:01 | DEBUG    | logging:callHandlers:1736 - Event needs-retry.s3.PutObject: calling handler <botocore.retryhandler.RetryHandler object at 0x000001D9216CBCB0>
+2026-05-09 16:17:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0020s)
+2026-05-09 16:17:01 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0252s)
+2026-05-09 16:17:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals - 307 (0.0010s)
+2026-05-09 16:17:45 | INFO     | app.main:add_security_headers:43 - GET /api/v1/admin/withdrawals/ - 200 (0.0203s)

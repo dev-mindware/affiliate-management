@@ -21,14 +21,27 @@ async def get_wallet(db: AsyncSession, affiliate_id: uuid.UUID, lock: bool = Fal
 
 async def add_pending_commission(db: AsyncSession, affiliate_id: uuid.UUID, amount: Decimal):
     """
-    When a commission is approved (Pending -> Approved).
-    Moves value to saldo_pendente.
+    When a commission is created (PENDING).
+    Adds value to saldo_pendente.
     """
     wallet = await get_wallet(db, affiliate_id, lock=True)
     if not wallet:
         return None
     
     wallet.saldo_pendente += amount
+    await db.flush()
+    return wallet
+
+async def remove_pending_commission(db: AsyncSession, affiliate_id: uuid.UUID, amount: Decimal):
+    """
+    When a pending commission is rejected.
+    Removes value from saldo_pendente.
+    """
+    wallet = await get_wallet(db, affiliate_id, lock=True)
+    if not wallet:
+        return None
+    
+    wallet.saldo_pendente -= amount
     await db.flush()
     return wallet
 

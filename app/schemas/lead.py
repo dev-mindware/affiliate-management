@@ -24,6 +24,7 @@ class LeadResponse(LeadBase):
     
     id: uuid.UUID
     affiliate_id: uuid.UUID
+    affiliate_nome: Optional[str] = None
     status: LeadStatus
     created_at: datetime
     updated_at: datetime

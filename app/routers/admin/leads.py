@@ -11,6 +11,8 @@ from app.schemas.common import PaginationParams, PaginatedResponse
 from app.utils.pagination import paginate
 from app.models.affiliate import Affiliate
 
+from sqlalchemy.orm import selectinload
+
 router = APIRouter()
 
 @router.post("/", response_model=LeadResponse)
@@ -46,7 +48,7 @@ async def list_leads(
     db: AsyncSession = Depends(get_db),
     admin=Depends(get_current_active_admin)
 ):
-    query = select(LeadNotification)
+    query = select(LeadNotification).options(selectinload(LeadNotification.affiliate))
     if status:
         query = query.where(LeadNotification.status == status)
     
