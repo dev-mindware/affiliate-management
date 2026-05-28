@@ -4,6 +4,10 @@ import { ACCESS_TOKEN_KEY } from '@/constants/auth'
 // This proxy handles route protection and session management
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  if (pathname.startsWith('/api')) {
+    return NextResponse.next()
+  }
   
   // Public paths that don't require authentication
   const isPublicPath = pathname === '/auth/login' || pathname === '/auth/register' || pathname.startsWith('/api/public')
@@ -37,6 +41,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public (public folder)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|public).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|public|.*\\.(?:png|svg|jpg|jpeg|gif|json|ico)).*)',
   ],
 }

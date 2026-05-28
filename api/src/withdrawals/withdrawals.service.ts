@@ -5,10 +5,14 @@ import { dateRange, normalizePagination, orderBy, paginated } from "../common/fi
 import { withdrawalDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
 import { WithdrawalFilterDto } from "./dto/withdrawal-filter.dto";
+import { NotificationsService } from "../notifications/notifications.service";
 
 @Injectable()
 export class WithdrawalsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private notifications: NotificationsService,
+  ) {}
 
   async list(filter: WithdrawalFilterDto) {
     const p = normalizePagination(filter);
@@ -39,6 +43,19 @@ export class WithdrawalsService {
       where: { affiliateId: withdrawal.affiliateId },
       data: { totalLevantado: { increment: withdrawal.valor } },
     });
+
+    const affiliate = await this.prisma.affiliate.findUnique({ where: { id: withdrawal.affiliateId } });
+    if (affiliate?.userId) {
+      await this.notifications.create({
+        userId: affiliate.userId,
+        title: "Saque Aprovado!",
+        message: `Seu pedido de saque no valor de Kz ${withdrawal.valor} foi processado e aprovado com sucesso!`,
+        type: "withdrawal",
+        entity: "WithdrawalRequest",
+        entityId: updated.id,
+      });
+    }
+
     return withdrawalDto(updated);
   }
 
@@ -53,6 +70,19 @@ export class WithdrawalsService {
       where: { affiliateId: withdrawal.affiliateId },
       data: { saldoDisponivel: { increment: withdrawal.valor } },
     });
+
+    const affiliate = await this.prisma.affiliate.findUnique({ where: { id: withdrawal.affiliateId } });
+    if (affiliate?.userId) {
+      await this.notifications.create({
+        userId: affiliate.userId,
+        title: "Saque Rejeitado",
+        message: `Seu pedido de saque no valor de Kz ${withdrawal.valor} foi rejeitado pelo administrador. Motivo: ${notes || "Nenhuma justificativa fornecida."}. O valor foi retornado ao seu saldo disponível.`,
+        type: "withdrawal",
+        entity: "WithdrawalRequest",
+        entityId: updated.id,
+      });
+    }
+
     return withdrawalDto(updated);
   }
 }

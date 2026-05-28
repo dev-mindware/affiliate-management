@@ -5,7 +5,7 @@ import { Lead, LeadStatus, LeadAdminCreate, LeadUpdate } from "@workspace/types/
 export const leadService = {
   listLeads: async (status?: LeadStatus, page = 1, size = 10) => {
     return api.get<Lead[]>("/affiliate/leads", {
-      params: { status, page, size }
+      params: { status, page, limit: size }
     });
   },
 

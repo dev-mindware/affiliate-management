@@ -64,6 +64,18 @@ export class AuthService {
     };
   }
 
+  async refresh(refreshToken?: string) {
+    if (!refreshToken) throw new UnauthorizedException("Refresh token ausente");
+    const payload = await this.jwt.verifyAsync(refreshToken).catch(() => null);
+    if (!payload || payload.type !== "refresh") throw new UnauthorizedException("Refresh token invalido");
+    const user = await this.prisma.user.findUnique({ where: { id: payload.sub }, include: { affiliate: true } });
+    if (!user || !user.isActive) throw new UnauthorizedException("Utilizador invalido");
+    const nextPayload = { sub: user.id, email: user.email, role: user.role };
+    const accessToken = await this.jwt.signAsync({ ...nextPayload, type: "access" });
+    const nextRefreshToken = await this.jwt.signAsync({ ...nextPayload, type: "refresh" }, { expiresIn: "7d" });
+    return { access_token: accessToken, refresh_token: nextRefreshToken, token_type: "bearer" };
+  }
+
   async ensureAdmin(email: string, password: string) {
     const exists = await this.prisma.user.findUnique({ where: { email } });
     if (exists) return exists;

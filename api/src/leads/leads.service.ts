@@ -6,10 +6,15 @@ import { dateRange, normalizePagination, orderBy, paginated } from "../common/fi
 import { leadDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
 import { LeadFilterDto } from "./dto/lead-filter.dto";
+import { NotificationsService } from "../notifications/notifications.service";
 
 @Injectable()
 export class LeadsService {
-  constructor(private prisma: PrismaService, private commissions: CommissionsService) {}
+  constructor(
+    private prisma: PrismaService,
+    private commissions: CommissionsService,
+    private notifications: NotificationsService,
+  ) {}
 
   async list(filter: LeadFilterDto) {
     const p = normalizePagination(filter);
@@ -47,6 +52,18 @@ export class LeadsService {
       },
       include: { affiliate: true },
     });
+
+    if (lead.affiliate?.userId) {
+      await this.notifications.create({
+        userId: lead.affiliate.userId,
+        title: "Novo Lead Cadastrado",
+        message: `Seu lead para o cliente ${lead.clientNome} foi registrado com sucesso.`,
+        type: "lead",
+        entity: "LeadNotification",
+        entityId: lead.id,
+      });
+    }
+
     return leadDto(lead);
   }
 
@@ -59,6 +76,18 @@ export class LeadsService {
   async updateStatus(id: string, statusValue: string) {
     const status = toLeadStatus(statusValue) || LeadStatus.NEW;
     const lead = await this.prisma.leadNotification.update({ where: { id }, data: { status }, include: { affiliate: true } });
+    
+    if (lead.affiliate?.userId) {
+      await this.notifications.create({
+        userId: lead.affiliate.userId,
+        title: `Lead Atualizado: ${lead.clientNome}`,
+        message: `O status do seu lead foi atualizado para ${statusValue.toUpperCase()}.`,
+        type: "lead",
+        entity: "LeadNotification",
+        entityId: lead.id,
+      });
+    }
+
     if (status === LeadStatus.CONTACTED || status === LeadStatus.CONVERTED) {
       const exists = await this.prisma.commission.findFirst({ where: { leadNotificationId: lead.id } });
       if (!exists) {

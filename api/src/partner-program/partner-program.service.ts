@@ -17,13 +17,18 @@ import { PrismaService } from "../prisma/prisma.service";
 import { WalletService, WITHDRAWAL_MINIMUM } from "../wallet/wallet.service";
 import { SubscriptionFilterDto } from "./dto/subscription-filter.dto";
 import { RankingFilterDto } from "./dto/ranking-filter.dto";
+import { NotificationsService } from "../notifications/notifications.service";
 
 const VALIDATION_DAYS = 15;
 const CUSTOM_MINIMUM = 14899.22;
 
 @Injectable()
 export class PartnerProgramService {
-  constructor(private prisma: PrismaService, private wallet: WalletService) {}
+  constructor(
+    private prisma: PrismaService,
+    private wallet: WalletService,
+    private notifications: NotificationsService,
+  ) {}
 
   async ensureDefaultPlans() {
     const defaults = [
@@ -163,6 +168,18 @@ export class PartnerProgramService {
     });
     await this.wallet.addPending(affiliate.id, commissionAmount);
     await this.refreshAffiliate(affiliate);
+
+    if (affiliateRecord?.userId) {
+      await this.notifications.create({
+        userId: affiliateRecord.userId,
+        title: "Nova Assinatura de Referido!",
+        message: `Seu cliente referido ${data.client_name} assinou o plano ${data.plan_code} (${data.billing_period.toUpperCase()})! Comissão pendente de Kz ${commissionAmount} gerada.`,
+        type: "system",
+        entity: "PartnerSubscription",
+        entityId: subscription.id,
+      });
+    }
+
     return { subscription, commission, duplicated: false };
   }
 
@@ -256,6 +273,18 @@ export class PartnerProgramService {
       update: { approvedAt: new Date(), approvedBy: adminId, notes },
       create: { affiliateId, approvedAt: new Date(), approvedBy: adminId, notes },
     });
+
+    if (refreshed.userId) {
+      await this.notifications.create({
+        userId: refreshed.userId,
+        title: "Certificação Aprovada!",
+        message: "Parabéns! Sua certificação comercial foi aprovada. Você agora é um Parceiro Comercial Certificado Mindgest e pode receber benefícios premium!",
+        type: "system",
+        entity: "PartnerCertification",
+        entityId: approved.id,
+      });
+    }
+
     return affiliateDto(approved);
   }
 
@@ -269,6 +298,19 @@ export class PartnerProgramService {
       update: { rejectedAt: new Date(), notes },
       create: { affiliateId, rejectedAt: new Date(), notes },
     });
+
+    const affiliate = await this.prisma.affiliate.findUnique({ where: { id: affiliateId } });
+    if (affiliate?.userId) {
+      await this.notifications.create({
+        userId: affiliate.userId,
+        title: "Certificação Recusada",
+        message: `Seu pedido de certificação comercial foi recusado pelo administrador. Observações: ${notes || "Nenhuma observação."}`,
+        type: "system",
+        entity: "PartnerCertification",
+        entityId: rejected.id,
+      });
+    }
+
     return affiliateDto(rejected);
   }
 

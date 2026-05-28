@@ -3,7 +3,8 @@
 import { 
     LeadDetailsModal,
     RequestWithdrawalModal,
-    RankingModal
+    RankingModal,
+    NotificationDetailsModal
 } from "./";
 
 export function AffiliateModalProvider() {
@@ -12,6 +13,7 @@ export function AffiliateModalProvider() {
             <RequestWithdrawalModal />
             <LeadDetailsModal />
             <RankingModal />
+            <NotificationDetailsModal />
         </>
     );
 }

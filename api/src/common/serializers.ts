@@ -98,7 +98,7 @@ export function withdrawalDto(w: any) {
   return {
     id: w.id,
     affiliate_id: w.affiliateId,
-    affiliate_nome: undefined,
+    affiliate_nome: w.affiliate?.nomeCompleto,
     valor: Number(w.valor || 0),
     conta_bancaria: w.contaBancaria,
     banco: w.banco,

@@ -9,7 +9,7 @@
     "header": [
       { "type": "link", "title": "API Reference", "to": "/api" },
       { "type": "spacer" },
-      { "type": "link", "title": "OpenAPI JSON", "to": "http://localhost:8000/api/v1/openapi.json", "newTab": true }
+      { "type": "link", "title": "OpenAPI JSON", "to": "http://localhost:8000/api/openapi.json", "newTab": true }
     ],
     "routes": {
       "/": {
@@ -20,7 +20,7 @@
       "/api": {
         "title": "API Reference",
         "type": "openapi",
-        "url": "http://localhost:8000/api/v1/openapi.json",
+        "url": "http://localhost:8000/api/openapi.json",
         "displayMode": "folder"
       }
     }

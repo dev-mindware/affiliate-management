@@ -14,6 +14,7 @@ type Props = {
   showSeparator?: boolean;
   children: React.ReactNode;
   variant?: "default" | "counter";
+  rightHeaderActions?: React.ReactNode;
 };
 
 export function PageWrapper({
@@ -23,6 +24,7 @@ export function PageWrapper({
   showSeparator = true,
   children,
   variant = "default",
+  rightHeaderActions,
 }: Props) {
   const { user } = useAuth();
   const [search, setSearch] = useQueryState("search", {
@@ -66,6 +68,7 @@ export function PageWrapper({
         )}
 
         <div className="flex items-center mr-4 space-x-2 md:space-x-4">
+          {rightHeaderActions}
           {variant === "counter" && (
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">

@@ -110,13 +110,14 @@ enum PartnerPaymentSource {
 }
 
 model User {
-  id           String    @id @default(uuid()) @db.Uuid
-  email        String    @unique
-  passwordHash String    @map("password_hash")
-  role         UserRole  @default(AFFILIATE)
-  isActive     Boolean   @default(true) @map("is_active")
-  createdAt    DateTime  @default(now()) @map("created_at")
+  id           String         @id @default(uuid()) @db.Uuid
+  email        String         @unique
+  passwordHash String         @map("password_hash")
+  role         UserRole       @default(AFFILIATE)
+  isActive     Boolean        @default(true) @map("is_active")
+  createdAt    DateTime       @default(now()) @map("created_at")
   affiliate    Affiliate?
+  notifications Notification[]
 
   @@map("users")
 }
@@ -293,4 +294,21 @@ model PartnerCertification {
   updatedAt   DateTime  @updatedAt @map("updated_at")
 
   @@map("partner_certifications")
+}
+
+model Notification {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  type      String    // ex: "lead", "commission", "withdrawal", "system"
+  entity    String?   // ex: "LeadNotification", "Commission", "WithdrawalRequest"
+  entityId  String?   @map("entity_id") @db.Uuid
+  readAt    DateTime? @map("read_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@map("notifications")
+  @@index([userId, readAt])
+  @@index([createdAt])
 }

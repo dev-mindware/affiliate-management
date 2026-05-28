@@ -89,6 +89,13 @@ export function LoginForm() {
 
         <OrLine />
         <GoogleButton />
+
+        <div className="text-center text-sm text-muted-foreground mt-2">
+          Não tem uma conta?{" "}
+          <Link href="/auth/register" className="text-primary hover:underline font-medium">
+            Cadastre-se
+          </Link>
+        </div>
       </div>
     </form>
   );

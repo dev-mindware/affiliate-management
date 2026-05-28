@@ -1,42 +1,43 @@
 # Mindgest Partners API
 
-API NestJS + TypeScript para gestão do Mindgest Partners Program.
+API NestJS + TypeScript para gestao do Mindgest Partners Program.
 
 ## Stack
 
 - NestJS 11
 - TypeScript
-- PostgreSQL com TypeORM
+- PostgreSQL com Prisma
 - JWT auth
 - OpenAPI com `@nestjs/swagger`
-- Scalar Docs em `/api/v1/docs`
+- Scalar Docs em `/api/reference`
 
 ## Setup
 
 ```bash
 npm install
 docker compose up -d
+npm run prisma:generate
 npm run seed
 npm run start:dev
 ```
 
-Por padrão a API usa:
+Por padrao a API usa:
 
 - `POSTGRES_HOST=localhost`
 - `POSTGRES_PORT=5435`
 - `POSTGRES_USER=postgres`
 - `POSTGRES_PASSWORD=postgres`
 - `POSTGRES_DB=mindware_affiliates`
+- `DATABASE_URL=postgresql://postgres:postgres@localhost:5435/mindware_affiliates?schema=public`
 - `PORT=8000`
-- `API_V1_STR=/api/v1`
+- `API_PREFIX=/api`
 
-Em desenvolvimento, `TYPEORM_SYNC` fica activo por padrão para criar/actualizar tabelas localmente. Em produção, defina explicitamente a estratégia de migração desejada e mantenha `TYPEORM_SYNC=false`.
+## Documentacao
 
-## Documentação
-
-- Scalar Docs: `http://localhost:8000/api/v1/docs`
-- OpenAPI JSON: `http://localhost:8000/api/v1/openapi.json`
-- Swagger UI: `http://localhost:8000/api/v1/swagger`
+- Scalar Docs: `http://localhost:8000/api/reference`
+- Alias antigo: `http://localhost:8000/api/docs`
+- OpenAPI JSON: `http://localhost:8000/api/openapi.json`
+- Swagger UI: `http://localhost:8000/api/swagger`
 - Config Scalar: `scalar.config.json`
 
 ## Scripts
@@ -45,9 +46,12 @@ Em desenvolvimento, `TYPEORM_SYNC` fica activo por padrão para criar/actualizar
 npm run start:dev
 npm run build
 npm run type-check
+npm run prisma:validate
+npm run prisma:generate
+npm run migrate:dev
 npm run seed
 ```
 
-## Observação de Migração
+## Observacao de migracao
 
-A implementação activa da API agora vive em `src/`. A base Python/FastAPI anterior foi removida do código versionado; os comandos de execução usam NestJS.
+A implementacao activa da API vive em `src/`. A base Python/FastAPI anterior foi removida do codigo versionado; os comandos de execucao usam NestJS e Prisma.

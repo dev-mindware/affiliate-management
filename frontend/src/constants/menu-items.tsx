@@ -80,8 +80,8 @@ export const affiliateMenuItems: MenuStructure = {
       icon: <Icon name="BookOpen" />,
     },
     {
-      name: "Perfil",
-      url: "/profile",
+      name: "Configurações",
+      url: "/definitions",
       icon: <Icon name="Settings" />,
     },
   ],

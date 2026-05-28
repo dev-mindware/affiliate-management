@@ -6,6 +6,7 @@ import { ValidationPipe } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { apiReference } from "@scalar/nestjs-api-reference";
 import { AppModule } from "./app.module";
+import { AllExceptionsFilter } from "./common/filters/all-exceptions.filter";
 
 function corsOrigins() {
   const raw = process.env.BACKEND_CORS_ORIGINS || "http://localhost:3000,http://127.0.0.1:3000";
@@ -40,24 +41,25 @@ async function bootstrap() {
     }),
   );
   app.enableCors({ origin: corsOrigins(), credentials: true });
+  app.useGlobalFilters(new AllExceptionsFilter());
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
   const openApi = new DocumentBuilder()
-    .setTitle(process.env.PROJECT_NAME || "Mindgest Partners API")
-    .setDescription("API NestJS com Prisma para o Mindgest Partners Program")
+    .setTitle(process.env.PROJECT_NAME || "Mindware Affiliate System API")
+    .setDescription("NestJS API with Prisma for the Mindware Affiliate Management System")
     .setVersion("1.0.0")
     .addBearerAuth()
-    .addTag("auth")
-    .addTag("public")
-    .addTag("affiliates")
-    .addTag("services")
-    .addTag("leads")
-    .addTag("commissions")
-    .addTag("wallet")
-    .addTag("withdrawals")
-    .addTag("partner-program")
-    .addTag("webhooks")
-    .addTag("admin-dashboard")
+    .addTag("auth", "Affiliate and administrator authentication endpoints")
+    .addTag("public", "Publicly accessible service and informational endpoints")
+    .addTag("affiliates", "Affiliate profile management endpoints")
+    .addTag("services", "Service catalog management endpoints")
+    .addTag("leads", "Lead collection and notification endpoints")
+    .addTag("commissions", "Affiliate commission tracking endpoints")
+    .addTag("wallet", "Affiliate wallet balances and summary")
+    .addTag("withdrawals", "Payment withdrawal request processing")
+    .addTag("partner-program", "Subscription program plan management")
+    .addTag("webhooks", "Third-party system integration webhook endpoints")
+    .addTag("admin-dashboard", "Admin analytical dashboard endpoints")
     .build();
   const document = SwaggerModule.createDocument(app, openApi);
   const server = app.getHttpAdapter().getInstance();

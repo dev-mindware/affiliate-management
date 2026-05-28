@@ -13,11 +13,24 @@ export class RolesGuard implements CanActivate {
       context.getClass(),
     ]);
     if (!roles?.length) return true;
+
     const request = context.switchToHttp().getRequest();
-    if (!roles.includes(request.user?.role)) throw new ForbiddenException("Acesso negado");
-    if (roles.includes(UserRole.AFFILIATE) && request.user?.role === UserRole.AFFILIATE) {
-      if (request.affiliate?.status !== AffiliateStatus.ACTIVE) throw new ForbiddenException("Afiliado nÃ£o estÃ¡ activo");
+    const user = request.user;
+
+    const userRoleLower = user?.role ? String(user.role).toLowerCase() : "";
+    const allowedRolesLower = roles.map((r) => String(r).toLowerCase());
+
+    if (!allowedRolesLower.includes(userRoleLower)) {
+      throw new ForbiddenException("Acesso negado");
     }
+
+    if (allowedRolesLower.includes("affiliate") && userRoleLower === "affiliate") {
+      const statusLower = user.affiliate?.status ? String(user.affiliate.status).toLowerCase() : "";
+      if (statusLower !== "active") {
+        throw new ForbiddenException("Afiliado nao esta activo");
+      }
+    }
+
     return true;
   }
 }

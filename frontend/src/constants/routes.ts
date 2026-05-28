@@ -13,7 +13,7 @@ export const PRIVATE_ROUTE_PREFIXES = [
   "/leads",
   "/commissions",
   "/wallet",
-  "/profile",
+  "/definitions",
 ];
 
 export const BASE_PATH = "";

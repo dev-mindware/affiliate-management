@@ -23,7 +23,6 @@ export async function loginAction(data: any) {
       refreshToken: refresh_token,
     });
 
-    // Check if user is admin
     const userRes = await api.get("/auth/me", {
       headers: {
         Authorization: `Bearer ${access_token}`
@@ -38,7 +37,7 @@ export async function loginAction(data: any) {
     return { success: true };
   } catch (error: any) {
     console.error("Login Error:", error.response?.data || error.message);
-    const message = error.response?.data?.detail || "Erro ao realizar login. Verifique as suas credenciais.";
+    const message = error.response?.data?.message || error.response?.data?.detail || "Erro ao realizar login. Verifique as suas credenciais.";
     return { error: message };
   }
 }

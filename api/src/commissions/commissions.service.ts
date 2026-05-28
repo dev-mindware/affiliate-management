@@ -6,10 +6,15 @@ import { toCommissionStatus } from "../common/enum-mappers";
 import { PrismaService } from "../prisma/prisma.service";
 import { WalletService } from "../wallet/wallet.service";
 import { CommissionFilterDto } from "./dto/commission-filter.dto";
+import { NotificationsService } from "../notifications/notifications.service";
 
 @Injectable()
 export class CommissionsService {
-  constructor(private prisma: PrismaService, private wallet: WalletService) {}
+  constructor(
+    private prisma: PrismaService,
+    private wallet: WalletService,
+    private notifications: NotificationsService,
+  ) {}
 
   async list(filter: CommissionFilterDto) {
     const p = normalizePagination(filter);
@@ -53,6 +58,19 @@ export class CommissionsService {
       },
     });
     await this.wallet.addPending(data.affiliate_id, Number(service.comissao || 0));
+
+    const affiliate = await this.prisma.affiliate.findUnique({ where: { id: data.affiliate_id } });
+    if (affiliate?.userId) {
+      await this.notifications.create({
+        userId: affiliate.userId,
+        title: "Nova Comissão Gerada",
+        message: `Uma comissão pendente no valor de Kz ${service.comissao} foi gerada para o cliente ${data.client_nome}.`,
+        type: "commission",
+        entity: "Commission",
+        entityId: commission.id,
+      });
+    }
+
     return commissionDto(commission);
   }
 
@@ -61,6 +79,19 @@ export class CommissionsService {
     if (!commission || commission.status !== CommissionStatus.PENDING) throw new NotFoundException("Comissao nao encontrada ou estado invalido");
     const updated = await this.prisma.commission.update({ where: { id }, data: { status: CommissionStatus.APPROVED, approvedAt: new Date() } });
     await this.wallet.movePendingToAvailable(commission.affiliateId, Number(commission.valorComissao || 0));
+
+    const affiliate = await this.prisma.affiliate.findUnique({ where: { id: commission.affiliateId } });
+    if (affiliate?.userId) {
+      await this.notifications.create({
+        userId: affiliate.userId,
+        title: "Comissão Aprovada!",
+        message: `Sua comissão no valor de Kz ${commission.valorComissao} para o cliente ${commission.clientNome} foi aprovada e está disponível para saque!`,
+        type: "commission",
+        entity: "Commission",
+        entityId: updated.id,
+      });
+    }
+
     return commissionDto(updated);
   }
 
@@ -69,6 +100,19 @@ export class CommissionsService {
     if (!commission || commission.status !== CommissionStatus.PENDING) throw new NotFoundException("Comissao nao encontrada ou estado invalido");
     const updated = await this.prisma.commission.update({ where: { id }, data: { status: CommissionStatus.REJECTED, notas } });
     await this.wallet.rejectPending(commission.affiliateId, Number(commission.valorComissao || 0));
+
+    const affiliate = await this.prisma.affiliate.findUnique({ where: { id: commission.affiliateId } });
+    if (affiliate?.userId) {
+      await this.notifications.create({
+        userId: affiliate.userId,
+        title: "Comissão Rejeitada",
+        message: `Sua comissão no valor de Kz ${commission.valorComissao} para o cliente ${commission.clientNome} foi rejeitada pelo administrador. Motivo: ${notas || "Nenhuma justificativa fornecida."}`,
+        type: "commission",
+        entity: "Commission",
+        entityId: updated.id,
+      });
+    }
+
     return commissionDto(updated);
   }
 }

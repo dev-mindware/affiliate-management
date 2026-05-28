@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import "@workspace/ui/globals.css";
-import { Inter, Outfit } from "next/font/google";
-import { SidebarProvider } from "@workspace/ui";
-import { ThemeProvider } from "next-themes"; // This might need to be shared too
+import { Outfit } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", preload: false });
 const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-outfit",
-  preload: false,
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -28,14 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="pt" suppressHydrationWarning>
       <body
-        className="antialiased"
-        style={{ fontFamily: "var(--font-outfit), var(--font-inter), sans-serif" }}
+        className={`${outfit.className} antialiased`}
       >
-          <Providers>
-            {children}
-          </Providers>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

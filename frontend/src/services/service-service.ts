@@ -5,7 +5,7 @@ import { PartnerProgramPlan, Service } from "@workspace/types/affiliate";
 export const serviceService = {
   getServices: async (page = 1, size = 10) => {
     return api.get<PaginatedResponse<Service>>("/public/services", {
-      params: { page, size }
+      params: { page, limit: size }
     });
   },
   getPartnerProgramPlans: async () => {

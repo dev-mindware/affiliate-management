@@ -5,7 +5,7 @@ import { Commission, CommissionStatus, CommissionCreate } from "@workspace/types
 export const commissionService = {
   listCommissions: async (status?: CommissionStatus, page = 1, size = 10) => {
     return api.get<Commission[]>("/affiliate/commissions", {
-      params: { status, page, size }
+      params: { status, page, limit: size }
     });
   },
 };
