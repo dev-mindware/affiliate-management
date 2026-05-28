@@ -1,0 +1,28 @@
+{
+  "$schema": "https://registry.scalar.com/@scalar/schemas/config",
+  "scalar": "2.0.0",
+  "info": {
+    "title": "Mindgest Partners API",
+    "description": "Documentação da API NestJS do Mindgest Partners Program."
+  },
+  "navigation": {
+    "header": [
+      { "type": "link", "title": "API Reference", "to": "/api" },
+      { "type": "spacer" },
+      { "type": "link", "title": "OpenAPI JSON", "to": "http://localhost:8000/api/v1/openapi.json", "newTab": true }
+    ],
+    "routes": {
+      "/": {
+        "title": "Introdução",
+        "type": "page",
+        "filepath": "docs/introduction.md"
+      },
+      "/api": {
+        "title": "API Reference",
+        "type": "openapi",
+        "url": "http://localhost:8000/api/v1/openapi.json",
+        "displayMode": "folder"
+      }
+    }
+  }
+}

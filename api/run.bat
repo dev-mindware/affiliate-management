@@ -1,0 +1,3 @@
+@echo off
+echo Starting Mindgest Partners NestJS API...
+npm run start:dev

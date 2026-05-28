@@ -1,0 +1,296 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN     @map("admin")
+  AFFILIATE @map("affiliate")
+
+  @@map("users_role_enum")
+}
+
+enum AffiliateStatus {
+  PENDING_APPROVAL @map("pending_approval")
+  ACTIVE           @map("active")
+  INACTIVE         @map("inactive")
+  SUSPENDED        @map("suspended")
+  REJECTED         @map("rejected")
+
+  @@map("affiliates_status_enum")
+}
+
+enum PartnerType {
+  AFFILIATE            @map("affiliate")
+  CERTIFIED_COMMERCIAL @map("certified_commercial")
+
+  @@map("affiliates_partner_type_enum")
+}
+
+enum PartnerLevel {
+  NONE   @map("none")
+  SILVER @map("silver")
+  GOLD   @map("gold")
+  ELITE  @map("elite")
+
+  @@map("affiliates_partner_level_enum")
+}
+
+enum CertificationStatus {
+  NOT_ELIGIBLE @map("not_eligible")
+  ELIGIBLE     @map("eligible")
+  APPROVED     @map("approved")
+  REJECTED     @map("rejected")
+
+  @@map("affiliates_certification_status_enum")
+}
+
+enum LeadStatus {
+  NEW       @map("new")
+  CONTACTED @map("contacted")
+  CONVERTED @map("converted")
+  LOST      @map("lost")
+
+  @@map("lead_notifications_status_enum")
+}
+
+enum CommissionStatus {
+  PENDING  @map("pending")
+  APPROVED @map("approved")
+  PAID     @map("paid")
+  REJECTED @map("rejected")
+
+  @@map("commissions_status_enum")
+}
+
+enum WithdrawalStatus {
+  PENDING  @map("pending")
+  APPROVED @map("approved")
+  REJECTED @map("rejected")
+
+  @@map("withdrawal_requests_status_enum")
+}
+
+enum PartnerPlanCode {
+  BASE
+  SMART
+  CUSTOM
+
+  @@map("partner_program_plans_code_enum")
+}
+
+enum BillingPeriod {
+  MONTHLY_FIRST     @map("monthly_first")
+  MONTHLY_RECURRING @map("monthly_recurring")
+  ANNUAL_FIRST      @map("annual_first")
+
+  @@map("partner_subscriptions_billing_period_enum")
+}
+
+enum PartnerSubscriptionStatus {
+  ACTIVE         @map("active")
+  CANCELLED      @map("cancelled")
+  PAYMENT_FAILED @map("payment_failed")
+  SUSPENDED      @map("suspended")
+  REFUNDED       @map("refunded")
+  CHARGEBACK     @map("chargeback")
+
+  @@map("partner_subscriptions_status_enum")
+}
+
+enum PartnerPaymentSource {
+  MANUAL  @map("manual")
+  WEBHOOK @map("webhook")
+
+  @@map("partner_subscriptions_source_enum")
+}
+
+model User {
+  id           String    @id @default(uuid()) @db.Uuid
+  email        String    @unique
+  passwordHash String    @map("password_hash")
+  role         UserRole  @default(AFFILIATE)
+  isActive     Boolean   @default(true) @map("is_active")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  affiliate    Affiliate?
+
+  @@map("users")
+}
+
+model Affiliate {
+  id                  String               @id @default(uuid()) @db.Uuid
+  userId              String?              @unique @map("user_id") @db.Uuid
+  user                User?                @relation(fields: [userId], references: [id], onDelete: SetNull)
+  nomeCompleto        String               @map("nome_completo")
+  email               String
+  telefone            String?
+  contaBancaria       String?              @map("conta_bancaria")
+  banco               String?
+  codigoAfiliado      String               @unique @map("codigo_afiliado")
+  status              AffiliateStatus      @default(PENDING_APPROVAL)
+  partnerType         PartnerType          @default(AFFILIATE) @map("partner_type")
+  partnerLevel        PartnerLevel         @default(NONE) @map("partner_level")
+  certificationStatus CertificationStatus  @default(NOT_ELIGIBLE) @map("certification_status")
+  totalEarned         Decimal              @default(0) @map("total_earned") @db.Decimal(20, 2)
+  totalPaid           Decimal              @default(0) @map("total_paid") @db.Decimal(20, 2)
+  approvedAt          DateTime?            @map("approved_at")
+  approvedBy          String?              @map("approved_by") @db.Uuid
+  createdAt           DateTime             @default(now()) @map("created_at")
+  wallet              Wallet?
+  leads               LeadNotification[]
+  commissions         Commission[]
+  withdrawals         WithdrawalRequest[]
+  subscriptions       PartnerSubscription[]
+  certification       PartnerCertification?
+
+  @@map("affiliates")
+}
+
+model Service {
+  id          Int       @id @default(autoincrement())
+  nome        String
+  descricao   String?
+  preco       Decimal   @db.Decimal(20, 2)
+  comissao    Decimal   @db.Decimal(20, 2)
+  ativo       Boolean   @default(true)
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  leads       LeadNotification[]
+  commissions Commission[]
+
+  @@map("services")
+}
+
+model LeadNotification {
+  id             String      @id @default(uuid()) @db.Uuid
+  affiliateId    String      @map("affiliate_id") @db.Uuid
+  affiliate      Affiliate   @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  serviceId      Int         @map("service_id")
+  service        Service     @relation(fields: [serviceId], references: [id], onDelete: Restrict)
+  clientNome     String      @map("client_nome")
+  clientTelefone String?     @map("client_telefone")
+  notas          String?
+  status         LeadStatus  @default(NEW)
+  createdAt      DateTime    @default(now()) @map("created_at")
+  updatedAt      DateTime    @updatedAt @map("updated_at")
+  commissions    Commission[]
+
+  @@map("lead_notifications")
+}
+
+model Commission {
+  id                    String            @id @default(uuid()) @db.Uuid
+  affiliateId           String            @map("affiliate_id") @db.Uuid
+  affiliate             Affiliate         @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  serviceId             Int?              @map("service_id")
+  service               Service?          @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  leadNotificationId    String?           @map("lead_notification_id") @db.Uuid
+  leadNotification      LeadNotification? @relation(fields: [leadNotificationId], references: [id], onDelete: SetNull)
+  partnerSubscriptionId String?           @map("partner_subscription_id") @db.Uuid
+  partnerSubscription   PartnerSubscription? @relation(fields: [partnerSubscriptionId], references: [id], onDelete: SetNull)
+  clientNome            String            @map("client_nome")
+  clientTelefone        String?           @map("client_telefone")
+  valorServico          Decimal           @map("valor_servico") @db.Decimal(20, 2)
+  valorComissao         Decimal           @map("valor_comissao") @db.Decimal(20, 2)
+  status                CommissionStatus  @default(PENDING)
+  notas                 String?
+  comprovativoUrl       String?           @map("comprovativo_url")
+  comprovativoFilename  String?           @map("comprovativo_filename")
+  source                String            @default("services")
+  availableAt           DateTime?         @map("available_at")
+  validationDays        Int               @default(0) @map("validation_days")
+  createdAt             DateTime          @default(now()) @map("created_at")
+  approvedAt            DateTime?         @map("approved_at")
+  paidAt                DateTime?         @map("paid_at")
+
+  @@map("commissions")
+}
+
+model Wallet {
+  id              String    @id @default(uuid()) @db.Uuid
+  affiliateId     String    @unique @map("affiliate_id") @db.Uuid
+  affiliate       Affiliate @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  saldoDisponivel Decimal   @default(0) @map("saldo_disponivel") @db.Decimal(20, 2)
+  saldoPendente   Decimal   @default(0) @map("saldo_pendente") @db.Decimal(20, 2)
+  totalGanho      Decimal   @default(0) @map("total_ganho") @db.Decimal(20, 2)
+  totalLevantado  Decimal   @default(0) @map("total_levantado") @db.Decimal(20, 2)
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  @@map("wallets")
+}
+
+model WithdrawalRequest {
+  id              String           @id @default(uuid()) @db.Uuid
+  affiliateId     String           @map("affiliate_id") @db.Uuid
+  affiliate       Affiliate        @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  valor           Decimal          @db.Decimal(20, 2)
+  contaBancaria   String?          @map("conta_bancaria")
+  banco           String?
+  status          WithdrawalStatus @default(PENDING)
+  notasAdmin      String?          @map("notas_admin")
+  comprovativoUrl String?          @map("comprovativo_url")
+  createdAt       DateTime         @default(now()) @map("created_at")
+  processedAt     DateTime?        @map("processed_at")
+
+  @@map("withdrawal_requests")
+}
+
+model PartnerProgramPlan {
+  id                       Int             @id @default(autoincrement())
+  code                     PartnerPlanCode @unique
+  name                     String
+  description              String?
+  price                    Decimal         @default(0) @db.Decimal(20, 2)
+  firstMonthlyPercent      Decimal         @default(0) @map("first_monthly_percent") @db.Decimal(8, 2)
+  recurringMonthlyPercent  Decimal         @default(0) @map("recurring_monthly_percent") @db.Decimal(8, 2)
+  annualFirstPercent       Decimal         @default(0) @map("annual_first_percent") @db.Decimal(8, 2)
+  minimumCustomPrice       Decimal?        @map("minimum_custom_price") @db.Decimal(20, 2)
+  mindwareMinimumNet       Decimal?        @map("mindware_minimum_net") @db.Decimal(20, 2)
+  certifiedOnly            Boolean         @default(false) @map("certified_only")
+  active                   Boolean         @default(true)
+  createdAt                DateTime        @default(now()) @map("created_at")
+  updatedAt                DateTime        @updatedAt @map("updated_at")
+  subscriptions            PartnerSubscription[]
+
+  @@map("partner_program_plans")
+}
+
+model PartnerSubscription {
+  id                String                    @id @default(uuid()) @db.Uuid
+  affiliateId       String                    @map("affiliate_id") @db.Uuid
+  affiliate         Affiliate                 @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  planId            Int                       @map("plan_id")
+  plan              PartnerProgramPlan        @relation(fields: [planId], references: [id], onDelete: Restrict)
+  externalPaymentId String                    @unique @map("external_payment_id")
+  clientName        String                    @map("client_name")
+  clientIdentifier  String                    @map("client_identifier")
+  amountPaid        Decimal                   @map("amount_paid") @db.Decimal(20, 2)
+  paidAt            DateTime                  @map("paid_at")
+  billingPeriod     BillingPeriod             @map("billing_period")
+  status            PartnerSubscriptionStatus @default(ACTIVE)
+  source            PartnerPaymentSource
+  notes             String?
+  createdAt         DateTime                  @default(now()) @map("created_at")
+  updatedAt         DateTime                  @updatedAt @map("updated_at")
+  commissions       Commission[]
+
+  @@map("partner_subscriptions")
+}
+
+model PartnerCertification {
+  id          String    @id @default(uuid()) @db.Uuid
+  affiliateId String    @unique @map("affiliate_id") @db.Uuid
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id], onDelete: Cascade)
+  approvedAt  DateTime? @map("approved_at")
+  approvedBy  String?   @map("approved_by") @db.Uuid
+  rejectedAt  DateTime? @map("rejected_at")
+  notes       String?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("partner_certifications")
+}
