@@ -1,13 +1,17 @@
 import { AffiliateRanking } from "@/components/affiliate/ranking/affiliate-ranking";
+import { TitleList, PageWrapper } from "@/components";
 
 export default function RankingPage() {
     return (
-        <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-            <div className="flex items-center justify-between space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Ranking de Afiliados</h2>
+        <PageWrapper subRoute="Ranking de Parceiros">
+            <div className="space-y-6">
+                <TitleList
+                    title="Ranking de Parceiros"
+                    suTitle="Acompanhe o desempenho dos melhores parceiros."
+                />
+                
+                <AffiliateRanking />
             </div>
-            
-            <AffiliateRanking />
-        </div>
+        </PageWrapper>
     );
 }

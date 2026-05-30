@@ -6,7 +6,7 @@ export function DashboardPageContent() {
     <div className="flex flex-col gap-6">
       <TitleList
         title="Dashboard"
-        suTitle="Acompanhe clientes, comissoes, carteira e progresso no Mindgest Partners Program."
+        suTitle="Acompanhe clientes, comissões, carteira e progresso no Mindgest Partners Program."
       />
       <DashboardContent />
     </div>

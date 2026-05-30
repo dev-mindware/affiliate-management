@@ -97,10 +97,6 @@ export function WalletContent() {
             </div>
 
             <div className="bg-card border rounded-lg p-6 shadow-sm">
-                <div className="mb-6 space-y-1">
-                    <h3 className="text-xl font-bold tracking-tight">Histórico de Saques</h3>
-                    <p className="text-muted-foreground text-sm">Acompanhe o status das suas solicitações.</p>
-                </div>
 
                 <GenericTable
                     data={withdrawals || []}

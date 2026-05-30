@@ -1,11 +1,16 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { AffiliateStatus } from "@prisma/client";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { AffiliateStatus, UserRole } from "@prisma/client";
+import * as bcrypt from "bcryptjs";
 import { toAffiliateStatus, toCertificationStatus, toPartnerLevel, toPartnerType } from "../common/enum-mappers";
 import { dateRange, normalizePagination, orderBy, paginated } from "../common/filters/pagination";
 import { affiliateDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
 import { WalletService } from "../wallet/wallet.service";
 import { AffiliateFilterDto } from "./dto/affiliate-filter.dto";
+
+function affiliateCode() {
+  return `MWD-AO-${Math.floor(1000 + Math.random() * 9000)}`;
+}
 
 @Injectable()
 export class AffiliatesService {
@@ -39,8 +44,98 @@ export class AffiliatesService {
 
   async find(id: string) {
     const affiliate = await this.prisma.affiliate.findUnique({ where: { id } });
-    if (!affiliate) throw new NotFoundException("Afiliado nao encontrado");
+    if (!affiliate) throw new NotFoundException("Afiliado não encontrado");
     return affiliate;
+  }
+
+  async create(body: any) {
+    const userExists = await this.prisma.user.findUnique({ where: { email: body.email } });
+    if (userExists) throw new BadRequestException("Já existe um utilizador com este email");
+
+    const affiliate = await this.prisma.$transaction(async (tx) => {
+      let code = affiliateCode();
+      while (await tx.affiliate.findUnique({ where: { codigoAfiliado: code } })) {
+        code = affiliateCode();
+      }
+
+      const user = await tx.user.create({
+        data: {
+          email: body.email,
+          passwordHash: await bcrypt.hash(body.password || "Mindware123", 10),
+          role: UserRole.AFFILIATE,
+          isActive: true,
+        },
+      });
+
+      return tx.affiliate.create({
+        data: {
+          userId: user.id,
+          nomeCompleto: body.nome_completo,
+          email: body.email,
+          telefone: body.telefone,
+          contaBancaria: body.conta_bancaria,
+          banco: body.banco,
+          codigoAfiliado: code,
+          status: body.status ? toAffiliateStatus(body.status) : AffiliateStatus.ACTIVE,
+          approvedAt: body.status === "active" || !body.status ? new Date() : undefined,
+        },
+      });
+    });
+
+    if (affiliate.status === AffiliateStatus.ACTIVE) {
+      await this.wallet.ensureWallet(affiliate.id);
+    }
+
+    return affiliateDto(affiliate);
+  }
+
+  async update(id: string, body: any) {
+    const current = await this.find(id);
+    if (body.email && body.email !== current.email) {
+      const userExists = await this.prisma.user.findUnique({ where: { email: body.email } });
+      if (userExists && userExists.id !== current.userId) {
+        throw new BadRequestException("Já existe um utilizador com este email");
+      }
+    }
+
+    const affiliate = await this.prisma.$transaction(async (tx) => {
+      if (body.email && current.userId) {
+        await tx.user.update({ where: { id: current.userId }, data: { email: body.email } });
+      }
+
+      return tx.affiliate.update({
+        where: { id },
+        data: {
+          nomeCompleto: body.nome_completo,
+          email: body.email,
+          telefone: body.telefone,
+          contaBancaria: body.conta_bancaria,
+          banco: body.banco,
+          status: body.status ? toAffiliateStatus(body.status) : undefined,
+        },
+      });
+    });
+
+    if (affiliate.status === AffiliateStatus.ACTIVE) {
+      await this.wallet.ensureWallet(affiliate.id);
+    }
+
+    return affiliateDto(affiliate);
+  }
+
+  async remove(id: string) {
+    const affiliate = await this.find(id);
+    try {
+      await this.prisma.$transaction(async (tx) => {
+        await tx.affiliate.delete({ where: { id } });
+        if (affiliate.userId) {
+          await tx.user.delete({ where: { id: affiliate.userId } });
+        }
+      });
+    } catch {
+      throw new BadRequestException("Não é possível eliminar afiliados com histórico associado. Suspenda ou inative o registo.");
+    }
+    return { deleted: true, id };
   }
 
   async approve(id: string, adminId: string) {

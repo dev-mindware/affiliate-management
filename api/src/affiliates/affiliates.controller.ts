@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from "@nestjs/swagger";
 import { UserRole } from "@prisma/client";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
 import { Roles } from "../auth/decorators/roles.decorator";
 import { affiliateDto } from "../common/serializers";
-import { AffiliateProfileBodyDto, AffiliateStatusBodyDto } from "./dto/affiliate-body.dto";
+import { AffiliateAdminUpdateDto, AffiliateCreateDto, AffiliateProfileBodyDto, AffiliateStatusBodyDto } from "./dto/affiliate-body.dto";
 import { AffiliateFilterDto } from "./dto/affiliate-filter.dto";
 import { AffiliatesService } from "./affiliates.service";
 
@@ -22,6 +22,13 @@ export class AffiliatesController {
   @ApiResponse({ status: 403, description: "Forbidden - Administrator role required." })
   list(@Query() filter: AffiliateFilterDto) {
     return this.affiliates.list(filter);
+  }
+
+  @Roles(UserRole.ADMIN)
+  @Post("admin/affiliates")
+  @ApiOperation({ summary: "Criar afiliado", description: "Cria um afiliado e a respetiva conta de acesso." })
+  create(@Body() body: AffiliateCreateDto) {
+    return this.affiliates.create(body);
   }
 
   @Roles(UserRole.ADMIN)
@@ -44,6 +51,22 @@ export class AffiliatesController {
   @ApiResponse({ status: 403, description: "Forbidden." })
   async get(@Param("id") id: string) {
     return affiliateDto(await this.affiliates.find(id));
+  }
+
+  @Roles(UserRole.ADMIN)
+  @Patch("admin/affiliates/:id")
+  @ApiOperation({ summary: "Atualizar afiliado", description: "Atualiza dados pessoais, bancários e estado operacional do afiliado." })
+  @ApiParam({ name: "id", description: "Identificador único do afiliado." })
+  update(@Param("id") id: string, @Body() body: AffiliateAdminUpdateDto) {
+    return this.affiliates.update(id, body);
+  }
+
+  @Roles(UserRole.ADMIN)
+  @Delete("admin/affiliates/:id")
+  @ApiOperation({ summary: "Eliminar afiliado", description: "Elimina afiliados sem histórico associado. Para afiliados com histórico, use suspensão/inativação." })
+  @ApiParam({ name: "id", description: "Identificador único do afiliado." })
+  remove(@Param("id") id: string) {
+    return this.affiliates.remove(id);
   }
 
   @Roles(UserRole.ADMIN)

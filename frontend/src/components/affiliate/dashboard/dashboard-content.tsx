@@ -15,17 +15,17 @@ import { formatCurrency } from "@workspace/utils";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 const levelLabels: Record<string, string> = {
-  none: "Sem nivel",
+  none: "Sem nível",
   silver: "Silver Partner",
   gold: "Gold Partner",
   elite: "Elite Partner",
 };
 
 const certificationLabels: Record<string, string> = {
-  not_eligible: "Ainda nao elegivel",
-  eligible: "Elegivel para certificacao",
+  not_eligible: "Ainda não elegível",
+  eligible: "Elegível para certificação",
   approved: "Parceiro certificado",
-  rejected: "Certificacao rejeitada",
+  rejected: "Certificação rejeitada",
 };
 
 export function DashboardContent() {
@@ -75,20 +75,20 @@ export function DashboardContent() {
                 </Badge>
               </div>
               <div>
-                <h3 className="text-lg font-semibold tracking-tight">Mindgest Partners Program</h3>
+                <h3 className="text-lg font-semibold">Mindgest Partners Program</h3>
                 <p className="text-sm text-muted-foreground">
-                  {program.active_clients} clientes activos
+                  {program.active_clients} clientes ativos
                   {program.next_level
                     ? ` - faltam ${program.clients_to_next_level} para ${levelLabels[program.next_level]}`
-                    : " - nivel maximo alcancado"}
+                    : " - nível máximo alcançado"}
                 </p>
               </div>
             </div>
 
             <div className="w-full lg:max-w-sm">
               <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
-                <span>Progresso do nivel</span>
-                <span>{program.recurring_bonus_percent}% bonus recorrente</span>
+                <span>Progresso do nível</span>
+                <span>{program.recurring_bonus_percent}% bónus recorrente</span>
               </div>
               <Progress value={progressValue} />
             </div>
@@ -99,36 +99,36 @@ export function DashboardContent() {
       <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         <DynamicMetricCard
           title={formatCurrency(kpis?.available_balance || 0)}
-          subtitle="Saldo Disponivel"
+          subtitle="Saldo Disponível"
           description="Pronto para levantamento."
           icon="Wallet"
         />
         <DynamicMetricCard
           title={formatCurrency(kpis?.pending_balance || 0)}
           subtitle="Saldo Pendente"
-          description="Comissoes em validacao."
+          description="Comissões em validação."
           icon="Clock"
         />
         <DynamicMetricCard
           title={formatCurrency(kpis?.total_earned || 0)}
           subtitle="Total Ganho"
-          description="Historico total de ganhos."
+          description="Histórico total de ganhos."
           icon="BadgeDollarSign"
         />
         <DynamicMetricCard
           title={program?.active_clients ?? 0}
-          subtitle="Clientes Activos"
-          description="Subscricoes activas atribuidas."
+          subtitle="Clientes Ativos"
+          description="Subscrições ativas atribuídas."
           icon="Users"
         />
         {kpis?.rank_info && (
           <DynamicMetricCard
             title={`${kpis.rank_info.rank}º Lugar`}
-            subtitle="Sua Posicao"
+            subtitle="Sua Posição"
             description={
               kpis.rank_info.distance_to_next > 0
                 ? `Faltam ${kpis.rank_info.distance_to_next} clientes para subir.`
-                : "Voce esta no topo."
+                : "Você está no topo."
             }
             icon="Trophy"
           />
@@ -137,8 +137,8 @@ export function DashboardContent() {
 
       <section className="rounded-lg border bg-card p-6 shadow-sm">
         <div className="mb-6 space-y-1">
-          <h3 className="text-xl font-bold tracking-tight">Leads nos ultimos 7 dias</h3>
-          <p className="text-sm text-muted-foreground">Volume diario de captacao</p>
+          <h3 className="text-xl font-bold">Leads nos últimos 7 dias</h3>
+          <p className="text-sm text-muted-foreground">Volume diário de captação</p>
         </div>
 
         <div className="h-[350px] w-full">

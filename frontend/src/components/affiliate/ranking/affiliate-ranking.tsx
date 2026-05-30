@@ -113,12 +113,6 @@ export function AffiliateRanking() {
 
     return (
         <div className="space-y-4">
-            <div className="flex flex-col gap-1">
-                <h2 className="text-lg font-semibold tracking-tight">Ranking de Parceiros</h2>
-                <p className="text-sm text-muted-foreground">
-                    Classificação por clientes activos no Mindgest Partners Program.
-                </p>
-            </div>
 
             <GenericTable<RankingEntry>
                 data={ranking || []}
