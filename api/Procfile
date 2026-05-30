@@ -1,3 +1,2 @@
-web: npm run seed && node dist/main.js
-
+web: npm run start:prod
 
