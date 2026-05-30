@@ -29,15 +29,15 @@ Por padrao a API usa:
 - `POSTGRES_PASSWORD=postgres`
 - `POSTGRES_DB=mindware_affiliates`
 - `DATABASE_URL=postgresql://postgres:postgres@localhost:5435/mindware_affiliates?schema=public`
-- `PORT=8000`
+- `PORT=3333`
 - `API_PREFIX=/api`
 
 ## Documentacao
 
-- Scalar Docs: `http://localhost:8000/api/reference`
-- Alias antigo: `http://localhost:8000/api/docs`
-- OpenAPI JSON: `http://localhost:8000/api/openapi.json`
-- Swagger UI: `http://localhost:8000/api/swagger`
+- Scalar Docs: `http://localhost:3333/api/reference`
+- Alias antigo: `http://localhost:3333/api/docs`
+- OpenAPI JSON: `http://localhost:3333/api/openapi.json`
+- Swagger UI: `http://localhost:3333/api/swagger`
 - Config Scalar: `scalar.config.json`
 
 ## Scripts

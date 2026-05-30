@@ -79,7 +79,7 @@ async function bootstrap() {
   });
 
   server.get("/", (_req: any, res: any) => res.json({ message: "Bem-vindo a API de Parceiros Mindgest", docs: `${prefixPath}/reference` }));
-  await app.listen(Number(process.env.PORT || 8000), "0.0.0.0");
+  await app.listen(Number(process.env.PORT || 3333), "0.0.0.0");
 }
 
 bootstrap();
