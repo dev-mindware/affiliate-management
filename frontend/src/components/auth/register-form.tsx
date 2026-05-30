@@ -42,7 +42,6 @@ export function RegisterForm() {
       <div className="flex flex-col items-center gap-2 text-center">
         <Image src={Logo} alt="Logo" className="size-20" />
         <h1 className="text-2xl font-bold">Criar conta de afiliado</h1>
-        <p className="text-muted-foreground text-sm">Preencha os dados abaixo para se cadastrar</p>
       </div>
 
       <div className="grid gap-4">

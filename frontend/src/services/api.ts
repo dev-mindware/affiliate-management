@@ -13,6 +13,10 @@ export const resetAccessTokenCache = () => {
   accessTokenCache = null;
 };
 
+export const setAccessTokenCache = (token: string | null) => {
+  accessTokenCache = token;
+};
+
 const processQueue = (error: unknown, token: string | null = null) => {
   failedQueue.forEach((promise) => {
     if (error) {
