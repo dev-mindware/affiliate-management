@@ -27,7 +27,6 @@ export function AppSidebar(props: Partial<React.ComponentProps<typeof GlobalSide
   const teams = [
     {
       name: "Mindware Affiliate",
-      logo: "Building2",
       plan: "Affiliate System",
     },
   ];

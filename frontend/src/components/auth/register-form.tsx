@@ -2,22 +2,52 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/brand.png";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { ErrorMessage, SuccessMessage } from "@/utils/messages";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormData, registerSchema } from "@/schemas";
-import { ButtonSubmit, Input } from "@workspace/ui";
+import { ButtonSubmit, Input, SelectField } from "@workspace/ui";
 import { registerAction } from "@/actions/register";
+
+const ANGOLAN_BANKS = [
+  { name: "BAI", code: "0040" },
+  { name: "BIC", code: "0051" },
+  { name: "BCI", code: "0005" },
+  { name: "SOL", code: "0044" },
+  { name: "BFA", code: "0006" },
+  { name: "ATLANTICO", code: "0055" },
+];
+
+const bankOptions = ANGOLAN_BANKS.map((b) => ({ value: b.name, label: b.name }));
+
+// Formata: AO06 + resto dos dígitos agrupados de 4 em 4, separados por ponto
+function formatIban(raw: string) {
+  const clean = raw.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  if (!clean.startsWith("AO")) return raw;
+
+  const prefix = clean.slice(0, 4); // "AO06"
+  const rest = clean.slice(4, 4 + 21); // máx. 21 dígitos (código do banco + conta)
+
+  const groups: string[] = [];
+  for (let i = 0; i < rest.length; i += 4) {
+    groups.push(rest.slice(i, i + 4));
+  }
+
+  return [prefix, ...groups].join(".");
+}
 
 export function RegisterForm() {
   const router = useRouter();
   const {
     register,
     handleSubmit,
+    control,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    mode: "onChange",
   });
 
   async function handleRegister(data: RegisterFormData) {
@@ -46,85 +76,100 @@ export function RegisterForm() {
 
       <div className="grid gap-4">
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Nome Completo *</label>
           <Input
             type="text"
+            label="Nome Completo"
             placeholder="Seu nome completo"
             {...register("nome_completo")}
+            error={errors.nome_completo?.message}
           />
-          {errors.nome_completo && (
-            <p className="text-xs text-destructive">{errors.nome_completo.message}</p>
-          )}
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Email *</label>
           <Input
             type="email"
+            label="Correio Electrônico"
             placeholder="exemplo@mindware.ao"
             {...register("email")}
             autoComplete="email"
+            error={errors.email?.message}
           />
-          {errors.email && (
-            <p className="text-xs text-destructive">{errors.email.message}</p>
-          )}
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Senha *</label>
           <Input
             type="password"
+            label="Palavra - Passe"
             placeholder="Senha com pelo menos 6 caracteres"
             {...register("password")}
             autoComplete="new-password"
+            error={errors.password?.message}
           />
-          {errors.password && (
-            <p className="text-xs text-destructive">{errors.password.message}</p>
-          )}
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Telefone (opcional)</label>
+        <div className="grid grid-cols-2 gap-1.5">
           <Input
             type="text"
+            label="Telefone"
             placeholder="+244 923 000 000"
             {...register("telefone")}
+            error={errors.telefone?.message}
           />
-          {errors.telefone && (
-            <p className="text-xs text-destructive">{errors.telefone.message}</p>
-          )}
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Banco (opcional)</label>
-            <Input
-              type="text"
-              placeholder="Ex: BAI"
-              {...register("banco")}
-            />
-          </div>
 
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">IBAN/Conta (opcional)</label>
-            <Input
-              type="text"
-              placeholder="AO06..."
-              {...register("conta_bancaria")}
+            <Controller
+              name="banco"
+              control={control}
+              render={({ field }) => (
+                <SelectField
+                  label="Banco"
+                  value={field.value}
+                  onValueChange={(val) => {
+                    field.onChange(val);
+                    const bank = ANGOLAN_BANKS.find((b) => b.name === val);
+                    if (bank) {
+                      // Só preenche o prefixo, sem forçar validação do IBAN ainda
+                      setValue("conta_bancaria", formatIban(`AO06${bank.code}`));
+                    }
+                  }}
+                  options={bankOptions}
+                  placeholder="Seleccione o banco"
+                />
+              )}
             />
+            {errors.banco && (
+              <p className="text-xs text-red-500">{errors.banco.message}</p>
+            )}
           </div>
         </div>
 
-        <ButtonSubmit className="mt-2" isLoading={isSubmitting}>
-          {isSubmitting ? "" : "Cadastrar"}
-        </ButtonSubmit>
-
-        <div className="text-center text-sm text-muted-foreground mt-2">
-          Já tem uma conta?{" "}
-          <Link href="/auth/login" className="text-primary hover:underline font-medium">
-            Entrar
-          </Link>
+        <div className="gap-3">
+          <Controller
+            name="conta_bancaria"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="text"
+                label="IBAN"
+                placeholder="AO06.0040.0000.5660.0824.1017.4"
+                value={field.value}
+                onChange={(e) => field.onChange(formatIban(e.target.value))}
+                error={errors.conta_bancaria?.message}
+              />
+            )}
+          />
         </div>
+      </div>
+
+      <ButtonSubmit className="mt-2" isLoading={isSubmitting}>
+        {isSubmitting ? "" : "Cadastrar"}
+      </ButtonSubmit>
+
+      <div className="text-center text-sm text-muted-foreground mt-2">
+        Já tem uma conta?{" "}
+        <Link href="/auth/login" className="text-primary hover:underline font-medium">
+          Entrar
+        </Link>
       </div>
     </form>
   );

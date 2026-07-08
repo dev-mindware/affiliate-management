@@ -21,7 +21,6 @@ interface GlobalSidebarProps extends React.ComponentProps<typeof Sidebar> {
   };
   teams: Array<{
     name: string;
-    logo: React.ElementType | string;
     plan: string;
   }>;
   navMain: Array<{
