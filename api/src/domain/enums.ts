@@ -53,7 +53,7 @@ export enum WithdrawalStatus {
 export enum PartnerPlanCode {
   BASE = "BASE",
   SMART = "SMART",
-  CUSTOM = "CUSTOM",
+  PRO = "PRO",
 }
 
 export enum BillingPeriod {

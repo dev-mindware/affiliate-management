@@ -78,7 +78,7 @@ enum WithdrawalStatus {
 enum PartnerPlanCode {
   BASE
   SMART
-  CUSTOM
+  PRO
 
   @@map("partner_program_plans_code_enum")
 }

@@ -34,7 +34,7 @@ export class PartnerProgramService {
     const defaults = [
       { code: PartnerPlanCode.BASE, name: "BASE", description: "Plano BASE do Mindgest Partners Program", price: 5445.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },
       { code: PartnerPlanCode.SMART, name: "SMART", description: "Plano SMART do Mindgest Partners Program", price: 11998.22, firstMonthlyPercent: 25, recurringMonthlyPercent: 20, annualFirstPercent: 25, certifiedOnly: false },
-      { code: PartnerPlanCode.CUSTOM, name: "Plano Personalizavel", description: "Exclusivo para Parceiros Comerciais Certificados Mindgest", price: 0, firstMonthlyPercent: 0, recurringMonthlyPercent: 0, annualFirstPercent: 0, minimumCustomPrice: CUSTOM_MINIMUM, mindwareMinimumNet: CUSTOM_MINIMUM, certifiedOnly: true },
+      { code: PartnerPlanCode.PRO, name: "PRO", description: "Plano PRO do Mindgest Partners Program", price: 14899.22, firstMonthlyPercent: 30, recurringMonthlyPercent: 25, annualFirstPercent: 30, minimumCustomPrice: CUSTOM_MINIMUM, mindwareMinimumNet: CUSTOM_MINIMUM, certifiedOnly: true },
     ];
     for (const item of defaults) {
       await this.prisma.partnerProgramPlan.upsert({
@@ -103,11 +103,8 @@ export class PartnerProgramService {
   }
 
   calculate(plan: any, affiliate: any, amount: number, period: BillingPeriod) {
-    if (plan.code === PartnerPlanCode.CUSTOM) {
-      const minimum = Number(plan.mindwareMinimumNet || CUSTOM_MINIMUM);
-      if (!this.isCertified(affiliate)) throw new BadRequestException("Plano personalizavel permitido apenas para parceiros certificados");
-      if (amount < minimum) throw new BadRequestException("Valor pago abaixo do minimo obrigatorio");
-      return Number((amount - minimum).toFixed(2));
+    if (plan.code === PartnerPlanCode.PRO) {
+      if (!this.isCertified(affiliate)) throw new BadRequestException("Plano PRO permitido apenas para parceiros certificados");
     }
     let percent = 0;
     if (period === BillingPeriod.MONTHLY_FIRST) percent = Number(plan.firstMonthlyPercent);

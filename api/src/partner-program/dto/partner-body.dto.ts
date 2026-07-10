@@ -2,7 +2,7 @@ import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class PartnerPlanBodyDto {
-  @ApiProperty({ example: "BASE", enum: ["BASE", "SMART", "CUSTOM"] })
+  @ApiProperty({ example: "BASE", enum: ["BASE", "SMART", "PRO"] })
   @IsString()
   code!: string;
 
@@ -69,7 +69,7 @@ export class SubscriptionPaymentDto {
   @IsString()
   client_identifier!: string;
 
-  @ApiProperty({ example: "SMART", enum: ["BASE", "SMART", "CUSTOM"] })
+  @ApiProperty({ example: "SMART", enum: ["BASE", "SMART", "PRO"] })
   @IsString()
   plan_code!: string;
 

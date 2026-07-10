@@ -43,7 +43,7 @@ async function main() {
   const plans = [
     { code: PartnerPlanCode.BASE, name: "BASE", description: "Plano BASE do Mindgest Partners Program", price: 5445.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },
     { code: PartnerPlanCode.SMART, name: "SMART", description: "Plano SMART do Mindgest Partners Program", price: 11998.22, firstMonthlyPercent: 25, recurringMonthlyPercent: 20, annualFirstPercent: 25, certifiedOnly: false },
-    { code: PartnerPlanCode.CUSTOM, name: "Plano Personalizavel", description: "Exclusivo para Parceiros Comerciais Certificados Mindgest", price: 0, firstMonthlyPercent: 0, recurringMonthlyPercent: 0, annualFirstPercent: 0, minimumCustomPrice: 14899.22, mindwareMinimumNet: 14899.22, certifiedOnly: true },
+    { code: PartnerPlanCode.PRO, name: "PRO", description: "Plano PRO do Mindgest Partners Program", price: 14899.22, firstMonthlyPercent: 30, recurringMonthlyPercent: 25, annualFirstPercent: 30, minimumCustomPrice: 14899.22, mindwareMinimumNet: 14899.22, certifiedOnly: true },
   ];
   for (const plan of plans) {
     await prisma.partnerProgramPlan.upsert({ where: { code: plan.code }, update: plan, create: plan });

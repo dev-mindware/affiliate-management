@@ -29,8 +29,6 @@ export async function loginAction(data: any) {
       }
     });
 
-    console.log("=== ME API RESPONSE ===", userRes.data);
-
     if (userRes.data.role?.toLowerCase() !== "affiliate") {
       await destroySession();
       return { error: "Acesso restrito a afiliados." };

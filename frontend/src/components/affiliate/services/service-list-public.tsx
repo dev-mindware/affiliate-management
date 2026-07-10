@@ -91,9 +91,7 @@ export function ServiceListPublic() {
       header: "Valor base",
       render: (_, item) => (
         <div className="text-sm text-foreground">
-          {item.code === "CUSTOM"
-            ? `Mín. ${formatCurrency(item.mindware_minimum_net || 14899.22)}`
-            : formatCurrency(item.price)}
+          {formatCurrency(item.price)}
         </div>
       ),
     },
@@ -103,12 +101,10 @@ export function ServiceListPublic() {
       render: (_, item) => (
         <div className="flex items-center gap-2">
           <Badge variant="secondary" className="border-primary/20 bg-primary/10 text-primary">
-            {item.code === "CUSTOM" ? "Variável" : `${item.first_monthly_percent}%`}
+            {`${item.first_monthly_percent}%`}
           </Badge>
           <span className="text-sm font-semibold text-primary">
-            {item.code === "CUSTOM"
-              ? "Valor vendido - 14.899,22 Kz"
-              : formatCurrency((item.price * item.first_monthly_percent) / 100)}
+            {formatCurrency((item.price * item.first_monthly_percent) / 100)}
           </span>
         </div>
       ),
@@ -118,7 +114,7 @@ export function ServiceListPublic() {
       header: "Recorrente",
       render: (_, item) => (
         <div className="text-sm text-foreground">
-          {item.code === "CUSTOM" ? "Negociado por venda" : `${item.recurring_monthly_percent}% + bónus de nível`}
+          {`${item.recurring_monthly_percent}% + bónus de nível`}
         </div>
       ),
     },

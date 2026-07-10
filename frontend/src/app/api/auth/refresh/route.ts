@@ -12,7 +12,7 @@ export async function POST() {
   }
 
   try {
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`, {
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api"}/auth/refresh`, {
       refresh_token: refreshToken,
     });
 

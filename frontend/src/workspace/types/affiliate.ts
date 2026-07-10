@@ -52,7 +52,7 @@ export interface Service {
 
 export interface PartnerProgramPlan {
   id: number;
-  code: "BASE" | "SMART" | "CUSTOM";
+  code: "BASE" | "SMART" | "PRO";
   name: string;
   description?: string;
   price: number;
