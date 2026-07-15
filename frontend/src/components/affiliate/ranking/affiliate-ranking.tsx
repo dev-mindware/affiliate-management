@@ -88,11 +88,28 @@ export function AffiliateRanking() {
         {
             key: "partner_level",
             header: "Nível",
-            render: (_, item) => (
-                <Badge variant="secondary" className="capitalize">
-                    {item.partner_level === "none" ? "Sem nível" : item.partner_level}
-                </Badge>
-            ),
+            render: (_, item) => {
+                const levelStyles: Record<string, string> = {
+                    none: "bg-muted text-muted-foreground",
+                    silver: "bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200",
+                    gold: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+                    platinum: "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300",
+                    elite: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+                };
+                const levelNames: Record<string, string> = {
+                    none: "Sem nível",
+                    silver: "Silver",
+                    gold: "Gold",
+                    platinum: "Platinum",
+                    elite: "Elite",
+                };
+                const style = levelStyles[item.partner_level] ?? "bg-muted text-muted-foreground";
+                return (
+                    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${style}`}>
+                        {levelNames[item.partner_level] ?? item.partner_level}
+                    </span>
+                );
+            },
         },
         {
             key: "total_earned",

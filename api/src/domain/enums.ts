@@ -20,6 +20,7 @@ export enum PartnerLevel {
   NONE = "none",
   SILVER = "silver",
   GOLD = "gold",
+  PLATINUM = "platinum",
   ELITE = "elite",
 }
 

@@ -32,10 +32,11 @@ enum PartnerType {
 }
 
 enum PartnerLevel {
-  NONE   @map("none")
-  SILVER @map("silver")
-  GOLD   @map("gold")
-  ELITE  @map("elite")
+  NONE     @map("none")
+  SILVER   @map("silver")
+  GOLD     @map("gold")
+  PLATINUM @map("platinum")
+  ELITE    @map("elite")
 
   @@map("affiliates_partner_level_enum")
 }
@@ -207,8 +208,20 @@ model Commission {
   createdAt             DateTime          @default(now()) @map("created_at")
   approvedAt            DateTime?         @map("approved_at")
   paidAt                DateTime?         @map("paid_at")
+  externalEventId       String?           @unique @map("external_event_id")
 
   @@map("commissions")
+}
+
+model WebhookAuditLog {
+  id          String   @id @default(uuid()) @db.Uuid
+  endpoint    String
+  ipAddress   String?  @map("ip_address")
+  eventId     String?  @map("event_id")
+  result      String
+  receivedAt  DateTime @default(now()) @map("received_at")
+
+  @@map("webhook_audit_logs")
 }
 
 model Wallet {

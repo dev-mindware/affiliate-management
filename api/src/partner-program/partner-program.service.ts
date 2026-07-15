@@ -33,8 +33,8 @@ export class PartnerProgramService {
   async ensureDefaultPlans() {
     const defaults = [
       { code: PartnerPlanCode.BASE, name: "BASE", description: "Plano BASE do Mindgest Partners Program", price: 5445.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },
-      { code: PartnerPlanCode.SMART, name: "SMART", description: "Plano SMART do Mindgest Partners Program", price: 11998.22, firstMonthlyPercent: 25, recurringMonthlyPercent: 20, annualFirstPercent: 25, certifiedOnly: false },
-      { code: PartnerPlanCode.PRO, name: "PRO", description: "Plano PRO do Mindgest Partners Program", price: 14899.22, firstMonthlyPercent: 30, recurringMonthlyPercent: 25, annualFirstPercent: 30, minimumCustomPrice: CUSTOM_MINIMUM, mindwareMinimumNet: CUSTOM_MINIMUM, certifiedOnly: true },
+      { code: PartnerPlanCode.SMART, name: "SMART", description: "Plano SMART do Mindgest Partners Program", price: 11998.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },
+      { code: PartnerPlanCode.PRO, name: "PRO", description: "Plano PRO do Mindgest Partners Program", price: 14899.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, minimumCustomPrice: CUSTOM_MINIMUM, mindwareMinimumNet: CUSTOM_MINIMUM, certifiedOnly: true },
     ];
     for (const item of defaults) {
       await this.prisma.partnerProgramPlan.upsert({
@@ -80,8 +80,9 @@ export class PartnerProgramService {
   }
 
   resolveLevel(activeClients: number) {
-    if (activeClients >= 100) return { level: PartnerLevel.ELITE, next: null, missing: 0, bonus: 10 };
-    if (activeClients >= 40) return { level: PartnerLevel.GOLD, next: PartnerLevel.ELITE, missing: 100 - activeClients, bonus: 7.5 };
+    if (activeClients >= 250) return { level: PartnerLevel.ELITE, next: null, missing: 0, bonus: 23 };
+    if (activeClients >= 100) return { level: PartnerLevel.PLATINUM, next: PartnerLevel.ELITE, missing: 250 - activeClients, bonus: 18 };
+    if (activeClients >= 40) return { level: PartnerLevel.GOLD, next: PartnerLevel.PLATINUM, missing: 100 - activeClients, bonus: 12 };
     if (activeClients >= 15) return { level: PartnerLevel.SILVER, next: PartnerLevel.GOLD, missing: 40 - activeClients, bonus: 5 };
     return { level: PartnerLevel.NONE, next: PartnerLevel.SILVER, missing: 15 - activeClients, bonus: 0 };
   }

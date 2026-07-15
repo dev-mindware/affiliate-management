@@ -42,6 +42,14 @@ export class CommissionsService {
   }
 
   async create(data: any) {
+    if (data.external_event_id) {
+      const duplicate = await this.prisma.commission.findUnique({
+        where: { externalEventId: data.external_event_id },
+      });
+      if (duplicate) {
+        return { ...commissionDto(duplicate), duplicated: true };
+      }
+    }
     const service = await this.prisma.service.findUnique({ where: { id: Number(data.service_id) } });
     if (!service) throw new NotFoundException("Servico nao encontrado");
     const commission = await this.prisma.commission.create({
@@ -55,6 +63,7 @@ export class CommissionsService {
         valorComissao: service.comissao,
         status: CommissionStatus.PENDING,
         notas: data.notas,
+        externalEventId: data.external_event_id,
       },
     });
     await this.wallet.addPending(data.affiliate_id, Number(service.comissao || 0));

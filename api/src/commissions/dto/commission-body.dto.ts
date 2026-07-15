@@ -59,4 +59,9 @@ export class WebhookConversionDto {
   @IsOptional()
   @IsString()
   notas?: string;
+
+  @ApiPropertyOptional({ example: "evt_123456" })
+  @IsOptional()
+  @IsString()
+  external_event_id?: string;
 }

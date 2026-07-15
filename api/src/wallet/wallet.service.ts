@@ -3,7 +3,7 @@ import { WithdrawalStatus } from "@prisma/client";
 import { walletDto, withdrawalDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
 
-export const WITHDRAWAL_MINIMUM = 25000;
+export const WITHDRAWAL_MINIMUM = 8000;
 
 @Injectable()
 export class WalletService {
@@ -52,7 +52,7 @@ export class WalletService {
 
   async requestWithdrawal(affiliate: any, data: any) {
     const amount = Number(data.valor);
-    if (amount < WITHDRAWAL_MINIMUM) throw new BadRequestException("O valor minimo para levantamento e de 25.000 Kz");
+    if (amount < WITHDRAWAL_MINIMUM) throw new BadRequestException("O valor minimo para levantamento e de 8.000 Kz");
     const wallet = await this.ensureWallet(affiliate.id);
     if (Number(wallet.saldoDisponivel || 0) < amount) throw new BadRequestException("Saldo insuficiente");
     await this.prisma.wallet.update({

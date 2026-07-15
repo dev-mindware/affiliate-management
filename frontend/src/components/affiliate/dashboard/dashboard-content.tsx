@@ -18,6 +18,7 @@ const levelLabels: Record<string, string> = {
   none: "Sem nível",
   silver: "Silver Partner",
   gold: "Gold Partner",
+  platinum: "Platinum Partner",
   elite: "Elite Partner",
 };
 
