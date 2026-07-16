@@ -95,6 +95,12 @@ export default function ClientesPage() {
         } else if (status === "CANCELLED") {
           color = "bg-destructive/15 text-destructive border border-destructive/20";
           label = "Cancelada";
+        } else if (status === "TRIALING") {
+          color = "bg-violet-500/15 text-violet-600 border border-violet-500/20 dark:text-violet-400";
+          label = "Período de Teste (Trial)";
+        } else if (status === "PENDING") {
+          color = "bg-yellow-500/15 text-yellow-600 border border-yellow-500/20 dark:text-yellow-400";
+          label = "Pendente";
         }
 
         return (
@@ -149,6 +155,8 @@ export default function ClientesPage() {
               <option value="">Todos os Estados</option>
               <option value="NEW">Novos Clientes</option>
               <option value="RENEWED">Renovações</option>
+              <option value="TRIALING">Período de Teste (Trial)</option>
+              <option value="PENDING">Pendentes</option>
               <option value="EXPIRED">Expirados</option>
               <option value="CANCELLED">Cancelados</option>
             </select>

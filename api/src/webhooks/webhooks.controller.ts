@@ -1,4 +1,4 @@
-import { Body, Controller, Headers, HttpException, HttpStatus, Post, Ip } from "@nestjs/common";
+import { Body, Controller, Headers, HttpException, HttpStatus, Post, Ip, Get, Param } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ApiTags, ApiOperation, ApiResponse, ApiHeader } from "@nestjs/swagger";
 import { AffiliateStatus, PartnerPaymentSource } from "@prisma/client";
@@ -118,6 +118,27 @@ export class WebhooksController {
       commission_id: result.commission?.id,
       commission_amount: Number(result.commission?.valorComissao || 0),
       duplicated: result.duplicated,
+    };
+  }
+
+  @Get("affiliate/:code/validate")
+  @ApiOperation({ summary: "Validate an affiliate code" })
+  @ApiHeader({ name: "x-webhook-secret", description: "The webhook auth secret token.", required: true })
+  async validateAffiliateCode(
+    @Param("code") code: string,
+    @Ip() ip: string,
+    @Headers("x-webhook-secret") secret?: string,
+  ) {
+    await this.assertSecret(secret, "validate-affiliate", ip, code);
+    const affiliate = await this.prisma.affiliate.findFirst({
+      where: {
+        codigoAfiliado: code,
+        status: AffiliateStatus.ACTIVE,
+      },
+    });
+    return {
+      valid: !!affiliate,
+      affiliateName: affiliate?.codigoAfiliado || null,
     };
   }
 }
