@@ -5,3 +5,4 @@ export * from "./use-services";
 export * from "./use-dashboard";
 export * from "./use-profile";
 export * from "./use-notifications";
+export * from "./use-my-clients";

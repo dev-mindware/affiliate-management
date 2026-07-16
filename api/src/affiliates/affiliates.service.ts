@@ -165,4 +165,39 @@ export class AffiliatesService {
       },
     }));
   }
+
+  async getMindgestClients(affiliateCode: string, query: any) {
+    let mindgestUrl = process.env.MINDGEST_API_URL || "http://localhost:3001";
+    mindgestUrl = mindgestUrl.replace(/^['"]|['"]$/g, ""); // Remove quotes
+    if (!mindgestUrl.endsWith("/api") && !mindgestUrl.includes("/api/")) {
+      mindgestUrl = `${mindgestUrl.replace(/\/$/, "")}/api`;
+    }
+    const apiKey = process.env.MINDGEST_API_KEY || "MG_REg4eFg5eDJQU0lmNWcKUQU0YN3BDZDNvU2dnSnQ5OXRiL3NtbEhqSzhpdXNDZ2V6T2NwbzlCYnJDRWBTkJna3Foa2lHOXcwQkFRRUZBQVNZkbQo2lmN4eFg_MG";
+
+    try {
+      const url = new URL(`${mindgestUrl}/users/affiliate/${affiliateCode}`);
+      if (query) {
+        Object.keys(query).forEach(key => url.searchParams.append(key, query[key]));
+      }
+
+      const response = await fetch(url.toString(), {
+        method: "GET",
+        headers: {
+          "x-api-key": apiKey,
+          "Accept": "application/json"
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new BadRequestException(data.message || `HTTP ${response.status}`);
+      }
+
+      return data;
+    } catch (error: any) {
+      if (error instanceof BadRequestException) throw error;
+      throw new BadRequestException(`Erro ao conectar à API do MindGest: ${error.message}`);
+    }
+  }
 }

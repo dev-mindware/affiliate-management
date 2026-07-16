@@ -168,10 +168,19 @@ export class PartnerProgramService {
     await this.refreshAffiliate(affiliate);
 
     if (affiliateRecord?.userId) {
+      const getPeriodTranslation = (period?: string): string => {
+        if (!period) return "";
+        const p = period.toUpperCase();
+        if (p === "ANNUAL_FIRST") return "Anual";
+        if (p === "MONTHLY_FIRST") return "Mensal (Primeira)";
+        if (p === "MONTHLY_RECURRING") return "Mensal (Recorrente)";
+        return period;
+      };
+
       await this.notifications.create({
         userId: affiliateRecord.userId,
         title: "Nova Assinatura de Referido!",
-        message: `Seu cliente referido ${data.client_name} assinou o plano ${data.plan_code} (${data.billing_period.toUpperCase()})! Comissão pendente de Kz ${commissionAmount} gerada.`,
+        message: `Seu cliente referido ${data.client_name} assinou o plano ${data.plan_code} (${getPeriodTranslation(data.billing_period)})! Comissão pendente de Kz ${commissionAmount} gerada.`,
         type: "system",
         entity: "PartnerSubscription",
         entityId: subscription.id,

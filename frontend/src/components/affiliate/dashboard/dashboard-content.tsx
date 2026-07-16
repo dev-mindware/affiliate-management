@@ -1,6 +1,7 @@
 "use client";
 
-import { useDashboardChart, useDashboardKPIs } from "@/hooks/affiliate";
+import { useDashboardChart, useDashboardKPIs, useProfile } from "@/hooks/affiliate";
+import { toast } from "sonner";
 import {
   Badge,
   ChartConfig,
@@ -32,6 +33,7 @@ const certificationLabels: Record<string, string> = {
 export function DashboardContent() {
   const { data: kpis, isLoading: isKPIsLoading } = useDashboardKPIs();
   const { data: chartDataRaw, isLoading: isChartLoading } = useDashboardChart();
+  const { data: profile } = useProfile();
 
   const chartConfig = {
     value: {
@@ -83,6 +85,24 @@ export function DashboardContent() {
                     ? ` - faltam ${program.clients_to_next_level} para ${levelLabels[program.next_level]}`
                     : " - nível máximo alcançado"}
                 </p>
+                {profile?.codigo_afiliado && (
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-semibold text-muted-foreground uppercase">Código de Indicação:</span>
+                    <code className="px-2.5 py-1 bg-muted rounded border text-xs font-mono font-bold text-primary select-all">
+                      {profile.codigo_afiliado}
+                    </code>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(profile.codigo_afiliado);
+                        toast.success("Código de afiliado copiado com sucesso!");
+                      }}
+                      className="text-xs text-primary hover:underline font-semibold"
+                    >
+                      Copiar
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
