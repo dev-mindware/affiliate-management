@@ -31,14 +31,47 @@ async function main() {
     },
   });
 
-  await prisma.service.createMany({
-    data: [
-      { nome: "Website Institucional", descricao: "Criacao de website profissional", preco: 180000, comissao: 25000, ativo: true },
-      { nome: "Loja Online", descricao: "E-commerce completo", preco: 350000, comissao: 45000, ativo: true },
-      { nome: "Gestao de Redes Sociais", descricao: "Pacote mensal de social media", preco: 120000, comissao: 15000, ativo: true },
-    ],
-    skipDuplicates: true,
-  });
+  // Clean up duplicates of services and re-route references
+  const allServices = await prisma.service.findMany({ orderBy: { id: "asc" } });
+  const uniqueNames = new Set<string>();
+  const duplicates: { id: number; nome: string }[] = [];
+  const nameToId = new Map<string, number>();
+
+  for (const s of allServices) {
+    if (uniqueNames.has(s.nome)) {
+      duplicates.push({ id: s.id, nome: s.nome });
+    } else {
+      uniqueNames.add(s.nome);
+      nameToId.set(s.nome, s.id);
+    }
+  }
+
+  for (const dup of duplicates) {
+    const mainId = nameToId.get(dup.nome)!;
+    await prisma.commission.updateMany({
+      where: { serviceId: dup.id },
+      data: { serviceId: mainId },
+    });
+    await prisma.leadNotification.updateMany({
+      where: { serviceId: dup.id },
+      data: { serviceId: mainId },
+    });
+    await prisma.service.delete({ where: { id: dup.id } });
+  }
+
+  // Create default services if they do not exist
+  const servicesData = [
+    { nome: "Website Institucional", descricao: "Criacao de website profissional", preco: 180000, comissao: 25000, ativo: true },
+    { nome: "Loja Online", descricao: "E-commerce completo", preco: 350000, comissao: 45000, ativo: true },
+    { nome: "Gestao de Redes Sociais", descricao: "Pacote mensal de social media", preco: 120000, comissao: 15000, ativo: true },
+  ];
+
+  for (const item of servicesData) {
+    const existing = await prisma.service.findFirst({ where: { nome: item.nome } });
+    if (!existing) {
+      await prisma.service.create({ data: item });
+    }
+  }
 
   const plans = [
     { code: PartnerPlanCode.BASE, name: "BASE", description: "Plano BASE do Mindgest Partners Program", price: 5445.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },

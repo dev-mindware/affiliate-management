@@ -1,11 +1,11 @@
 "use client"
 import { DinamicBreadcrumb } from "../../custom/dynamic-breadcrumb";
-import { Separator, SidebarTrigger } from "../../ui";
+import { Separator, SidebarTrigger, Button } from "../../ui";
 import { useQueryState } from "nuqs";
 import { Icon } from "../icon";
 import { Input } from "../../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
-import { useAuth } from "@workspace/hooks";
+import { useAuth, useModalStore } from "@workspace/hooks";
 
 type Props = {
   routePath?: string;
@@ -27,6 +27,7 @@ export function PageWrapper({
   rightHeaderActions,
 }: Props) {
   const { user } = useAuth();
+  const { openModal } = useModalStore();
   const [search, setSearch] = useQueryState("search", {
     defaultValue: "",
     shallow: true,
@@ -68,6 +69,15 @@ export function PageWrapper({
         )}
 
         <div className="flex items-center mr-4 space-x-2 md:space-x-4">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-1.5 h-8 border-dashed hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all duration-300"
+            onClick={() => openModal("commission-simulator")}
+          >
+            <Icon name="Calculator" className="size-4 text-primary" />
+            <span className="hidden sm:inline font-semibold">Simulador</span>
+          </Button>
           {rightHeaderActions}
           {variant === "counter" && (
             <div className="flex items-center gap-4">
