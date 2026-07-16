@@ -194,6 +194,32 @@ export function SettingsContent() {
                       />
                     </FieldContent>
                   </Field>
+                  <Field className="md:col-span-2">
+                    <FieldLabel>Código de Afiliado</FieldLabel>
+                    <FieldContent>
+                      <div className="flex gap-2">
+                        <Input
+                          value={profile?.codigo_afiliado || ""}
+                          disabled
+                          className="font-mono font-bold text-primary flex-1"
+                        />
+                        <Button
+                          variant="outline"
+                          type="button"
+                          onClick={() => {
+                            if (profile?.codigo_afiliado) {
+                              navigator.clipboard.writeText(profile.codigo_afiliado);
+                              toast.success("Código de afiliado copiado com sucesso!");
+                            }
+                          }}
+                          className="shrink-0"
+                        >
+                          <Icon name="Copy" className="h-4 w-4 mr-2" />
+                          Copiar
+                        </Button>
+                      </div>
+                    </FieldContent>
+                  </Field>
                 </div>
               </section>
 

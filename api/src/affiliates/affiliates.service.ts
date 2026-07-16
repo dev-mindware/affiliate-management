@@ -165,4 +165,25 @@ export class AffiliatesService {
       },
     }));
   }
+
+  async getMindgestClients(affiliateCode: string, query: any) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const axios = require("axios");
+    const mindgestUrl = process.env.MINDGEST_API_URL || "http://localhost:3001";
+    const apiKey = process.env.MINDGEST_API_KEY || "MG_REg4eFg5eDJQU0lmNWcKUQU0YN3BDZDNvU2dnSnQ5OXRiL3NtbEhqSzhpdXNDZ2V6T2NwbzlCYnJDRWBTkJna3Foa2lHOXcwQkFRRUZBQVNZkbQo2lmN4eFg_MG";
+
+    try {
+      const response = await axios.get(`${mindgestUrl}/users/affiliate/${affiliateCode}`, {
+        params: query,
+        headers: {
+          "x-api-key": apiKey,
+        },
+      });
+      return response.data;
+    } catch (error: any) {
+      const status = error.response?.status || 500;
+      const message = error.response?.data?.message || error.message;
+      throw new BadRequestException(`Erro ao conectar à API do MindGest: ${message}`);
+    }
+  }
 }

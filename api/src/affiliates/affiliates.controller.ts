@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, BadRequestException } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from "@nestjs/swagger";
 import { UserRole } from "@prisma/client";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
@@ -122,5 +122,19 @@ export class AffiliatesController {
   @ApiResponse({ status: 401, description: "Unauthorized." })
   updateProfile(@CurrentUser() user: any, @Body() body: AffiliateProfileBodyDto) {
     return this.affiliates.updateProfile(user.affiliate.id, body);
+  }
+
+  @Roles(UserRole.AFFILIATE, UserRole.ADMIN)
+  @Get("affiliate/my-clients")
+  @ApiOperation({ summary: "Get referred clients of current affiliate" })
+  @ApiResponse({ status: 200, description: "Successfully retrieved Referred client list from MindGest." })
+  async getMyClients(
+    @CurrentUser() user: any,
+    @Query() query: any,
+  ) {
+    if (!user.affiliate || !user.affiliate.codigoAfiliado) {
+      throw new BadRequestException("Usuário não possui código de afiliado");
+    }
+    return this.affiliates.getMindgestClients(user.affiliate.codigoAfiliado, query);
   }
 }

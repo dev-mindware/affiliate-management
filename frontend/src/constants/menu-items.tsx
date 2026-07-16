@@ -70,6 +70,11 @@ export const affiliateMenuItems: MenuStructure = {
       icon: <Icon name="BadgeDollarSign" />,
     },
     {
+      name: "Meus Clientes",
+      url: "/clientes",
+      icon: <Icon name="Users" />,
+    },
+    {
       name: "Carteira",
       url: "/wallet",
       icon: <Icon name="Wallet" />,
