@@ -5,7 +5,7 @@ export function ServicesPageContent() {
   return (
     <div className="flex flex-col gap-6">
       <TitleList
-        title="Serviços Disponíveis"
+        title="Planos"
         suTitle="Descubra os planos Mindgest e as comissões que pode ganhar ao recomendá-los."
       />
       <ServiceListPublic />

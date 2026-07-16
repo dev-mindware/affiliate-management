@@ -2,6 +2,7 @@ import {
   AffiliateStatus,
   BillingPeriod,
   CertificationStatus,
+  CommissionSource,
   CommissionStatus,
   LeadStatus,
   PartnerLevel,
@@ -31,6 +32,7 @@ export const toPartnerLevel = (value?: string) => byApiValue(PartnerLevel, value
 export const toCertificationStatus = (value?: string) => byApiValue(CertificationStatus, value);
 export const toLeadStatus = (value?: string) => byApiValue(LeadStatus, value);
 export const toCommissionStatus = (value?: string) => byApiValue(CommissionStatus, value);
+export const toCommissionSource = (value?: string) => byApiValue(CommissionSource, value);
 export const toWithdrawalStatus = (value?: string) => byApiValue(WithdrawalStatus, value);
 export const toBillingPeriod = (value?: string) => byApiValue(BillingPeriod, value);
 export const toPaymentSource = (value?: string) => byApiValue(PartnerPaymentSource, value);

@@ -31,6 +31,11 @@ export class PartnerPlanBodyDto {
   @IsNumber()
   annual_first_percent!: number;
 
+  @ApiPropertyOptional({ example: 15 })
+  @IsOptional()
+  @IsNumber()
+  annual_recurring_percent?: number;
+
   @ApiPropertyOptional({ example: 14899.22 })
   @IsOptional()
   @IsNumber()
@@ -81,7 +86,7 @@ export class SubscriptionPaymentDto {
   @IsString()
   paid_at!: string;
 
-  @ApiProperty({ example: "monthly_first", enum: ["monthly_first", "monthly_recurring", "annual_first"] })
+  @ApiProperty({ example: "monthly_first", enum: ["monthly_first", "monthly_recurring", "annual_first", "annual_recurring"] })
   @IsString()
   billing_period!: string;
 
@@ -107,4 +112,9 @@ export class CertificationDecisionDto {
   @IsOptional()
   @IsString()
   notes?: string;
+
+  @ApiPropertyOptional({ example: false, description: "Override administrativo: certifica mesmo sem os 15 clientes ativos (afiliado nao elegivel)." })
+  @IsOptional()
+  @IsBoolean()
+  force?: boolean;
 }

@@ -26,11 +26,11 @@ export function useRequestWithdrawal() {
   });
 }
 
-export function useWithdrawalRequests(status?: any) {
+export function useWithdrawalRequests(status?: any, size = 10) {
   return useQuery({
-    queryKey: ["withdrawals", status],
+    queryKey: ["withdrawals", status, size],
     queryFn: async () => {
-        const response = await withdrawalService.listWithdrawals(status);
+        const response = await withdrawalService.listWithdrawals(status, 1, size);
         return response.data.items;
     }
   });

@@ -57,6 +57,23 @@ export function WalletContent() {
                 </div>
             ),
         },
+        {
+            key: "comprovativo",
+            header: "Comprovativo",
+            render: (_, item) =>
+                item.comprovativo_url ? (
+                    <a
+                        href={item.comprovativo_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-primary hover:underline"
+                    >
+                        Ver
+                    </a>
+                ) : (
+                    <span className="text-sm text-muted-foreground">—</span>
+                ),
+        },
     ];
 
     return (

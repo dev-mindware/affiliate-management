@@ -103,7 +103,7 @@ export class PartnerProgramController {
   @ApiResponse({ status: 401, description: "Unauthorized." })
   @ApiResponse({ status: 403, description: "Forbidden." })
   approveCertification(@Param("id") id: string, @Body() body: CertificationDecisionDto, @CurrentUser() user: any) {
-    return this.partner.approveCertification(id, user.id, body.notes);
+    return this.partner.approveCertification(id, user.id, body.notes, body.force);
   }
 
   @Roles(UserRole.ADMIN)

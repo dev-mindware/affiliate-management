@@ -3,12 +3,14 @@ import {
   AffiliateStatus,
   BillingPeriod,
   CertificationStatus,
+  CommissionSource,
   CommissionStatus,
   PartnerLevel,
   PartnerPaymentSource,
   PartnerPlanCode,
   PartnerSubscriptionStatus,
   PartnerType,
+  Prisma,
 } from "@prisma/client";
 import { toBillingPeriod, toPaymentSource, toSubscriptionStatus } from "../common/enum-mappers";
 import { dateRange, normalizePagination, orderBy, paginated } from "../common/filters/pagination";
@@ -19,7 +21,6 @@ import { SubscriptionFilterDto } from "./dto/subscription-filter.dto";
 import { RankingFilterDto } from "./dto/ranking-filter.dto";
 import { NotificationsService } from "../notifications/notifications.service";
 
-const VALIDATION_DAYS = 15;
 const CUSTOM_MINIMUM = 14899.22;
 
 @Injectable()
@@ -32,9 +33,9 @@ export class PartnerProgramService {
 
   async ensureDefaultPlans() {
     const defaults = [
-      { code: PartnerPlanCode.BASE, name: "BASE", description: "Plano BASE do Mindgest Partners Program", price: 5445.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },
-      { code: PartnerPlanCode.SMART, name: "SMART", description: "Plano SMART do Mindgest Partners Program", price: 11998.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, certifiedOnly: false },
-      { code: PartnerPlanCode.PRO, name: "PRO", description: "Plano PRO do Mindgest Partners Program", price: 14899.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, minimumCustomPrice: CUSTOM_MINIMUM, mindwareMinimumNet: CUSTOM_MINIMUM, certifiedOnly: true },
+      { code: PartnerPlanCode.BASE, name: "BASE", description: "Plano BASE do Mindgest Partners Program", price: 5445.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, annualRecurringPercent: 15, certifiedOnly: false },
+      { code: PartnerPlanCode.SMART, name: "SMART", description: "Plano SMART do Mindgest Partners Program", price: 11998.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, annualRecurringPercent: 15, certifiedOnly: false },
+      { code: PartnerPlanCode.PRO, name: "PRO", description: "Plano PRO do Mindgest Partners Program", price: 14899.22, firstMonthlyPercent: 20, recurringMonthlyPercent: 15, annualFirstPercent: 20, annualRecurringPercent: 15, minimumCustomPrice: CUSTOM_MINIMUM, mindwareMinimumNet: CUSTOM_MINIMUM, certifiedOnly: true },
     ];
     for (const item of defaults) {
       await this.prisma.partnerProgramPlan.upsert({
@@ -63,6 +64,7 @@ export class PartnerProgramService {
         firstMonthlyPercent: Number(body.first_monthly_percent || 0),
         recurringMonthlyPercent: Number(body.recurring_monthly_percent || 0),
         annualFirstPercent: Number(body.annual_first_percent || 0),
+        annualRecurringPercent: Number(body.annual_recurring_percent || 0),
         minimumCustomPrice: body.minimum_custom_price,
         mindwareMinimumNet: body.mindware_minimum_net,
         certifiedOnly: body.certified_only ?? false,
@@ -107,10 +109,12 @@ export class PartnerProgramService {
     if (plan.code === PartnerPlanCode.PRO) {
       if (!this.isCertified(affiliate)) throw new BadRequestException("Plano PRO permitido apenas para parceiros certificados");
     }
+    const levelBonus = this.resolveLevel(Number(affiliate.activeClients || 0)).bonus;
     let percent = 0;
     if (period === BillingPeriod.MONTHLY_FIRST) percent = Number(plan.firstMonthlyPercent);
-    if (period === BillingPeriod.MONTHLY_RECURRING) percent = Number(plan.recurringMonthlyPercent) + this.resolveLevel(Number(affiliate.activeClients || 0)).bonus;
+    if (period === BillingPeriod.MONTHLY_RECURRING) percent = Number(plan.recurringMonthlyPercent) + levelBonus;
     if (period === BillingPeriod.ANNUAL_FIRST) percent = Number(plan.annualFirstPercent);
+    if (period === BillingPeriod.ANNUAL_RECURRING) percent = Number(plan.annualRecurringPercent) + levelBonus;
     return Number(((amount * percent) / 100).toFixed(2));
   }
 
@@ -132,39 +136,61 @@ export class PartnerProgramService {
     const amount = Number(data.amount_paid);
     const paidAt = new Date(data.paid_at);
     const commissionAmount = this.calculate(plan, affiliate, amount, period);
-    const availableAt = new Date(paidAt);
-    availableAt.setDate(availableAt.getDate() + VALIDATION_DAYS);
-    const subscription = await this.prisma.partnerSubscription.create({
-      data: {
-        affiliateId: affiliate.id,
-        planId: plan.id,
-        externalPaymentId: data.external_payment_id,
-        clientName: data.client_name,
-        clientIdentifier: data.client_identifier,
-        amountPaid: amount,
-        paidAt,
-        billingPeriod: period,
-        source,
-        status: PartnerSubscriptionStatus.ACTIVE,
-        notes: data.notes,
-      },
-    });
-    const commission = await this.prisma.commission.create({
-      data: {
-        affiliateId: affiliate.id,
-        partnerSubscriptionId: subscription.id,
-        clientNome: data.client_name,
-        clientTelefone: data.client_identifier,
-        valorServico: amount,
-        valorComissao: commissionAmount,
-        status: CommissionStatus.PENDING,
-        notas: data.notes,
-        source: "partner_program",
-        availableAt,
-        validationDays: VALIDATION_DAYS,
-      },
-    });
-    await this.wallet.addPending(affiliate.id, commissionAmount);
+    const now = new Date();
+    // A comissao fica imediatamente disponivel para levantamento assim que a
+    // subscricao e aprovada (sem periodo de validacao pendente).
+    let subscription: any;
+    let commission: any;
+    try {
+      const res = await this.prisma.$transaction(async (tx) => {
+      const subscription = await tx.partnerSubscription.create({
+        data: {
+          affiliateId: affiliate.id,
+          planId: plan.id,
+          externalPaymentId: data.external_payment_id,
+          clientName: data.client_name,
+          clientIdentifier: data.client_identifier,
+          amountPaid: amount,
+          paidAt,
+          billingPeriod: period,
+          source,
+          status: PartnerSubscriptionStatus.ACTIVE,
+          notes: data.notes,
+        },
+      });
+      const commission = await tx.commission.create({
+        data: {
+          affiliateId: affiliate.id,
+          partnerSubscriptionId: subscription.id,
+          clientNome: data.client_name,
+          clientTelefone: data.client_identifier,
+          valorServico: amount,
+          valorComissao: commissionAmount,
+          status: CommissionStatus.APPROVED,
+          notas: data.notes,
+          source: CommissionSource.PARTNER_PROGRAM,
+          availableAt: now,
+          approvedAt: now,
+          validationDays: 0,
+        },
+      });
+      await this.wallet.addAvailable(affiliate.id, commissionAmount, tx);
+      return { subscription, commission };
+      });
+      subscription = res.subscription;
+      commission = res.commission;
+    } catch (err) {
+      // Corrida entre webhooks concorrentes com o mesmo external_payment_id:
+      // a constraint unica garante idempotencia, devolvemos o registo existente.
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002") {
+        const existing = await this.prisma.partnerSubscription.findUnique({ where: { externalPaymentId: data.external_payment_id } });
+        if (existing) {
+          const existingCommission = await this.prisma.commission.findFirst({ where: { partnerSubscriptionId: existing.id } });
+          return { subscription: existing, commission: existingCommission, duplicated: true };
+        }
+      }
+      throw err;
+    }
     await this.refreshAffiliate(affiliate);
 
     if (affiliateRecord?.userId) {
@@ -180,7 +206,7 @@ export class PartnerProgramService {
       await this.notifications.create({
         userId: affiliateRecord.userId,
         title: "Nova Assinatura de Referido!",
-        message: `Seu cliente referido ${data.client_name} assinou o plano ${data.plan_code} (${getPeriodTranslation(data.billing_period)})! Comissão pendente de Kz ${commissionAmount} gerada.`,
+        message: `Seu cliente referido ${data.client_name} assinou o plano ${data.plan_code} (${getPeriodTranslation(data.billing_period)})! Comissão de Kz ${commissionAmount} já disponível para levantamento.`,
         type: "system",
         entity: "PartnerSubscription",
         entityId: subscription.id,
@@ -224,10 +250,24 @@ export class PartnerProgramService {
     const subscription = await this.prisma.partnerSubscription.update({ where: { id }, data: { status, notes } });
     const blockingStatuses: PartnerSubscriptionStatus[] = [PartnerSubscriptionStatus.CANCELLED, PartnerSubscriptionStatus.PAYMENT_FAILED, PartnerSubscriptionStatus.SUSPENDED, PartnerSubscriptionStatus.REFUNDED, PartnerSubscriptionStatus.CHARGEBACK];
     if (blockingStatuses.includes(status)) {
-      const commissions = await this.prisma.commission.findMany({ where: { partnerSubscriptionId: id, status: CommissionStatus.PENDING } });
+      // Estorna comissoes ainda pendentes E as ja aprovadas/disponiveis, porque
+      // agora a comissao fica disponivel imediatamente ao aprovar a subscricao.
+      const commissions = await this.prisma.commission.findMany({
+        where: {
+          partnerSubscriptionId: id,
+          status: { in: [CommissionStatus.PENDING, CommissionStatus.APPROVED] },
+        },
+      });
       for (const commission of commissions) {
-        await this.prisma.commission.update({ where: { id: commission.id }, data: { status: CommissionStatus.REJECTED, notas: notes || "Comissao invalidada pela subscricao" } });
-        await this.wallet.rejectPending(commission.affiliateId, Number(commission.valorComissao || 0));
+        const valor = Number(commission.valorComissao || 0);
+        await this.prisma.$transaction(async (tx) => {
+          await tx.commission.update({ where: { id: commission.id }, data: { status: CommissionStatus.REJECTED, notas: notes || "Comissao invalidada pela subscricao" } });
+          if (commission.status === CommissionStatus.PENDING) {
+            await this.wallet.rejectPending(commission.affiliateId, valor, tx);
+          } else {
+            await this.wallet.reverseAvailable(commission.affiliateId, valor, tx);
+          }
+        });
       }
     }
     const affiliate = await this.prisma.affiliate.findUnique({ where: { id: subscription.affiliateId } });
@@ -237,7 +277,7 @@ export class PartnerProgramService {
 
   async releaseValidated() {
     const commissions = await this.prisma.commission.findMany({
-      where: { source: "partner_program", status: CommissionStatus.PENDING, availableAt: { lte: new Date() } },
+      where: { source: CommissionSource.PARTNER_PROGRAM, status: CommissionStatus.PENDING, availableAt: { lte: new Date() } },
     });
     for (const commission of commissions) {
       await this.prisma.commission.update({ where: { id: commission.id }, data: { status: CommissionStatus.APPROVED, approvedAt: new Date() } });
@@ -264,11 +304,15 @@ export class PartnerProgramService {
     };
   }
 
-  async approveCertification(affiliateId: string, adminId: string, notes?: string) {
+  async approveCertification(affiliateId: string, adminId: string, notes?: string, force?: boolean) {
     const affiliate = await this.prisma.affiliate.findUnique({ where: { id: affiliateId } });
     if (!affiliate) throw new NotFoundException("Afiliado nao encontrado");
     const refreshed = await this.refreshAffiliate(affiliate);
-    if (refreshed.certificationStatus !== CertificationStatus.ELIGIBLE && refreshed.certificationStatus !== CertificationStatus.APPROVED) {
+    if (
+      !force &&
+      refreshed.certificationStatus !== CertificationStatus.ELIGIBLE &&
+      refreshed.certificationStatus !== CertificationStatus.APPROVED
+    ) {
       throw new BadRequestException("Afiliado ainda nao elegivel para certificacao");
     }
     const approved = await this.prisma.affiliate.update({

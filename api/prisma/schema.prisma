@@ -68,6 +68,13 @@ enum CommissionStatus {
   @@map("commissions_status_enum")
 }
 
+enum CommissionSource {
+  SERVICES        @map("services")
+  PARTNER_PROGRAM @map("partner_program")
+
+  @@map("commissions_source_enum")
+}
+
 enum WithdrawalStatus {
   PENDING  @map("pending")
   APPROVED @map("approved")
@@ -88,6 +95,7 @@ enum BillingPeriod {
   MONTHLY_FIRST     @map("monthly_first")
   MONTHLY_RECURRING @map("monthly_recurring")
   ANNUAL_FIRST      @map("annual_first")
+  ANNUAL_RECURRING  @map("annual_recurring")
 
   @@map("partner_subscriptions_billing_period_enum")
 }
@@ -202,7 +210,7 @@ model Commission {
   notas                 String?
   comprovativoUrl       String?           @map("comprovativo_url")
   comprovativoFilename  String?           @map("comprovativo_filename")
-  source                String            @default("services")
+  source                CommissionSource  @default(SERVICES)
   availableAt           DateTime?         @map("available_at")
   validationDays        Int               @default(0) @map("validation_days")
   createdAt             DateTime          @default(now()) @map("created_at")
@@ -262,6 +270,7 @@ model PartnerProgramPlan {
   firstMonthlyPercent      Decimal         @default(0) @map("first_monthly_percent") @db.Decimal(8, 2)
   recurringMonthlyPercent  Decimal         @default(0) @map("recurring_monthly_percent") @db.Decimal(8, 2)
   annualFirstPercent       Decimal         @default(0) @map("annual_first_percent") @db.Decimal(8, 2)
+  annualRecurringPercent   Decimal         @default(0) @map("annual_recurring_percent") @db.Decimal(8, 2)
   minimumCustomPrice       Decimal?        @map("minimum_custom_price") @db.Decimal(20, 2)
   mindwareMinimumNet       Decimal?        @map("mindware_minimum_net") @db.Decimal(20, 2)
   certifiedOnly            Boolean         @default(false) @map("certified_only")

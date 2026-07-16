@@ -19,11 +19,11 @@ export function useRanking() {
         },
     });
 }
-export function useDashboardChart() {
+export function useDashboardChart(period: "monthly" | "annual" = "monthly") {
     return useQuery({
-        queryKey: ["dashboard", "chart"],
+        queryKey: ["dashboard", "chart", period],
         queryFn: async () => {
-            const response = await dashboardService.getChartData();
+            const response = await dashboardService.getChartData(period);
             return response.data;
         },
     });

@@ -1,8 +1,9 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { CommissionStatus } from "@prisma/client";
+import { CommissionSource, CommissionStatus } from "@prisma/client";
 import { dateRange, normalizePagination, orderBy, paginated } from "../common/filters/pagination";
 import { commissionDto } from "../common/serializers";
-import { toCommissionStatus } from "../common/enum-mappers";
+import { toCommissionSource, toCommissionStatus } from "../common/enum-mappers";
+import { Prisma } from "@prisma/client";
 import { PrismaService } from "../prisma/prisma.service";
 import { WalletService } from "../wallet/wallet.service";
 import { CommissionFilterDto } from "./dto/commission-filter.dto";
@@ -21,7 +22,7 @@ export class CommissionsService {
     const where: any = { ...dateRange(filter) };
     if (filter.status) where.status = toCommissionStatus(filter.status);
     if (filter.affiliateId) where.affiliateId = filter.affiliateId;
-    if (filter.source) where.source = filter.source;
+    if (filter.source) where.source = toCommissionSource(filter.source);
     if (filter.search) {
       where.OR = [
         { clientNome: { contains: filter.search, mode: "insensitive" } },
@@ -52,21 +53,36 @@ export class CommissionsService {
     }
     const service = await this.prisma.service.findUnique({ where: { id: Number(data.service_id) } });
     if (!service) throw new NotFoundException("Servico nao encontrado");
-    const commission = await this.prisma.commission.create({
-      data: {
-        affiliateId: data.affiliate_id,
-        serviceId: service.id,
-        leadNotificationId: data.lead_notification_id,
-        clientNome: data.client_nome,
-        clientTelefone: data.client_telefone,
-        valorServico: service.preco,
-        valorComissao: service.comissao,
-        status: CommissionStatus.PENDING,
-        notas: data.notas,
-        externalEventId: data.external_event_id,
-      },
-    });
-    await this.wallet.addPending(data.affiliate_id, Number(service.comissao || 0));
+    let commission;
+    try {
+      commission = await this.prisma.$transaction(async (tx) => {
+        const created = await tx.commission.create({
+          data: {
+            affiliateId: data.affiliate_id,
+            serviceId: service.id,
+            leadNotificationId: data.lead_notification_id,
+            clientNome: data.client_nome,
+            clientTelefone: data.client_telefone,
+            valorServico: service.preco,
+            valorComissao: service.comissao,
+            status: CommissionStatus.PENDING,
+            notas: data.notas,
+            source: CommissionSource.SERVICES,
+            externalEventId: data.external_event_id,
+          },
+        });
+        await this.wallet.addPending(data.affiliate_id, Number(service.comissao || 0), tx);
+        return created;
+      });
+    } catch (err) {
+      // Corrida entre webhooks concorrentes com o mesmo external_event_id:
+      // a constraint unica garante idempotencia, devolvemos o registo existente.
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === "P2002" && data.external_event_id) {
+        const existing = await this.prisma.commission.findUnique({ where: { externalEventId: data.external_event_id } });
+        if (existing) return { ...commissionDto(existing), duplicated: true };
+      }
+      throw err;
+    }
 
     const affiliate = await this.prisma.affiliate.findUnique({ where: { id: data.affiliate_id } });
     if (affiliate?.userId) {

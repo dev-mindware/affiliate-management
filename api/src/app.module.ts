@@ -16,6 +16,8 @@ import { WalletModule } from "./wallet/wallet.module";
 import { WebhooksModule } from "./webhooks/webhooks.module";
 import { WithdrawalsModule } from "./withdrawals/withdrawals.module";
 import { NotificationsModule } from "./notifications/notifications.module";
+import { MailModule } from "./mail/mail.module";
+import { StorageModule } from "./storage/storage.module";
 
 @Module({
   imports: [
@@ -33,6 +35,8 @@ import { NotificationsModule } from "./notifications/notifications.module";
     PartnerProgramModule,
     WebhooksModule,
     NotificationsModule,
+    MailModule,
+    StorageModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UserRole } from "@prisma/client";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
@@ -41,29 +41,54 @@ export class AffiliateDashboardController {
   }
 
   @Get("chart")
-  @ApiOperation({ summary: "Get affiliate leads analytics chart data", description: "Retrieve weekly leads referral progression data for visualization charting." })
+  @ApiOperation({ summary: "Get affiliate commissions evolution chart data", description: "Retrieve commission totals aggregated by day of the current month or by month of the current year via the ?period=monthly|annual query param." })
   @ApiResponse({ status: 200, description: "Successfully retrieved chart details." })
   @ApiResponse({ status: 401, description: "Unauthorized." })
-  async chart(@CurrentUser() user: any) {
+  async chart(@CurrentUser() user: any, @Query("period") period?: string) {
     const affiliate = user?.affiliate;
-    const since = new Date();
-    since.setDate(since.getDate() - 6);
-    since.setHours(0, 0, 0, 0);
+    const mode = period === "annual" ? "annual" : "monthly";
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
 
-    const leads = affiliate
-      ? await this.prisma.leadNotification.findMany({
-          where: { affiliateId: affiliate.id, createdAt: { gte: since } },
-          select: { createdAt: true },
+    if (mode === "annual") {
+      const since = new Date(year, 0, 1);
+      const until = new Date(year + 1, 0, 1);
+      const commissions = affiliate
+        ? await this.prisma.commission.findMany({
+            where: { affiliateId: affiliate.id, createdAt: { gte: since, lt: until } },
+            select: { createdAt: true, valorComissao: true },
+          })
+        : [];
+      const monthLabels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+      return Array.from({ length: 12 }).map((_, m) => {
+        const doMes = commissions.filter((c) => c.createdAt.getFullYear() === year && c.createdAt.getMonth() === m);
+        return {
+          date: `${year}-${String(m + 1).padStart(2, "0")}`,
+          label: monthLabels[m],
+          comissao: doMes.reduce((sum, c) => sum + Number(c.valorComissao || 0), 0),
+        };
+      });
+    }
+
+    const since = new Date(year, month, 1);
+    const until = new Date(year, month + 1, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const commissions = affiliate
+      ? await this.prisma.commission.findMany({
+          where: { affiliateId: affiliate.id, createdAt: { gte: since, lt: until } },
+          select: { createdAt: true, valorComissao: true },
         })
       : [];
-
-    return Array.from({ length: 7 }).map((_, index) => {
-      const date = new Date(since);
-      date.setDate(since.getDate() + index);
-      const key = date.toISOString().slice(0, 10);
+    return Array.from({ length: daysInMonth }).map((_, index) => {
+      const day = index + 1;
+      const doDia = commissions.filter(
+        (c) => c.createdAt.getFullYear() === year && c.createdAt.getMonth() === month && c.createdAt.getDate() === day,
+      );
       return {
-        date: key,
-        count: leads.filter((lead) => lead.createdAt.toISOString().slice(0, 10) === key).length,
+        date: `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`,
+        label: String(day),
+        comissao: doDia.reduce((sum, c) => sum + Number(c.valorComissao || 0), 0),
       };
     });
   }

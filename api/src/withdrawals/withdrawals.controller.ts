@@ -1,11 +1,12 @@
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
-import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from "@nestjs/swagger";
+import { Body, Controller, Get, Param, Post, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiConsumes } from "@nestjs/swagger";
 import { UserRole } from "@prisma/client";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
 import { Roles } from "../auth/decorators/roles.decorator";
 import { RejectWithdrawalDto } from "./dto/withdrawal-body.dto";
 import { WithdrawalFilterDto } from "./dto/withdrawal-filter.dto";
-import { WithdrawalsService } from "./withdrawals.service";
+import { UploadedProof, WithdrawalsService } from "./withdrawals.service";
 
 @ApiTags("withdrawals")
 @ApiBearerAuth()
@@ -34,14 +35,16 @@ export class WithdrawalsController {
 
   @Roles(UserRole.ADMIN)
   @Post("admin/withdrawals/:id/approve")
-  @ApiOperation({ summary: "Approve a withdrawal request (Admin)", description: "Approve an affiliate's pending withdrawal request, confirming the financial transaction. Access restricted to Administrator role." })
+  @UseInterceptors(FileInterceptor("file"))
+  @ApiConsumes("multipart/form-data")
+  @ApiOperation({ summary: "Approve a withdrawal request (Admin)", description: "Approve an affiliate's pending withdrawal request, confirming the financial transaction. Optionally attach a payment proof (comprovativo). Access restricted to Administrator role." })
   @ApiParam({ name: "id", description: "The unique identifier of the withdrawal request." })
   @ApiResponse({ status: 200, description: "Withdrawal request approved successfully." })
   @ApiResponse({ status: 404, description: "Withdrawal request not found." })
   @ApiResponse({ status: 401, description: "Unauthorized." })
   @ApiResponse({ status: 403, description: "Forbidden." })
-  approve(@Param("id") id: string) {
-    return this.withdrawals.approve(id);
+  approve(@Param("id") id: string, @UploadedFile() file?: UploadedProof) {
+    return this.withdrawals.approve(id, file);
   }
 
   @Roles(UserRole.ADMIN)

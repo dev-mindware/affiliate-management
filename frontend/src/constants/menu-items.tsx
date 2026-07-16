@@ -25,11 +25,6 @@ export const adminMenuItems: MenuStructure = {
       icon: <Icon name="Users" />,
     },
     {
-      name: "Leads",
-      url: "/leads",
-      icon: <Icon name="Bell" />,
-    },
-    {
       name: "Comissões",
       url: "/commissions",
       icon: <Icon name="BadgeDollarSign" />,
@@ -40,7 +35,7 @@ export const adminMenuItems: MenuStructure = {
       icon: <Icon name="Wallet" />,
     },
     {
-      name: "Serviços",
+      name: "Planos",
       url: "/services",
       icon: <Icon name="FileText" />,
     },
@@ -60,11 +55,6 @@ export const affiliateMenuItems: MenuStructure = {
       icon: <Icon name="LayoutDashboard" />,
     },
     {
-      name: "Meus Leads",
-      url: "/leads",
-      icon: <Icon name="Bell" />,
-    },
-    {
       name: "Minhas Comissões",
       url: "/commissions",
       icon: <Icon name="BadgeDollarSign" />,
@@ -80,7 +70,7 @@ export const affiliateMenuItems: MenuStructure = {
       icon: <Icon name="Wallet" />,
     },
     {
-      name: "Serviços",
+      name: "Planos",
       url: "/services",
       icon: <Icon name="BookOpen" />,
     },

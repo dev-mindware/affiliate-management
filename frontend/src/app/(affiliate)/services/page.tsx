@@ -3,8 +3,8 @@ import { Suspense } from "react";
 
 export default function ServicesPage() {
   return (
-    <PageWrapper subRoute="Serviços">
-      <Suspense fallback={<div>Carregando servicos...</div>}>
+    <PageWrapper subRoute="Planos">
+      <Suspense fallback={<div>Carregando planos...</div>}>
         <ServicesPageContent />
       </Suspense> 
     </PageWrapper>

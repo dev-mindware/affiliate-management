@@ -24,7 +24,7 @@ export const dashboardService = {
     return api.get<any[]>("/affiliate/dashboard/ranking");
   },
 
-  getChartData: async () => {
-    return api.get<any[]>("/affiliate/dashboard/chart");
+  getChartData: async (period: "monthly" | "annual" = "monthly") => {
+    return api.get<any[]>("/affiliate/dashboard/chart", { params: { period } });
   },
 };
