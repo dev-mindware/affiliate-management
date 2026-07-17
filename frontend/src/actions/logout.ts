@@ -2,7 +2,7 @@
 
 import { destroySession } from "@/lib/session";
 import { redirect } from "next/navigation";
-import api from "@/services/api";
+import api from "@/services/api.server";
 import { BASE_PATH } from "@/constants/routes";
 
 export async function logoutAction() {

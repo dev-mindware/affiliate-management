@@ -1,5 +1,5 @@
 "use server";
-import api from "@/services/api";
+import api from "@/services/api.server";
 
 export async function registerAction(data: any) {
   try {

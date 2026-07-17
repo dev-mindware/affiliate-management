@@ -1,6 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
-import api from "@/services/api";
+import api from "@/services/api.server";
 import { createSession, destroySession } from "@/lib/session";
 
 interface LoginResponse {

@@ -1,8 +1,11 @@
 import axios from "axios";
-import { resolveApiBaseUrl } from "@/services/api-url";
 
+/**
+ * Axios do workspace no browser: same-origin BFF apenas.
+ * Sem next/headers / tokens no client bundle.
+ */
 export const api = axios.create({
-  baseURL: typeof window !== "undefined" ? "/api" : resolveApiBaseUrl(),
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -10,12 +13,10 @@ export const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  if (typeof window !== "undefined") {
-    config.baseURL = "/api";
-    config.withCredentials = true;
-    if (config.headers) {
-      delete (config.headers as Record<string, unknown>).Authorization;
-    }
+  config.baseURL = "/api";
+  config.withCredentials = true;
+  if (config.headers) {
+    delete (config.headers as Record<string, unknown>).Authorization;
   }
   return config;
 });

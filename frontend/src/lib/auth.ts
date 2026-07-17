@@ -1,5 +1,5 @@
 import { getAccessToken } from "@/lib/server-tokens";
-import api from "@/services/api";
+import api from "@/services/api.server";
 
 export async function getSession() {
   const accessToken = await getAccessToken();

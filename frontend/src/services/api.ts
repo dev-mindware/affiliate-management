@@ -1,6 +1,5 @@
 import axios from "axios";
 import { BASE_PATH } from "@/constants/routes";
-import { resolveApiBaseUrl, resolveServerApiBaseUrl } from "./api-url";
 
 let isRefreshing = false;
 let failedQueue: Array<{
@@ -16,43 +15,24 @@ const processQueue = (error: unknown) => {
   failedQueue = [];
 };
 
+/**
+ * Axios do browser: só same-origin `/api` (BFF).
+ * Nunca importa next/headers nem tokens — o proxy injeta o Authorization.
+ */
 export const api = axios.create({
-  baseURL: resolveApiBaseUrl(),
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
 
-api.interceptors.request.use(async (config) => {
-  if (typeof window !== "undefined") {
-    // Browser: only same-origin BFF. Tokens stay in httpOnly cookies.
-    config.baseURL = "/api";
-    config.withCredentials = true;
-    if (config.headers) {
-      delete (config.headers as Record<string, unknown>).Authorization;
-    }
-    return config;
+api.interceptors.request.use((config) => {
+  config.baseURL = "/api";
+  config.withCredentials = true;
+  if (config.headers) {
+    delete (config.headers as Record<string, unknown>).Authorization;
   }
-
-  // Server (SSR / server actions): call API directly and attach Bearer from httpOnly cookie.
-  config.baseURL = resolveServerApiBaseUrl();
-  const url = config.url || "";
-  const isPublicAuthRoute =
-    url.includes("/auth/login") ||
-    url.includes("/auth/register") ||
-    url.includes("/auth/forgot-password") ||
-    url.includes("/auth/reset-password") ||
-    url.includes("/auth/refresh");
-
-  if (!isPublicAuthRoute) {
-    const { getAccessToken } = await import("@/lib/server-tokens");
-    const token = await getAccessToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-  }
-
   return config;
 });
 
