@@ -13,7 +13,7 @@ COPY prisma ./prisma/
 COPY prisma.config.ts ./
 
 # Instala todas as dependências e gera o Prisma Client
-RUN pnpm install --frozen-lockfile
+RUN PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm install --frozen-lockfile
 RUN pnpm prisma generate
 
 # Copia o código fonte e gera o build do NestJS
