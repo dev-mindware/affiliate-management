@@ -1,54 +1,75 @@
-# Etapa 1: Build
+# Stage 1: Build
 FROM node:22-alpine AS builder
 
-# Instala pnpm e dependências do sistema
-RUN corepack enable && corepack prepare pnpm@latest --activate
-RUN apk add --no-cache openssl
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
 
 WORKDIR /app
 
-# Copia arquivos de definição de dependências
-COPY pnpm-lock.yaml ./
-COPY package.json ./
-COPY pnpm-workspace.yaml ./
+# Copy dependency files
+COPY package.json pnpm-lock.yaml ./
 COPY prisma ./prisma/
-COPY prisma.config.ts ./
 
-# Instala todas as dependências e gera o Prisma Client
-RUN PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm install --frozen-lockfile
-RUN DATABASE_URL="postgresql://postgres:postgres@localhost:5432/db" pnpm prisma generate
+# Install all dependencies (including dev)
+RUN pnpm install --frozen-lockfile
 
-# Copia o código fonte e gera o build do NestJS
-COPY tsconfig*.json ./
-COPY src ./src/
+# Copy source code
+COPY . .
+
+# Generate Prisma Client
+RUN pnpm prisma generate
+
+# Build application
 RUN pnpm build
 
-# Limpa dependências de desenvolvimento preservando o Prisma Client
-RUN pnpm prune --prod
+# Stage 2: Production Dependencies
+FROM node:22-alpine AS deps
 
-# Etapa 2: Produção
-FROM node:22-alpine AS production
+RUN corepack enable && corepack prepare pnpm@10.32.1 --activate
+WORKDIR /app
 
-ENV NODE_ENV=production
-ENV PRISMA_CLIENT_ENGINE_TYPE=client
+COPY package.json pnpm-lock.yaml ./
+COPY prisma ./prisma/
+
+# Install ONLY production dependencies.
+# Some packages have build scripts blocked by pnpm's ignored-builds security.
+# Try install, if it fails due to ignored builds approve them and retry.
+RUN pnpm install --prod --frozen-lockfile || (pnpm approve-builds --all && pnpm install --prod --frozen-lockfile)
+
+# Copy prisma CLI from builder to ensure we can generate the client
+COPY --from=builder /app/node_modules/.bin/prisma /app/node_modules/.bin/prisma
+COPY --from=builder /app/node_modules/prisma /app/node_modules/prisma
+RUN npx prisma generate
+
+# Stage 3: Runner
+FROM node:22-alpine AS runner
 
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Set production environment
+ENV NODE_ENV=production
 
-# Copia apenas o necessário do estágio de build
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
+# Copy built application and production node_modules
 COPY --from=builder /app/dist ./dist
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/prisma.config.ts ./
+COPY --from=builder /app/prisma.config.js ./prisma.config.js
+COPY --from=builder /app/start.sh ./start.sh
+COPY --from=builder /app/scalar.config.json ./scalar.config.json
+COPY --from=builder /app/docs ./docs
 
-# Copia documentações e arquivos de configurações estáticas
-COPY scalar.config.json ./
-COPY docs ./docs
+# Ensure Prisma CLI is available
+COPY --from=builder /app/node_modules/.bin/prisma /usr/local/bin/prisma
+COPY --from=builder /app/node_modules/prisma /app/node_modules/prisma
 
-# Limpa o store do pnpm para reduzir o tamanho da imagem final
-RUN pnpm store prune
+# Security: Set permissions
+USER root
+RUN chmod +x /app/start.sh
+USER node
 
-# Comando para iniciar a aplicação (roda migrations, seeds e inicia a API)
-CMD ["pnpm", "run", "start:prod"]
+# Expose port
+EXPOSE 3333
+
+# Start command
+CMD ["./start.sh"]
