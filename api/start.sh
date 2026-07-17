@@ -7,7 +7,7 @@ npx prisma migrate deploy
 
 # 2. Executar Seeds
 echo "🌱 Executando Seeds..."
-TS_NODE_TRANSPILE_ONLY=true ./node_modules/.bin/ts-node prisma/seed.ts
+node dist/prisma/seed.js
 
 # 3. Iniciar a Aplicação
 echo "🏁 Iniciando a API..."
