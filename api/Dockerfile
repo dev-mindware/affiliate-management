@@ -1,23 +1,52 @@
-FROM node:22-alpine AS build
+# Etapa 1: Build
+FROM node:22-alpine AS builder
+
+# Instala pnpm globalmente
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run prisma:generate
-RUN npm run build
 
-FROM node:22-alpine
+# Copia arquivos de definição de dependências
+COPY pnpm-lock.yaml ./
+COPY package.json ./
+COPY prisma ./prisma/
+COPY prisma.config.ts ./
 
-WORKDIR /app
+# Instala todas as dependências e gera o Prisma Client
+RUN pnpm install --frozen-lockfile
+RUN pnpm prisma generate
+
+# Copia o código fonte e gera o build do NestJS
+COPY tsconfig*.json ./
+COPY src ./src/
+RUN pnpm build
+
+# Limpa dependências de desenvolvimento preservando o Prisma Client
+RUN pnpm prune --prod
+
+# Etapa 2: Produção
+FROM node:22-alpine AS production
+
 ENV NODE_ENV=production
-COPY package*.json ./
-COPY prisma ./prisma
-COPY prisma.config.ts ./prisma.config.ts
-RUN npm ci --omit=dev
-RUN npm run prisma:generate
-COPY --from=build /app/dist ./dist
-COPY scalar.config.json ./scalar.config.json
+ENV PRISMA_CLIENT_ENGINE_TYPE=client
+
+WORKDIR /app
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Copia apenas o necessário do estágio de build
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./
+
+# Copia documentações e arquivos de configurações estáticas
+COPY scalar.config.json ./
 COPY docs ./docs
 
-CMD ["npm", "run", "start:prod"]
+# Limpa o store do pnpm para reduzir o tamanho da imagem final
+RUN pnpm store prune
+
+# Comando para iniciar a aplicação (roda migrations, seeds e inicia a API)
+CMD ["pnpm", "run", "start:prod"]
