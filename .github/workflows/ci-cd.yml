@@ -28,7 +28,7 @@ jobs:
           version: 10
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
         env:
           PNPM_CONFIG_MINIMUM_RELEASE_AGE: 0
 
