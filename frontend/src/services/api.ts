@@ -1,32 +1,18 @@
 import axios from "axios";
-import { getAccessToken } from "@/actions/token";
 import { BASE_PATH } from "@/constants/routes";
-import { resolveApiBaseUrl } from "./api-url";
+import { resolveApiBaseUrl, resolveServerApiBaseUrl } from "./api-url";
 
-let accessTokenCache: string | null = null;
 let isRefreshing = false;
 let failedQueue: Array<{
-  resolve: (token: string) => void;
+  resolve: (value?: unknown) => void;
   reject: (err: unknown) => void;
 }> = [];
 
-export const resetAccessTokenCache = () => {
-  accessTokenCache = null;
-};
-
-export const setAccessTokenCache = (token: string | null) => {
-  accessTokenCache = token;
-};
-
-const processQueue = (error: unknown, token: string | null = null) => {
+const processQueue = (error: unknown) => {
   failedQueue.forEach((promise) => {
-    if (error) {
-      promise.reject(error);
-    } else {
-      promise.resolve(token!);
-    }
+    if (error) promise.reject(error);
+    else promise.resolve();
   });
-
   failedQueue = [];
 };
 
@@ -35,12 +21,22 @@ export const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 api.interceptors.request.use(async (config) => {
-  // Reavalia o baseURL no cliente para evitar Mixed Content mesmo que a
-  // instancia axios tenha sido criada durante o SSR (sem window).
-  config.baseURL = resolveApiBaseUrl();
+  if (typeof window !== "undefined") {
+    // Browser: only same-origin BFF. Tokens stay in httpOnly cookies.
+    config.baseURL = "/api";
+    config.withCredentials = true;
+    if (config.headers) {
+      delete (config.headers as Record<string, unknown>).Authorization;
+    }
+    return config;
+  }
+
+  // Server (SSR / server actions): call API directly and attach Bearer from httpOnly cookie.
+  config.baseURL = resolveServerApiBaseUrl();
   const url = config.url || "";
   const isPublicAuthRoute =
     url.includes("/auth/login") ||
@@ -50,12 +46,10 @@ api.interceptors.request.use(async (config) => {
     url.includes("/auth/refresh");
 
   if (!isPublicAuthRoute) {
-    if (!accessTokenCache) {
-      accessTokenCache = await getAccessToken();
-    }
-
-    if (accessTokenCache) {
-      config.headers.Authorization = `Bearer ${accessTokenCache}`;
+    const { getAccessToken } = await import("@/lib/server-tokens");
+    const token = await getAccessToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
   }
 
@@ -74,6 +68,7 @@ api.interceptors.response.use(
     const url = original?.url || "";
 
     if (
+      typeof window === "undefined" ||
       url.includes("/auth/login") ||
       url.includes("/auth/logout") ||
       url.includes("/auth/refresh") ||
@@ -84,37 +79,21 @@ api.interceptors.response.use(
 
     if (err.response?.status === 401) {
       if (isRefreshing) {
-        return new Promise<string>((resolve, reject) => {
+        return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
-        }).then((token) => {
-          original.headers.Authorization = `Bearer ${token}`;
-          return api(original);
-        });
+        }).then(() => api(original));
       }
 
       original._retry = true;
       isRefreshing = true;
 
       try {
-        const response = await refreshApi.post(`${BASE_PATH}/api/auth/refresh`);
-        const newToken = response.data?.accessToken;
-
-        if (!newToken) {
-          throw new Error("Novo access token nao recebido");
-        }
-
-        accessTokenCache = newToken;
-        processQueue(null, newToken);
-        original.headers.Authorization = `Bearer ${newToken}`;
+        await refreshApi.post(`${BASE_PATH}/api/auth/refresh`);
+        processQueue(null);
         return api(original);
       } catch (refreshError) {
-        resetAccessTokenCache();
-        processQueue(refreshError, null);
-
-        if (typeof window !== "undefined") {
-          window.location.replace(`${BASE_PATH}/auth/login`);
-        }
-
+        processQueue(refreshError);
+        window.location.replace(`${BASE_PATH}/auth/login`);
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

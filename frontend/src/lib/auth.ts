@@ -1,12 +1,10 @@
-import { cookies } from "next/headers";
-import { ACCESS_TOKEN_KEY } from "@/constants/auth";
+import { getAccessToken } from "@/lib/server-tokens";
 import api from "@/services/api";
 
 export async function getSession() {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get(ACCESS_TOKEN_KEY)?.value;
+  const accessToken = await getAccessToken();
   if (!accessToken) return null;
-  return { accessToken };
+  return { authenticated: true as const };
 }
 
 export async function getCurrentUser() {
@@ -16,7 +14,7 @@ export async function getCurrentUser() {
   try {
     const res = await api.get("/auth/me");
     return res.data;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

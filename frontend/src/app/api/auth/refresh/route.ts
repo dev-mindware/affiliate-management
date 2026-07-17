@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 import { cookies } from "next/headers";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@/constants/auth";
+import { resolveServerApiBaseUrl } from "@/services/api-url";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST() {
   const cookieStore = await cookies();
@@ -12,22 +16,22 @@ export async function POST() {
   }
 
   try {
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api"}/auth/refresh`, {
+    const response = await axios.post(`${resolveServerApiBaseUrl()}/auth/refresh`, {
       refresh_token: refreshToken,
     });
 
     const { access_token, refresh_token } = response.data;
+    const res = NextResponse.json({ ok: true });
 
-    const res = NextResponse.json({ accessToken: access_token });
-
-    const isSecure = ACCESS_TOKEN_KEY.startsWith("__Secure-") || process.env.NODE_ENV === "production";
+    const isSecure =
+      ACCESS_TOKEN_KEY.startsWith("__Secure-") || process.env.NODE_ENV === "production";
 
     res.cookies.set(ACCESS_TOKEN_KEY, access_token, {
-      httpOnly: false,
+      httpOnly: true,
       secure: isSecure,
       path: "/",
       sameSite: "lax",
-      maxAge: 3600, // 1 hour
+      maxAge: 3600,
     });
 
     if (refresh_token) {
@@ -36,7 +40,7 @@ export async function POST() {
         secure: isSecure,
         path: "/",
         sameSite: "lax",
-        maxAge: 7 * 24 * 3600, // 7 days
+        maxAge: 7 * 24 * 3600,
       });
     }
 

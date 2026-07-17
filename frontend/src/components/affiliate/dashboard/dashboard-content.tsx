@@ -41,7 +41,10 @@ const chartConfig = {
 const compactCurrency = (value: number) =>
   new Intl.NumberFormat("pt-AO", { notation: "compact", maximumFractionDigits: 1 }).format(value);
 
-const MINDGEST_URL = process.env.NEXT_PUBLIC_MINDGEST_APP_URL || "http://localhost:3000";
+type DashboardContentProps = {
+  /** URL público do app MindGest (link de indicação). Passado pelo server component. */
+  mindgestAppUrl: string;
+};
 
 const withdrawalColumns: Column<any>[] = [
   {
@@ -87,7 +90,7 @@ const withdrawalColumns: Column<any>[] = [
   },
 ];
 
-export function DashboardContent() {
+export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
   const [chartPeriod, setChartPeriod] = useState<"monthly" | "annual">("monthly");
   const { data: kpis, isLoading: isKPIsLoading } = useDashboardKPIs();
   const { data: chartDataRaw, isLoading: isChartLoading } = useDashboardChart(chartPeriod);
@@ -118,7 +121,10 @@ export function DashboardContent() {
     ? Math.min(100, (program.active_clients / (program.active_clients + program.clients_to_next_level)) * 100)
     : 100;
 
-  const referralLink = profile?.codigo_afiliado ? `${MINDGEST_URL}/auth/register?ref=${profile.codigo_afiliado}` : "";
+  const mindgestBase = mindgestAppUrl.replace(/\/+$/, "");
+  const referralLink = profile?.codigo_afiliado
+    ? `${mindgestBase}/auth/register?ref=${profile.codigo_afiliado}`
+    : "";
 
   return (
     <div className="space-y-6">

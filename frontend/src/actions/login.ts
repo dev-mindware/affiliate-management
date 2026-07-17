@@ -25,8 +25,8 @@ export async function loginAction(data: any) {
 
     const userRes = await api.get("/auth/me", {
       headers: {
-        Authorization: `Bearer ${access_token}`
-      }
+        Authorization: `Bearer ${access_token}`,
+      },
     });
 
     if (userRes.data.role?.toLowerCase() !== "affiliate") {
@@ -34,14 +34,17 @@ export async function loginAction(data: any) {
       return { error: "Acesso restrito a afiliados." };
     }
 
+    // Tokens ficam só em cookies httpOnly — nunca regressam ao browser.
     return {
       success: true,
-      accessToken: access_token,
       user: userRes.data,
     };
   } catch (error: any) {
     console.error("Login Error:", error.response?.data || error.message);
-    const message = error.response?.data?.message || error.response?.data?.detail || "Erro ao realizar login. Verifique as suas credenciais.";
+    const message =
+      error.response?.data?.message ||
+      error.response?.data?.detail ||
+      "Erro ao realizar login. Verifique as suas credenciais.";
     return { error: message };
   }
 }
