@@ -1,8 +1,9 @@
 # Etapa 1: Build
 FROM node:22-alpine AS builder
 
-# Instala pnpm globalmente
+# Instala pnpm e dependências do sistema
 RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN apk add --no-cache openssl
 
 WORKDIR /app
 
