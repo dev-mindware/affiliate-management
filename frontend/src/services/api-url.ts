@@ -1,37 +1,29 @@
-// Resolve o URL base da API a partir de NEXT_PUBLIC_API_URL (inlined no build).
+// Resolve o URL base da API.
 //
-// Defesa contra Mixed Content: se a pagina for servida por HTTPS mas o URL da
-// API estiver em HTTP (tipicamente por NEXT_PUBLIC_API_URL mal configurado no
-// build de producao), promove o esquema para HTTPS. Hosts locais de
-// desenvolvimento (localhost/127.0.0.1) sao mantidos em HTTP.
+// No browser devolvemos SEMPRE um caminho relativo same-origin ("/api"). Esses
+// pedidos sao reencaminhados server-side para a API real atraves dos rewrites
+// definidos em next.config.ts. Isto evita que o browser faca pedidos XHR
+// cross-origin para um host que contem a palavra "affiliate"
+// (affiliate.mindware-vps.cloud), que sao bloqueados por ad blockers /
+// extensoes de privacidade com o erro net::ERR_BLOCKED_BY_CLIENT.
+//
+// Como o pedido passa a ser feito de servidor-para-servidor (Next -> API), o
+// ad blocker do cliente nunca o ve, e tambem deixa de existir preocupacao com
+// CORS ou Mixed Content no browser.
+const SAME_ORIGIN_API_BASE = "/api";
+
 export function resolveApiBaseUrl(): string {
-  const configured = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api";
-
-  if (
-    typeof window !== "undefined" &&
-    window.location.protocol === "https:" &&
-    configured.startsWith("http://")
-  ) {
-    try {
-      const url = new URL(configured);
-      if (url.hostname !== "localhost" && url.hostname !== "127.0.0.1") {
-        url.protocol = "https:";
-        const upgraded = url.toString().replace(/\/$/, "");
-        // #region agent log
-        fetch('http://127.0.0.1:7673/ingest/d668e149-f66e-4783-964b-7e2f59b719d6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'2cba02'},body:JSON.stringify({sessionId:'2cba02',runId:'post-fix',hypothesisId:'A',location:'services/api-url.ts:resolveApiBaseUrl',message:'API baseURL upgraded http->https',data:{configured,upgraded,pageProtocol:window.location.protocol},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
-        return upgraded;
-      }
-    } catch {
-      // URL invalido: usa o valor configurado tal como esta.
-    }
-  }
-
-  // #region agent log
   if (typeof window !== "undefined") {
-    fetch('http://127.0.0.1:7673/ingest/d668e149-f66e-4783-964b-7e2f59b719d6',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'2cba02'},body:JSON.stringify({sessionId:'2cba02',runId:'post-fix',hypothesisId:'A',location:'services/api-url.ts:resolveApiBaseUrl',message:'API baseURL resolved (sem upgrade)',data:{configured,pageProtocol:window.location.protocol},timestamp:Date.now()})}).catch(()=>{});
+    return SAME_ORIGIN_API_BASE;
   }
-  // #endregion
 
-  return configured;
+  // Em contexto de servidor (SSR / route handlers) usamos o URL absoluto
+  // configurado para chamar a API diretamente.
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api";
+}
+
+// URL absoluto da API para uso exclusivo no servidor (ex.: rewrites, route
+// handlers). Nunca deve ser usado para pedidos feitos a partir do browser.
+export function resolveServerApiBaseUrl(): string {
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api";
 }
