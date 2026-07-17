@@ -167,37 +167,67 @@ export class AffiliatesService {
   }
 
   async getMindgestClients(affiliateCode: string, query: any) {
-    let mindgestUrl = process.env.MINDGEST_API_URL || "http://localhost:3001";
-    mindgestUrl = mindgestUrl.replace(/^['"]|['"]$/g, ""); // Remove quotes
+    let mindgestUrl = (process.env.MINDGEST_API_URL || "http://localhost:3001").trim();
+    mindgestUrl = mindgestUrl.replace(/^['"]|['"]$/g, "").replace(/\/+$/, "");
     if (!mindgestUrl.endsWith("/api") && !mindgestUrl.includes("/api/")) {
-      mindgestUrl = `${mindgestUrl.replace(/\/$/, "")}/api`;
+      mindgestUrl = `${mindgestUrl}/api`;
     }
-    const apiKey = process.env.MINDGEST_API_KEY || "MG_REg4eFg5eDJQU0lmNWcKUQU0YN3BDZDNvU2dnSnQ5OXRiL3NtbEhqSzhpdXNDZ2V6T2NwbzlCYnJDRWBTkJna3Foa2lHOXcwQkFRRUZBQVNZkbQo2lmN4eFg_MG";
+    const apiKey = (process.env.MINDGEST_API_KEY || "").trim().replace(/^['"]|['"]$/g, "");
+    if (!apiKey) {
+      throw new BadRequestException("MINDGEST_API_KEY não configurada");
+    }
+
+    const url = new URL(`${mindgestUrl}/users/affiliate/${encodeURIComponent(affiliateCode)}`);
+    if (query) {
+      Object.keys(query).forEach((key) => {
+        if (query[key] !== undefined && query[key] !== null && query[key] !== "") {
+          url.searchParams.append(key, String(query[key]));
+        }
+      });
+    }
 
     try {
-      const url = new URL(`${mindgestUrl}/users/affiliate/${affiliateCode}`);
-      if (query) {
-        Object.keys(query).forEach(key => url.searchParams.append(key, query[key]));
-      }
-
       const response = await fetch(url.toString(), {
         method: "GET",
         headers: {
           "x-api-key": apiKey,
-          "Accept": "application/json"
+          Accept: "application/json",
         },
+        signal: AbortSignal.timeout(15_000),
       });
 
-      const data = await response.json();
+      const raw = await response.text();
+      let data: any = null;
+      try {
+        data = raw ? JSON.parse(raw) : null;
+      } catch {
+        throw new BadRequestException(
+          `MindGest respondeu com conteúdo não-JSON (HTTP ${response.status}) em ${url.origin}${url.pathname}. Verifique se MINDGEST_API_URL aponta para a API backend, não para o frontend.`,
+        );
+      }
 
       if (!response.ok) {
-        throw new BadRequestException(data.message || `HTTP ${response.status}`);
+        const message = data?.message || data?.error || `HTTP ${response.status}`;
+        throw new BadRequestException(`Erro na API do MindGest: ${message}`);
       }
 
       return data;
     } catch (error: any) {
       if (error instanceof BadRequestException) throw error;
-      throw new BadRequestException(`Erro ao conectar à API do MindGest: ${error.message}`);
+
+      const cause = error?.cause;
+      const details = [
+        error?.message,
+        cause?.code,
+        cause?.message,
+        cause?.hostname ? `host=${cause.hostname}` : null,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
+      throw new BadRequestException(
+        `Erro ao conectar à API do MindGest (${url.origin}${url.pathname}): ${details || "falha de rede"}`,
+      );
     }
   }
 }
