@@ -38,8 +38,6 @@ export const metadata: Metadata = {
   creator: "Mindware",
   publisher: "Mindware",
 
-  manifest: "/manifest.webmanifest",
-
   icons: {
     icon: [
       {

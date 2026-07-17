@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getAccessToken } from "@/actions/token";
 import { BASE_PATH } from "@/constants/routes";
+import { resolveApiBaseUrl } from "./api-url";
 
 let accessTokenCache: string | null = null;
 let isRefreshing = false;
@@ -30,13 +31,16 @@ const processQueue = (error: unknown, token: string | null = null) => {
 };
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api",
+  baseURL: resolveApiBaseUrl(),
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 api.interceptors.request.use(async (config) => {
+  // Reavalia o baseURL no cliente para evitar Mixed Content mesmo que a
+  // instancia axios tenha sido criada durante o SSR (sem window).
+  config.baseURL = resolveApiBaseUrl();
   const url = config.url || "";
   const isPublicAuthRoute =
     url.includes("/auth/login") ||
