@@ -11,6 +11,7 @@ COPY pnpm-lock.yaml ./
 COPY package.json ./
 COPY prisma ./prisma/
 COPY prisma.config.ts ./
+COPY .pnpmrc ./
 
 # Instala todas as dependências e gera o Prisma Client
 RUN PNPM_CONFIG_MINIMUM_RELEASE_AGE=0 pnpm install --frozen-lockfile
