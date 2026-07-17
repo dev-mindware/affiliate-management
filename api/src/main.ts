@@ -8,32 +8,6 @@ import { apiReference } from "@scalar/nestjs-api-reference";
 import { AppModule } from "./app.module";
 import { AllExceptionsFilter } from "./common/filters/all-exceptions.filter";
 
-function normalizeOrigin(value: string): string | null {
-  const trimmed = value.trim().replace(/^['"]+|['"]+$/g, "").trim();
-  if (!trimmed) return null;
-  try {
-    // Reduz para a origem canonica (esquema://host:porta), descartando qualquer path ou barra final.
-    return new URL(trimmed).origin.toLowerCase();
-  } catch {
-    return trimmed.replace(/\/+$/, "").toLowerCase();
-  }
-}
-
-function corsOrigins(): string[] {
-  const raw = process.env.BACKEND_CORS_ORIGINS || "http://localhost:3000,http://127.0.0.1:3000";
-  let entries: string[] = [];
-  try {
-    const parsed = JSON.parse(raw);
-    entries = Array.isArray(parsed) ? parsed.map((item) => String(item)) : [String(parsed)];
-  } catch {
-    entries = raw.replace(/^\[|\]$/g, "").split(",");
-  }
-  const normalized = entries
-    .map(normalizeOrigin)
-    .filter((item): item is string => Boolean(item));
-  return Array.from(new Set(normalized));
-}
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const prefix = (process.env.API_PREFIX || "/api").replace(/^\/|\/$/g, "");
@@ -55,18 +29,10 @@ async function bootstrap() {
       },
     }),
   );
-  const allowedOrigins = corsOrigins();
   app.enableCors({
-    origin(
-      origin: string | undefined,
-      callback: (err: Error | null, allow?: boolean) => void,
-    ) {
-      // Requisicoes sem header Origin (curl, health checks, mesma origem) sao permitidas.
-      if (!origin || allowedOrigins.includes(origin.toLowerCase())) {
-        return callback(null, true);
-      }
-      return callback(null, false);
-    },
+    // Reflete qualquer origem da requisicao (equivalente a "allow all origins").
+    // Nao usamos "*" diretamente porque e incompativel com credentials: true.
+    origin: true,
     credentials: true,
   });
   app.useGlobalFilters(new AllExceptionsFilter());
