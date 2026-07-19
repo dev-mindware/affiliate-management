@@ -1,6 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import { Prisma } from "@prisma/client";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 import { PrismaService } from "../prisma/prisma.service";
+import {
+  NOTIFICATION_CREATED_EVENT,
+  publicNotificationSelect,
+} from "./notification.types";
+import { NotificationsStreamService } from "./notifications-stream.service";
 
 type CreateNotificationInput = {
   userId: string;
@@ -11,21 +16,13 @@ type CreateNotificationInput = {
   entityId?: string;
 };
 
-const publicNotificationSelect = {
-  id: true,
-  userId: true,
-  title: true,
-  message: true,
-  type: true,
-  entity: true,
-  entityId: true,
-  readAt: true,
-  createdAt: true,
-};
-
 @Injectable()
 export class NotificationsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private events: EventEmitter2,
+    private stream: NotificationsStreamService,
+  ) {}
 
   findAll(userId: string, params: { skip?: number; take?: number; unreadOnly?: boolean }) {
     return this.prisma.notification.findMany({
@@ -70,8 +67,8 @@ export class NotificationsService {
     return { success: true };
   }
 
-  create(data: CreateNotificationInput) {
-    return this.prisma.notification.create({
+  async create(data: CreateNotificationInput) {
+    const notification = await this.prisma.notification.create({
       data: {
         userId: data.userId,
         title: data.title,
@@ -80,6 +77,20 @@ export class NotificationsService {
         entity: data.entity,
         entityId: data.entityId,
       },
+      select: publicNotificationSelect,
     });
+
+    this.events.emit(NOTIFICATION_CREATED_EVENT, notification);
+    return notification;
+  }
+
+  createStreamTicket(userId: string) {
+    return this.stream.createTicket(userId);
+  }
+
+  async openStream(ticket: string) {
+    const userId = await this.stream.consumeTicket(ticket);
+    if (!userId) return null;
+    return this.stream.openStream(userId);
   }
 }

@@ -12,7 +12,7 @@ import {
 import { formatCurrency, formatDate } from "@workspace/utils";
 import { useModalStore } from "@workspace/hooks";
 
-const WITHDRAWAL_MINIMUM = 8000;
+const WITHDRAWAL_MINIMUM = 5000;
 
 export function WalletContent() {
     const { data: wallet, isLoading: isLoadingWallet } = useWallet();
@@ -95,7 +95,7 @@ export function WalletContent() {
                             Solicitar Saque
                         </Button>
                         <p className="text-[10px] text-muted-foreground mt-2 text-center">
-                            Mínimo para saque: 8.000 Kz
+                            Mínimo para saque: 5.000 Kz
                         </p>
                     </div>
                 </DynamicMetricCard>

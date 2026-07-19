@@ -1,7 +1,19 @@
-import { Controller, Get, Param, Patch, Query, NotFoundException } from "@nestjs/common";
+import {
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Query,
+  NotFoundException,
+  UnauthorizedException,
+  Sse,
+  MessageEvent,
+} from "@nestjs/common";
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery } from "@nestjs/swagger";
 import { UserRole } from "@prisma/client";
+import { Observable, defer, from, switchMap, throwError } from "rxjs";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
+import { Public } from "../auth/decorators/public.decorator";
 import { Roles } from "../auth/decorators/roles.decorator";
 import { NotificationsService } from "./notifications.service";
 
@@ -35,6 +47,39 @@ export class NotificationsController {
   @ApiResponse({ status: 401, description: "Unauthorized." })
   unreadCount(@CurrentUser() user: any) {
     return this.notificationsService.unreadCount(user.id);
+  }
+
+  @Get("stream-ticket")
+  @ApiOperation({
+    summary: "Issue a short-lived SSE stream ticket",
+    description: "Returns a one-time ticket and absolute streamUrl for EventSource (browser cannot send Authorization headers).",
+  })
+  @ApiResponse({ status: 200, description: "Ticket issued." })
+  @ApiResponse({ status: 401, description: "Unauthorized." })
+  streamTicket(@CurrentUser() user: any) {
+    return this.notificationsService.createStreamTicket(user.id);
+  }
+
+  @Public()
+  @Sse("stream")
+  @Roles()
+  @ApiOperation({
+    summary: "SSE notification stream",
+    description: "Server-Sent Events stream authenticated by a one-time ticket query param.",
+  })
+  @ApiQuery({ name: "ticket", required: true, description: "One-time stream ticket from /notifications/stream-ticket." })
+  stream(@Query("ticket") ticket?: string): Observable<MessageEvent> {
+    if (!ticket) {
+      return throwError(() => new UnauthorizedException("Ticket de stream em falta"));
+    }
+    return defer(() => from(this.notificationsService.openStream(ticket))).pipe(
+      switchMap((observable) => {
+        if (!observable) {
+          return throwError(() => new UnauthorizedException("Ticket de stream inválido ou expirado"));
+        }
+        return observable;
+      }),
+    );
   }
 
   @Get(":id")

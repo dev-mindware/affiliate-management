@@ -15,7 +15,7 @@ import { useModalStore } from "@workspace/hooks";
 import { useRequestWithdrawal, useWallet, useProfile } from "@/hooks/affiliate";
 import { toast } from "sonner";
 
-const WITHDRAWAL_MINIMUM = 8000;
+const WITHDRAWAL_MINIMUM = 5000;
 
 const groupFormatter = new Intl.NumberFormat("pt-AO");
 
@@ -50,7 +50,7 @@ export function RequestWithdrawalModal() {
 
     const handleSubmit = () => {
         if (isNaN(amount) || amount < WITHDRAWAL_MINIMUM) {
-            toast.error("O valor mínimo para saque é de 8.000 Kz");
+            toast.error("O valor mínimo para saque é de 5.000 Kz");
             return;
         }
         if (amount > available) {

@@ -294,7 +294,7 @@ export function AboutContent() {
               {
                 dot: "bg-primary",
                 label: "Levantamento mínimo:",
-                text: "O valor mínimo para solicitar levantamento é de 8.000 Kz.",
+                text: "O valor mínimo para solicitar levantamento é de 5.000 Kz.",
               },
             ].map((item, i) => (
               <div key={i} className="flex gap-2">

@@ -14,6 +14,7 @@ import {
   useMarkAllNotificationsAsRead,
   useMarkNotificationAsRead,
   useNotifications,
+  useNotificationsStream,
   useUnreadNotificationsCount,
 } from "@/hooks/affiliate/use-notifications";
 import { useModalStore } from "@workspace/hooks";
@@ -21,6 +22,7 @@ import { NotificationResponse } from "@/services/notifications-service";
 import { formatDate } from "@workspace/utils";
 
 export function NotificationBell() {
+  useNotificationsStream(true);
   const { data: notifications = [] } = useNotifications(10);
   const { data: unread } = useUnreadNotificationsCount();
   const markAsRead = useMarkNotificationAsRead();

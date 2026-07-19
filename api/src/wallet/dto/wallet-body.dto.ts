@@ -2,9 +2,9 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsNumber, IsString, Min } from "class-validator";
 
 export class WithdrawalBodyDto {
-  @ApiProperty({ example: 8000, minimum: 8000 })
+  @ApiProperty({ example: 5000, minimum: 5000 })
   @IsNumber()
-  @Min(8000)
+  @Min(5000)
   valor!: number;
 
   @ApiProperty({ example: "AO06000600000000000000000" })

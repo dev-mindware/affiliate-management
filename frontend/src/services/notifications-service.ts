@@ -12,6 +12,12 @@ export interface NotificationResponse {
   createdAt: string;
 }
 
+export interface StreamTicketResponse {
+  ticket: string;
+  expiresIn: number;
+  streamUrl: string;
+}
+
 export const notificationsService = {
   async list(limit = 10, unreadOnly = false): Promise<NotificationResponse[]> {
     const response = await api.get<NotificationResponse[]>("/notifications", {
@@ -32,6 +38,11 @@ export const notificationsService = {
 
   async markAllAsRead(): Promise<{ success: boolean }> {
     const response = await api.patch<{ success: boolean }>("/notifications/read-all");
+    return response.data;
+  },
+
+  async createStreamTicket(): Promise<StreamTicketResponse> {
+    const response = await api.get<StreamTicketResponse>("/notifications/stream-ticket");
     return response.data;
   },
 };

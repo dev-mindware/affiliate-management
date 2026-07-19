@@ -4,7 +4,7 @@ import { walletDto, withdrawalDto } from "../common/serializers";
 import { MailService } from "../mail/mail.service";
 import { PrismaService } from "../prisma/prisma.service";
 
-export const WITHDRAWAL_MINIMUM = 8000;
+export const WITHDRAWAL_MINIMUM = 5000;
 
 @Injectable()
 export class WalletService {
@@ -83,7 +83,7 @@ export class WalletService {
 
   async requestWithdrawal(affiliate: any, data: any) {
     const amount = Number(data.valor);
-    if (amount < WITHDRAWAL_MINIMUM) throw new BadRequestException("O valor minimo para levantamento e de 8.000 Kz");
+    if (amount < WITHDRAWAL_MINIMUM) throw new BadRequestException("O valor minimo para levantamento e de 5.000 Kz");
     await this.ensureWallet(affiliate.id);
     // Decremento atomico condicional: so passa se houver saldo suficiente,
     // evitando overdraw/race em pedidos concorrentes.
