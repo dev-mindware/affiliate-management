@@ -94,10 +94,6 @@ export function LoginForm() {
         <ButtonSubmit isLoading={isSubmitting}>
           {isSubmitting ? "" : "Entrar"}
         </ButtonSubmit>
-
-        <OrLine />
-        <GoogleButton />
-
         <div className="text-center text-sm text-muted-foreground mt-2">
           Não tem uma conta?{" "}
           <Link href="/auth/register" className="text-primary hover:underline font-medium">
