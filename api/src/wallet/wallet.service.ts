@@ -81,6 +81,64 @@ export class WalletService {
     return walletDto(await this.ensureWallet(affiliateId));
   }
 
+  async getWalletChart(affiliateId: string) {
+    // Build last 6 months range
+    const now = new Date();
+    const months: { year: number; month: number; label: string }[] = [];
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      months.push({
+        year: d.getFullYear(),
+        month: d.getMonth() + 1,
+        label: d.toLocaleDateString("pt-AO", { month: "short", year: "2-digit" }),
+      });
+    }
+
+    const start = new Date(months[0].year, months[0].month - 1, 1);
+    const end = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+    // Fetch approved commissions and approved withdrawals in parallel
+    const [commissions, withdrawals] = await Promise.all([
+      this.prisma.commission.findMany({
+        where: {
+          affiliateId,
+          status: { in: ["APPROVED", "PAID"] as any },
+          approvedAt: { gte: start, lt: end },
+        },
+        select: { valorComissao: true, approvedAt: true },
+      }),
+      this.prisma.withdrawalRequest.findMany({
+        where: {
+          affiliateId,
+          status: "APPROVED" as any,
+          processedAt: { gte: start, lt: end },
+        },
+        select: { valor: true, processedAt: true },
+      }),
+    ]);
+
+    // Aggregate by month
+    const data = months.map(({ year, month, label }) => {
+      const earned = commissions
+        .filter((c) => {
+          const d = new Date(c.approvedAt!);
+          return d.getFullYear() === year && d.getMonth() + 1 === month;
+        })
+        .reduce((sum, c) => sum + Number(c.valorComissao || 0), 0);
+
+      const withdrawn = withdrawals
+        .filter((w) => {
+          const d = new Date(w.processedAt!);
+          return d.getFullYear() === year && d.getMonth() + 1 === month;
+        })
+        .reduce((sum, w) => sum + Number(w.valor || 0), 0);
+
+      return { month: label, earned, withdrawn };
+    });
+
+    return { data };
+  }
+
   async requestWithdrawal(affiliate: any, data: any) {
     const amount = Number(data.valor);
     if (amount < WITHDRAWAL_MINIMUM) throw new BadRequestException("O valor minimo para levantamento e de 5.000 Kz");

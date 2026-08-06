@@ -13,6 +13,16 @@ export function useWallet() {
   });
 }
 
+export function useWalletChart() {
+  return useQuery({
+    queryKey: ["wallet-chart"],
+    queryFn: async () => {
+      const response = await walletService.getChart();
+      return response.data.data;
+    },
+  });
+}
+
 export function useRequestWithdrawal() {
   const queryClient = useQueryClient();
 
@@ -22,6 +32,7 @@ export function useRequestWithdrawal() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["wallet"] });
       queryClient.invalidateQueries({ queryKey: ["withdrawals"] });
+      queryClient.invalidateQueries({ queryKey: ["wallet-chart"] });
     },
   });
 }

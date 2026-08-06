@@ -1,6 +1,9 @@
 "use client";
 
-import { useLeads, useUpdateLeadStatus } from "@/hooks/affiliate";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useLeads } from "@/hooks/affiliate";
 import {
     GenericTable,
     Column,
@@ -9,17 +12,17 @@ import {
     ItemStatusBadge,
     ButtonOnlyAction,
     FilterBar,
-    Badge,
+    Icon,
 } from "@workspace/ui";
 import { Lead, LeadStatus } from "@workspace/types/affiliate";
 import { formatDate } from "@workspace/utils";
 import { useModalStore } from "@workspace/hooks";
-
+import { MobileCard } from "@/components/shared/mobile-card";
 import { LeadFormModal } from "./lead-form-modal";
-import { useState } from "react";
 
 export function LeadList() {
     const [status, setStatus] = useState<LeadStatus | undefined>();
+    const router = useRouter();
 
     const {
         data,
@@ -99,13 +102,48 @@ export function LeadList() {
                 ]}
             />
 
-            <GenericTable<Lead>
-                data={data || []}
-                columns={columns}
-                emptyTitle="Nenhum lead encontrado"
-                emptyDescription="Não existem leads registrados com este status."
-                emptyIcon="UserPlus"
-            />
+            {/* Mobile View: Dedicated MobileCard Component & Page Navigation */}
+            <div className="block sm:hidden space-y-3">
+                {!data || data.length === 0 ? (
+                    <div className="text-center py-8 px-4 border rounded-2xl bg-card text-muted-foreground text-xs">
+                        Não existem leads registrados com este status.
+                    </div>
+                ) : (
+                    data.map((item) => (
+                        <MobileCard
+                            key={item.id}
+                            title={item.client_nome}
+                            subtitle={item.client_telefone}
+                            icon="User"
+                            badge={<ItemStatusBadge status={item.status} />}
+                            fields={[
+                                { label: "Criado em", value: formatDate(item.created_at) },
+                            ]}
+                            footerAction={
+                                <Link
+                                    href={`/leads/${item.id}`}
+                                    className="font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    Ver Detalhes <Icon name="ChevronRight" className="size-3.5" />
+                                </Link>
+                            }
+                            onClick={() => router.push(`/leads/${item.id}`)}
+                        />
+                    ))
+                )}
+            </div>
+
+            {/* Desktop View: Generic Table */}
+            <div className="hidden sm:block">
+                <GenericTable<Lead>
+                    data={data || []}
+                    columns={columns}
+                    emptyTitle="Nenhum lead encontrado"
+                    emptyDescription="Não existem leads registrados com este status."
+                    emptyIcon="UserPlus"
+                />
+            </div>
 
             <LeadFormModal />
         </div>

@@ -8,3 +8,4 @@ export * from "./services";
 export * from "./modals";
 export { AffiliateModalProvider } from "./modals/provider";
 export * from "./notification-bell";
+export * from "./simulator/commission-simulator-content";

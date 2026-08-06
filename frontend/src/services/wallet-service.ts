@@ -22,6 +22,12 @@ export interface WithdrawalRequest {
   comprovativo_url?: string;
 }
 
+export interface WalletChartPoint {
+  month: string;
+  earned: number;
+  withdrawn: number;
+}
+
 export const walletService = {
   getWallet: async () => {
     return api.get<Wallet>("/affiliate/wallet");
@@ -29,4 +35,8 @@ export const walletService = {
   requestWithdrawal: async (data: { valor: number; conta_bancaria: string; banco: string }) => {
     return api.post<WithdrawalRequest>("/affiliate/wallet/withdraw", data);
   },
+  getChart: async () => {
+    return api.get<{ data: WalletChartPoint[] }>("/affiliate/wallet/chart");
+  },
 };
+

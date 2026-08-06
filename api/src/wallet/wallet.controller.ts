@@ -14,11 +14,19 @@ export class WalletController {
   constructor(private wallet: WalletService) {}
 
   @Get()
-  @ApiOperation({ summary: "Get current affiliate wallet status", description: "Retrieve the current wallet balances (total pending, total available for withdrawal, total already paid out) for the authenticated affiliate." })
+  @ApiOperation({ summary: "Get current affiliate wallet status" })
   @ApiResponse({ status: 200, description: "Successfully retrieved wallet details." })
   @ApiResponse({ status: 401, description: "Unauthorized." })
   get(@CurrentUser() user: any) {
     return this.wallet.getWallet(user.affiliate.id);
+  }
+
+  @Get("chart")
+  @ApiOperation({ summary: "Get wallet earnings chart data (last 6 months)", description: "Returns monthly earned commissions and withdrawn amounts for the last 6 months for chart rendering." })
+  @ApiResponse({ status: 200, description: "Successfully retrieved chart data." })
+  @ApiResponse({ status: 401, description: "Unauthorized." })
+  chart(@CurrentUser() user: any) {
+    return this.wallet.getWalletChart(user.affiliate.id);
   }
 
   @Post("withdraw")

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useDashboardChart, useDashboardKPIs, useProfile, useWithdrawalRequests } from "@/hooks/affiliate";
 import { toast } from "sonner";
 import {
@@ -10,8 +11,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
   Column,
-  DynamicMetricCard,
   GenericTable,
+  Icon,
   ItemStatusBadge,
   Progress,
   Skeleton,
@@ -106,12 +107,12 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
   if (isKPIsLoading) {
     return (
       <div className="space-y-6">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {Array.from({ length: 5 }).map((_, index) => (
-            <Skeleton key={index} className="h-32 w-full rounded-md" />
+            <Skeleton key={index} className="h-28 sm:h-32 w-full rounded-2xl" />
           ))}
         </div>
-        <Skeleton className="h-[400px] w-full rounded-lg" />
+        <Skeleton className="h-[350px] w-full rounded-2xl" />
       </div>
     );
   }
@@ -129,7 +130,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
   return (
     <div className="space-y-6">
       {program && (
-        <section className="rounded-lg border bg-card p-5 shadow-sm">
+        <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
@@ -196,59 +197,146 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
         </section>
       )}
 
-      <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <DynamicMetricCard
-          title={formatCurrency(kpis?.available_balance || 0)}
-          subtitle="Saldo Disponível"
-          description="Pronto para levantamento."
-          icon="Wallet"
-        />
-        <DynamicMetricCard
-          title={formatCurrency(kpis?.pending_balance || 0)}
-          subtitle="Saldo Pendente"
-          description="Comissões em validação."
-          icon="Clock"
-        />
-        <DynamicMetricCard
-          title={formatCurrency(kpis?.total_earned || 0)}
-          subtitle="Total Ganho"
-          description="Histórico total de ganhos."
-          icon="BadgeDollarSign"
-        />
-        <DynamicMetricCard
-          title={program?.active_clients ?? 0}
-          subtitle="Clientes Ativos"
-          description="Subscrições ativas atribuídas."
-          icon="Users"
-        />
+      {/* Metric Cards Grid - 2x2 on Mobile */}
+      <section className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Card 1: Saldo Disponível */}
+        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
+              Saldo Disponível
+            </span>
+            <div className="p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary shrink-0">
+              <Icon name="Wallet" className="size-3.5 sm:size-4" />
+            </div>
+          </div>
+          <div className="my-1.5 sm:my-2">
+            <h4 className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-foreground truncate">
+              {formatCurrency(kpis?.available_balance || 0)}
+            </h4>
+          </div>
+          <div className="flex items-center">
+            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+              <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+              Pronto a retirar
+            </span>
+          </div>
+        </div>
+
+        {/* Card 2: Saldo Pendente */}
+        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
+              Saldo Pendente
+            </span>
+            <div className="p-1.5 sm:p-2 rounded-full bg-muted text-muted-foreground shrink-0">
+              <Icon name="Clock" className="size-3.5 sm:size-4" />
+            </div>
+          </div>
+          <div className="my-1.5 sm:my-2">
+            <h4 className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-foreground truncate">
+              {formatCurrency(kpis?.pending_balance || 0)}
+            </h4>
+          </div>
+          <div className="flex items-center">
+            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+              <span className="size-1.5 rounded-full bg-muted-foreground" />
+              Em validação
+            </span>
+          </div>
+        </div>
+
+        {/* Card 3: Total Ganho */}
+        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
+              Total Ganho
+            </span>
+            <div className="p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary shrink-0">
+              <Icon name="BadgeDollarSign" className="size-3.5 sm:size-4" />
+            </div>
+          </div>
+          <div className="my-1.5 sm:my-2">
+            <h4 className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-foreground truncate">
+              {formatCurrency(kpis?.total_earned || 0)}
+            </h4>
+          </div>
+          <div className="flex items-center">
+            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+              Histórico total
+            </span>
+          </div>
+        </div>
+
+        {/* Card 4: Clientes Ativos */}
+        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
+              Clientes Ativos
+            </span>
+            <div className="p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary shrink-0">
+              <Icon name="Users" className="size-3.5 sm:size-4" />
+            </div>
+          </div>
+          <div className="my-1.5 sm:my-2">
+            <h4 className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-foreground truncate">
+              {program?.active_clients ?? 0}
+            </h4>
+          </div>
+          <div className="flex items-center">
+            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+              Subscrições
+            </span>
+          </div>
+        </div>
+
+        {/* Card 5: Sua Posição */}
         {kpis?.rank_info && (
-          <DynamicMetricCard
-            title={`${kpis.rank_info.rank}º Lugar`}
-            subtitle="Sua Posição"
-            description={
-              kpis.rank_info.distance_to_next > 0
-                ? `Faltam ${kpis.rank_info.distance_to_next} clientes para subir.`
-                : "Você está no topo."
-            }
-            icon="Trophy"
-          />
+          <div className="col-span-2 sm:col-span-1 rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
+                Sua Posição
+              </span>
+              <div className="p-1.5 sm:p-2 rounded-full bg-primary/10 text-primary shrink-0">
+                <Icon name="Trophy" className="size-3.5 sm:size-4" />
+              </div>
+            </div>
+            <div className="my-1.5 sm:my-2">
+              <h4 className="text-base sm:text-xl md:text-2xl font-bold tracking-tight text-foreground truncate">
+                {kpis.rank_info.rank}º Lugar
+              </h4>
+            </div>
+            <div className="flex items-center">
+              <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-muted-foreground bg-muted px-2 py-0.5 rounded-full truncate">
+                {kpis.rank_info.distance_to_next > 0
+                  ? `Faltam ${kpis.rank_info.distance_to_next} clientes`
+                  : "No topo do ranking"}
+              </span>
+            </div>
+          </div>
         )}
       </section>
 
-      <section className="rounded-lg border bg-card p-6 shadow-sm">
-        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+      {/* Chart Section */}
+      <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
+        <div className="mb-4 sm:mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
-            <h3 className="text-xl font-bold">Evolução das Comissões</h3>
-            <p className="text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <h3 className="text-base sm:text-xl font-bold text-foreground">Evolução das Comissões</h3>
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                <Icon name="TrendingUp" className="size-3" />
+                Desempenho
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-muted-foreground">
               {chartPeriod === "monthly" ? "Total de comissões por dia (mês atual)" : "Total de comissões por mês (ano atual)"}
             </p>
           </div>
-          <div className="inline-flex rounded-md border bg-muted/40 p-0.5 text-sm">
+          <div className="inline-flex rounded-full border bg-muted/50 p-1 text-xs self-start sm:self-auto">
             <button
               type="button"
               onClick={() => setChartPeriod("monthly")}
-              className={`rounded px-3 py-1.5 font-medium transition-colors ${
-                chartPeriod === "monthly" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              className={`rounded-full px-3.5 py-1.5 font-medium transition-all ${
+                chartPeriod === "monthly" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Mensal
@@ -256,8 +344,8 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
             <button
               type="button"
               onClick={() => setChartPeriod("annual")}
-              className={`rounded px-3 py-1.5 font-medium transition-colors ${
-                chartPeriod === "annual" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              className={`rounded-full px-3.5 py-1.5 font-medium transition-all ${
+                chartPeriod === "annual" ? "bg-background text-foreground shadow-xs" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Anual
@@ -266,14 +354,14 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
         </div>
 
         {isChartLoading ? (
-          <Skeleton className="h-[300px] w-full rounded-lg" />
+          <Skeleton className="h-[240px] sm:h-[300px] w-full rounded-xl" />
         ) : (
-          <ChartContainer config={chartConfig} className="h-[300px] w-full">
-            <AreaChart data={chartData} margin={{ top: 10, right: 12, left: 12, bottom: 0 }}>
+          <ChartContainer config={chartConfig} className="h-[240px] sm:h-[300px] w-full">
+            <AreaChart data={chartData} margin={{ top: 10, right: 8, left: -16, bottom: 0 }}>
               <defs>
                 <linearGradient id="fillComissao" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--color-comissao)" stopOpacity={0.4} />
-                  <stop offset="95%" stopColor="var(--color-comissao)" stopOpacity={0.05} />
+                  <stop offset="5%" stopColor="var(--color-comissao)" stopOpacity={0.45} />
+                  <stop offset="95%" stopColor="var(--color-comissao)" stopOpacity={0.02} />
                 </linearGradient>
               </defs>
               <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -282,25 +370,25 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
                 tickLine={false}
                 axisLine={false}
                 tickMargin={8}
-                minTickGap={24}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                minTickGap={20}
+                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
               />
               <YAxis
                 tickLine={false}
                 axisLine={false}
-                width={64}
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
+                width={52}
+                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
                 tickFormatter={(v) => compactCurrency(Number(v))}
               />
               <ChartTooltip
                 content={
                   <ChartTooltipContent
                     formatter={(value, name) => (
-                      <div className="flex w-full items-center justify-between gap-4">
+                      <div className="flex w-full items-center justify-between gap-4 text-xs">
                         <span className="text-muted-foreground">
                           {chartConfig[name as keyof typeof chartConfig]?.label ?? name}
                         </span>
-                        <span className="font-medium tabular-nums text-foreground">
+                        <span className="font-semibold tabular-nums text-foreground">
                           {formatCurrency(Number(value))}
                         </span>
                       </div>
@@ -308,27 +396,89 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
                   />
                 }
               />
-              <Area dataKey="comissao" type="natural" stroke="var(--color-comissao)" fill="url(#fillComissao)" strokeWidth={2} />
+              <Area dataKey="comissao" type="monotone" stroke="var(--color-comissao)" fill="url(#fillComissao)" strokeWidth={2.5} />
             </AreaChart>
           </ChartContainer>
         )}
       </section>
 
-      <section className="rounded-lg border bg-card p-6 shadow-sm">
-        <div className="mb-6 space-y-1">
-          <h3 className="text-xl font-bold">Levantamentos Recentes</h3>
-          <p className="text-sm text-muted-foreground">Os seus 5 últimos pedidos de levantamento</p>
+      {/* Recent Withdrawals Section */}
+      <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
+        <div className="mb-4 sm:mb-6 flex items-center justify-between">
+          <div className="space-y-0.5">
+            <h3 className="text-base sm:text-xl font-bold text-foreground">Levantamentos Recentes</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground">Os seus últimos pedidos de levantamento</p>
+          </div>
+          <Link
+            href="/wallet"
+            className="text-xs sm:text-sm font-semibold text-primary hover:underline flex items-center gap-1 shrink-0"
+          >
+            Ver todos <Icon name="ChevronRight" className="size-3.5 sm:size-4" />
+          </Link>
         </div>
 
-        <GenericTable
-          data={withdrawals || []}
-          columns={withdrawalColumns}
-          isLoading={isWithdrawalsLoading}
-          emptyTitle="Sem levantamentos"
-          emptyDescription="Ainda não solicitou nenhum levantamento."
-          emptyIcon="History"
-        />
+        {/* Mobile View: Clean Card Activity List */}
+        <div className="block sm:hidden space-y-2.5">
+          {isWithdrawalsLoading ? (
+            Array.from({ length: 3 }).map((_, index) => (
+              <Skeleton key={index} className="h-16 w-full rounded-xl" />
+            ))
+          ) : !withdrawals || withdrawals.length === 0 ? (
+            <div className="text-center py-8 px-4 text-muted-foreground text-xs">
+              <Icon name="History" className="size-8 mx-auto mb-2 opacity-50" />
+              Ainda não solicitou nenhum levantamento.
+            </div>
+          ) : (
+            withdrawals.slice(0, 5).map((item: any) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between p-3 rounded-xl border bg-muted/30 hover:bg-muted/60 transition-colors"
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="size-9 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    <Icon name="ArrowUpRight" className="size-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold text-foreground truncate">{formatCurrency(item.valor)}</p>
+                    <p className="text-[11px] text-muted-foreground">{formatDate(item.created_at)}</p>
+                    {(item.banco || item.conta_bancaria) && (
+                      <p className="text-[10px] text-muted-foreground/80 truncate">
+                        {[item.banco, item.conta_bancaria].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col items-end gap-1 shrink-0 ml-2">
+                  <ItemStatusBadge status={item.status} />
+                  {item.comprovativo_url && (
+                    <a
+                      href={item.comprovativo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] text-primary hover:underline font-semibold"
+                    >
+                      Comprovativo
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* Desktop View: Table View */}
+        <div className="hidden sm:block">
+          <GenericTable
+            data={withdrawals || []}
+            columns={withdrawalColumns}
+            isLoading={isWithdrawalsLoading}
+            emptyTitle="Sem levantamentos"
+            emptyDescription="Ainda não solicitou nenhum levantamento."
+            emptyIcon="History"
+          />
+        </div>
       </section>
     </div>
   );
 }
+

@@ -1,15 +1,19 @@
 "use client";
 
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { PageWrapper, TitleList } from "@/components";
 import {
   GenericTable,
   Column,
   ListSkeleton,
   RequestError,
+  Icon,
 } from "@workspace/ui";
 import { useMyClients } from "@/hooks/affiliate";
 import { ReferredClient } from "@/services/client-service";
-import { useState } from "react";
+import { MobileCard } from "@/components/shared/mobile-card";
 import { ArrowLeft, ArrowRight, Search } from "lucide-react";
 
 export default function ClientesPage() {
@@ -17,6 +21,7 @@ export default function ClientesPage() {
   const [status, setStatus] = useState<string | undefined>("");
   const [plan, setPlan] = useState<string | undefined>("");
   const [page, setPage] = useState(1);
+  const router = useRouter();
   const limit = 10;
 
   const { data, isLoading, isError, refetch } = useMyClients({
@@ -183,33 +188,83 @@ export default function ClientesPage() {
           <ListSkeleton />
         ) : (
           <div className="space-y-4">
-            <GenericTable<ReferredClient>
-              data={data?.data || []}
-              columns={columns}
-              emptyTitle="Nenhum cliente indicado encontrado"
-              emptyDescription="Os clientes que usarem o seu código de afiliado aparecerão aqui assim que se registrarem."
-              emptyIcon="Users"
-            />
+            {/* Mobile View: Dedicated MobileCard & Page Navigation */}
+            <div className="block sm:hidden space-y-3">
+              {!data?.data || data.data.length === 0 ? (
+                <div className="text-center py-8 px-4 border rounded-2xl bg-card text-muted-foreground text-xs">
+                  Os clientes que usarem o seu código de afiliado aparecerão aqui assim que se registrarem.
+                </div>
+              ) : (
+                data.data.map((item) => {
+                  const plan = item.current_plan;
+                  let planColor = "bg-primary/10 text-primary border-primary/20";
+                  if (plan === "PRO") {
+                    planColor = "bg-purple-500/10 text-purple-600 border-purple-200 dark:text-purple-400";
+                  } else if (plan === "SMART") {
+                    planColor = "bg-blue-500/10 text-blue-600 border-blue-200 dark:text-blue-400";
+                  }
+
+                  return (
+                    <MobileCard
+                      key={item.id}
+                      title={item.company_name}
+                      subtitle={item.company_email}
+                      icon="Building"
+                      badge={
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border ${planColor}`}>
+                          {plan}
+                        </span>
+                      }
+                      fields={[
+                        { label: "Proprietário", value: item.name },
+                        { label: "Contacto", value: item.phone || "—" },
+                      ]}
+                      footerAction={
+                        <Link
+                          href={`/clientes/${item.id}`}
+                          className="font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Ver Detalhes <Icon name="ChevronRight" className="size-3.5" />
+                        </Link>
+                      }
+                      onClick={() => router.push(`/clientes/${item.id}`)}
+                    />
+                  );
+                })
+              )}
+            </div>
+
+            {/* Desktop View: Generic Table */}
+            <div className="hidden sm:block">
+              <GenericTable<ReferredClient>
+                data={data?.data || []}
+                columns={columns}
+                emptyTitle="Nenhum cliente indicado encontrado"
+                emptyDescription="Os clientes que usarem o seu código de afiliado aparecerão aqui assim que se registrarem."
+                emptyIcon="Users"
+              />
+            </div>
 
             {data && data.totalPages > 1 && (
-              <div className="flex items-center justify-between pt-4 border-t">
-                <span className="text-sm text-muted-foreground">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t text-xs sm:text-sm">
+                <span className="text-muted-foreground">
                   Página {data.page} de {data.totalPages} ({data.total} clientes no total)
                 </span>
                 <div className="flex items-center gap-2">
                   <button
                     disabled={!data.hasPrevious}
                     onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border bg-card hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-1 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border bg-card hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <ArrowLeft className="h-4 w-4" /> Anterior
+                    <ArrowLeft className="h-3.5 w-3.5" /> Anterior
                   </button>
                   <button
                     disabled={!data.hasNext}
                     onClick={() => setPage((p) => Math.min(data.totalPages, p + 1))}
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md border bg-card hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-1 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border bg-card hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Próximo <ArrowRight className="h-4 w-4" />
+                    Próximo <ArrowRight className="h-3.5 w-3.5" />
                   </button>
                 </div>
               </div>

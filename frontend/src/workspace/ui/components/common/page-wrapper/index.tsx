@@ -6,6 +6,7 @@ import { Icon } from "../icon";
 import { Input } from "../../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { useAuth, useModalStore } from "@workspace/hooks";
+import { useRouter } from "next/navigation";
 
 type Props = {
   routePath?: string;
@@ -28,6 +29,7 @@ export function PageWrapper({
 }: Props) {
   const { user } = useAuth();
   const { openModal } = useModalStore();
+  const router = useRouter();
   const [search, setSearch] = useQueryState("search", {
     defaultValue: "",
     shallow: true,
@@ -69,14 +71,24 @@ export function PageWrapper({
         )}
 
         <div className="flex items-center mr-4 space-x-2 md:space-x-4">
+          {/* Mobile: navigate to dedicated page */}
           <Button
             variant="outline"
             size="sm"
-            className="flex items-center gap-1.5 h-8 border-dashed hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all duration-300"
+            className="flex sm:hidden items-center gap-1.5 h-8 border-dashed hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all duration-300"
+            onClick={() => router.push("/simulador")}
+          >
+            <Icon name="Calculator" className="size-4 text-primary" />
+          </Button>
+          {/* Desktop: open modal */}
+          <Button
+            variant="outline"
+            size="sm"
+            className="hidden sm:flex items-center gap-1.5 h-8 border-dashed hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all duration-300"
             onClick={() => openModal("commission-simulator")}
           >
             <Icon name="Calculator" className="size-4 text-primary" />
-            <span className="hidden sm:inline font-semibold">Simulador</span>
+            <span className="font-semibold">Simulador</span>
           </Button>
           {rightHeaderActions}
           {variant === "counter" && (
@@ -106,7 +118,7 @@ export function PageWrapper({
         </div>
       </header>
       <div className={`flex flex-col flex-1 ${variant === "counter" ? "w-full max-w-[98%]" : "w-full"} mx-auto space-y-4 md:space-y-6`}>
-        <div className={`@container/main flex flex-1 ${variant === "counter" ? "p-4" : "p-12"} flex-col gap-2`}>
+        <div className={`@container/main flex flex-1 ${variant === "counter" ? "p-4" : "px-4 py-8 md:px-10"} flex-col gap-2`}>
           {children}
         </div>
       </div>

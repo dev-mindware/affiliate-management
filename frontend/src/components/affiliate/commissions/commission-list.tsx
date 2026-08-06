@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCommissions } from "@/hooks/affiliate";
 import { 
     GenericTable, 
@@ -9,14 +11,17 @@ import {
     RequestError, 
     ItemStatusBadge, 
     ButtonOnlyAction,
-    FilterBar
+    FilterBar,
+    Icon,
 } from "@workspace/ui";
 import { Commission, CommissionStatus } from "@workspace/types/affiliate";
 import { formatCurrency, formatDate } from "@workspace/utils";
 import { useModalStore } from "@workspace/hooks";
+import { MobileCard } from "@/components/shared/mobile-card";
 
 export function CommissionList() {
     const [status, setStatus] = useState<CommissionStatus | undefined>();
+    const router = useRouter();
 
     const {
         data,
@@ -105,13 +110,49 @@ export function CommissionList() {
                 ]}
             />
 
-            <GenericTable<Commission>
-                data={data || []}
-                columns={columns}
-                emptyTitle="Nenhuma comissão encontrada"
-                emptyDescription="Não existem comissões registradas no momento."
-                emptyIcon="Coins"
-            />
+            {/* Mobile View: Dedicated MobileCard & Page Navigation */}
+            <div className="block sm:hidden space-y-3">
+                {!data || data.length === 0 ? (
+                    <div className="text-center py-8 px-4 border rounded-2xl bg-card text-muted-foreground text-xs">
+                        Não existem comissões registradas no momento.
+                    </div>
+                ) : (
+                    data.map((item) => (
+                        <MobileCard
+                            key={item.id}
+                            title={item.client_nome}
+                            subtitle={`Comissão: ${formatCurrency(item.valor_comissao)}`}
+                            icon="BadgeDollarSign"
+                            badge={<ItemStatusBadge status={item.status} />}
+                            fields={[
+                                { label: "Valor Venda", value: formatCurrency(item.valor_servico) },
+                                { label: "Data", value: formatDate(item.created_at) },
+                            ]}
+                            footerAction={
+                                <Link
+                                    href={`/commissions/${item.id}`}
+                                    className="font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    Ver Detalhes <Icon name="ChevronRight" className="size-3.5" />
+                                </Link>
+                            }
+                            onClick={() => router.push(`/commissions/${item.id}`)}
+                        />
+                    ))
+                )}
+            </div>
+
+            {/* Desktop View: Generic Table */}
+            <div className="hidden sm:block">
+                <GenericTable<Commission>
+                    data={data || []}
+                    columns={columns}
+                    emptyTitle="Nenhuma comissão encontrada"
+                    emptyDescription="Não existem comissões registradas no momento."
+                    emptyIcon="Coins"
+                />
+            </div>
         </div>
     );
 }
