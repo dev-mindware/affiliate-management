@@ -20,12 +20,6 @@ export class LeadBodyDto {
   notas?: string;
 }
 
-export class AdminLeadBodyDto extends LeadBodyDto {
-  @ApiProperty({ example: "MWD-AO-1234" })
-  @IsString()
-  affiliate_code!: string;
-}
-
 export class LeadStatusBodyDto {
   @ApiProperty({ example: "converted", enum: ["new", "contacted", "converted", "lost"] })
   @IsString()

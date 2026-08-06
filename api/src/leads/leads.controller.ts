@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from "@ne
 import { UserRole } from "@prisma/client";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
 import { Roles } from "../auth/decorators/roles.decorator";
-import { AdminLeadBodyDto, LeadBodyDto, LeadStatusBodyDto } from "./dto/lead-body.dto";
+import { LeadBodyDto, LeadStatusBodyDto } from "./dto/lead-body.dto";
 import { LeadFilterDto } from "./dto/lead-filter.dto";
 import { LeadsService } from "./leads.service";
 
@@ -21,17 +21,6 @@ export class LeadsController {
   @ApiResponse({ status: 403, description: "Forbidden." })
   list(@Query() filter: LeadFilterDto) {
     return this.leads.list(filter);
-  }
-
-  @Roles(UserRole.ADMIN)
-  @Post("admin/leads")
-  @ApiOperation({ summary: "Create a lead manually (Admin)", description: "Manually register a new lead for a specific affiliate. Access restricted to Administrator role." })
-  @ApiResponse({ status: 201, description: "Lead successfully created." })
-  @ApiResponse({ status: 400, description: "Validation or affiliate lookup error." })
-  @ApiResponse({ status: 401, description: "Unauthorized." })
-  @ApiResponse({ status: 403, description: "Forbidden." })
-  createAdmin(@Body() body: AdminLeadBodyDto) {
-    return this.leads.createAdmin(body);
   }
 
   @Roles(UserRole.ADMIN)

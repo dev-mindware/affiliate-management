@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Param, Patch, Post, Query } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse, ApiParam } from "@nestjs/swagger";
-import { PartnerPaymentSource, UserRole } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import { CurrentUser } from "../auth/decorators/current-user.decorator";
 import { Roles } from "../auth/decorators/roles.decorator";
-import { CertificationDecisionDto, PartnerPlanBodyDto, SubscriptionPaymentDto, SubscriptionStatusDto } from "./dto/partner-body.dto";
+import { CertificationDecisionDto, PartnerPlanBodyDto, SubscriptionStatusDto } from "./dto/partner-body.dto";
 import { SubscriptionFilterDto } from "./dto/subscription-filter.dto";
 import { PartnerProgramService } from "./partner-program.service";
 
@@ -32,22 +32,6 @@ export class PartnerProgramController {
   @ApiResponse({ status: 403, description: "Forbidden." })
   createPlan(@Body() body: PartnerPlanBodyDto) {
     return this.partner.createPlan(body);
-  }
-
-  @Roles(UserRole.ADMIN)
-  @Post("admin/partner-program/subscription-payments")
-  @ApiOperation({ summary: "Register manual subscription payment (Admin)", description: "Manually log a partner subscription payment, creating or extending the affiliate's active subscription status. Access restricted to Administrator role." })
-  @ApiResponse({ status: 201, description: "Payment recorded successfully, subscription and commissions updated." })
-  @ApiResponse({ status: 401, description: "Unauthorized." })
-  @ApiResponse({ status: 403, description: "Forbidden." })
-  async manualPayment(@Body() body: SubscriptionPaymentDto) {
-    const result = await this.partner.registerPayment(body, PartnerPaymentSource.MANUAL);
-    return {
-      subscription: result.subscription,
-      commission_id: result.commission?.id,
-      commission_amount: Number(result.commission?.valorComissao || 0),
-      duplicated: result.duplicated,
-    };
   }
 
   @Roles(UserRole.ADMIN)

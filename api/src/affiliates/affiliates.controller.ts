@@ -105,24 +105,6 @@ export class AffiliatesController {
     return this.affiliates.updateStatus(id, body.status);
   }
 
-  @Roles(UserRole.ADMIN)
-  @Get("admin/affiliates/:id/mindgest-clients")
-  @ApiOperation({
-    summary: "List MindGest clients for an affiliate",
-    description: "Proxy to MindGest referred clients for the given affiliate. Used by admin when assigning subscriptions.",
-  })
-  @ApiParam({ name: "id", description: "The unique identifier of the affiliate record." })
-  @ApiResponse({ status: 200, description: "Successfully retrieved referred client list from MindGest." })
-  @ApiResponse({ status: 404, description: "Affiliate not found." })
-  @ApiResponse({ status: 400, description: "MindGest integration error." })
-  async getMindgestClients(@Param("id") id: string, @Query() query: any) {
-    const affiliate = await this.affiliates.find(id);
-    if (!affiliate.codigoAfiliado) {
-      throw new BadRequestException("Afiliado não possui código de afiliado");
-    }
-    return this.affiliates.getMindgestClients(affiliate.codigoAfiliado, query);
-  }
-
   @Roles(UserRole.AFFILIATE, UserRole.ADMIN)
   @Get("affiliate/profile")
   @ApiOperation({ summary: "Get current affiliate profile", description: "Retrieve profile and banking details of the currently authenticated affiliate." })

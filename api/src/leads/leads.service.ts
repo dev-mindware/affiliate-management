@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { LeadStatus } from "@prisma/client";
 import { CommissionsService } from "../commissions/commissions.service";
 import { toLeadStatus } from "../common/enum-mappers";
@@ -65,12 +65,6 @@ export class LeadsService {
     }
 
     return leadDto(lead);
-  }
-
-  async createAdmin(body: any) {
-    const affiliate = await this.prisma.affiliate.findUnique({ where: { codigoAfiliado: body.affiliate_code } });
-    if (!affiliate) throw new NotFoundException("Afiliado nao encontrado");
-    return this.createByAffiliate(affiliate.id, body);
   }
 
   async updateStatus(id: string, statusValue: string) {
