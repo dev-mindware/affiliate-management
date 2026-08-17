@@ -131,8 +131,17 @@ export class PartnerProgramService {
     const affiliate: any = { ...affiliateRecord, activeClients };
     const plan = await this.prisma.partnerProgramPlan.findFirst({ where: { code: data.plan_code, active: true } });
     if (!plan) throw new NotFoundException("Plano Mindgest nao encontrado");
-    const period = toBillingPeriod(data.billing_period);
+    let period = toBillingPeriod(data.billing_period);
     if (!period) throw new BadRequestException("Periodicidade invalida");
+
+    const existingClientSubsCount = await this.prisma.partnerSubscription.count({
+      where: { clientIdentifier: data.client_identifier },
+    });
+    if (existingClientSubsCount === 0) {
+      if (period === BillingPeriod.MONTHLY_RECURRING) period = BillingPeriod.MONTHLY_FIRST;
+      if (period === BillingPeriod.ANNUAL_RECURRING) period = BillingPeriod.ANNUAL_FIRST;
+    }
+
     const amount = Number(data.amount_paid);
     const paidAt = new Date(data.paid_at);
     const commissionAmount = this.calculate(plan, affiliate, amount, period);
@@ -391,5 +400,84 @@ export class PartnerProgramService {
     const affiliate = await this.prisma.affiliate.findUnique({ where: { id: affiliateId } });
     const index = ranking.findIndex((item) => item.name === affiliate?.nomeCompleto);
     return { rank: index >= 0 ? index + 1 : null, total_earned: Number(affiliate?.totalEarned || 0), active_clients: index >= 0 ? ranking[index].active_clients : 0, distance_to_next: index > 0 ? Math.max(0, ranking[index - 1].active_clients - ranking[index].active_clients) : 0 };
+  }
+
+  async reconcileCommissions() {
+    await this.ensureDefaultPlans();
+    const allSubs = await this.prisma.partnerSubscription.findMany({
+      orderBy: { createdAt: "asc" },
+      include: { affiliate: true, plan: true },
+    });
+
+    const clientFirstSeen = new Set<string>();
+    let updatedCount = 0;
+    let totalDifference = 0;
+    const updatedDetails: any[] = [];
+
+    for (const sub of allSubs) {
+      const isFirst = !clientFirstSeen.has(sub.clientIdentifier);
+      clientFirstSeen.add(sub.clientIdentifier);
+
+      if (isFirst) {
+        let targetPeriod = sub.billingPeriod;
+        if (sub.billingPeriod === BillingPeriod.MONTHLY_RECURRING) {
+          targetPeriod = BillingPeriod.MONTHLY_FIRST;
+        } else if (sub.billingPeriod === BillingPeriod.ANNUAL_RECURRING) {
+          targetPeriod = BillingPeriod.ANNUAL_FIRST;
+        }
+
+        const affiliateRecord = await this.prisma.affiliate.findUnique({ where: { id: sub.affiliateId } });
+        if (!affiliateRecord) continue;
+        const activeClients = await this.activeClients(affiliateRecord.id);
+        const affiliate: any = { ...affiliateRecord, activeClients };
+
+        const expectedCommissionAmount = this.calculate(sub.plan, affiliate, Number(sub.amountPaid), targetPeriod);
+
+        const commission = await this.prisma.commission.findFirst({
+          where: { partnerSubscriptionId: sub.id },
+        });
+
+        if (commission) {
+          const currentAmount = Number(commission.valorComissao);
+          const diff = Number((expectedCommissionAmount - currentAmount).toFixed(2));
+
+          if (diff !== 0 || sub.billingPeriod !== targetPeriod) {
+            await this.prisma.$transaction(async (tx) => {
+              await tx.partnerSubscription.update({
+                where: { id: sub.id },
+                data: { billingPeriod: targetPeriod },
+              });
+              await tx.commission.update({
+                where: { id: commission.id },
+                data: { valorComissao: expectedCommissionAmount },
+              });
+              if (diff !== 0) {
+                await this.wallet.addAvailable(sub.affiliateId, diff, tx);
+              }
+            });
+
+            updatedCount++;
+            totalDifference += diff;
+            updatedDetails.push({
+              subscription_id: sub.id,
+              client_identifier: sub.clientIdentifier,
+              affiliate_code: affiliateRecord.codigoAfiliado,
+              old_period: sub.billingPeriod,
+              new_period: targetPeriod,
+              old_commission: currentAmount,
+              new_commission: expectedCommissionAmount,
+              adjustment: diff,
+            });
+          }
+        }
+      }
+    }
+
+    return {
+      message: "Reconciliação de comissões concluída com sucesso.",
+      updated_count: updatedCount,
+      total_adjustment_kz: Number(totalDifference.toFixed(2)),
+      details: updatedDetails,
+    };
   }
 }

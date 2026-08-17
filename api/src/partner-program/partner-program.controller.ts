@@ -67,6 +67,16 @@ export class PartnerProgramController {
   }
 
   @Roles(UserRole.ADMIN)
+  @Post("admin/partner-program/commissions/reconcile")
+  @ApiOperation({ summary: "Reconcile affiliate commissions (Admin)", description: "Recalculates initial subscription commissions that were registered at 15% instead of 20% and updates affiliate wallets." })
+  @ApiResponse({ status: 200, description: "Commissions successfully reconciled." })
+  @ApiResponse({ status: 401, description: "Unauthorized." })
+  @ApiResponse({ status: 403, description: "Forbidden." })
+  reconcileCommissions() {
+    return this.partner.reconcileCommissions();
+  }
+
+  @Roles(UserRole.ADMIN)
   @Get("admin/partner-program/affiliates/:id/program-summary")
   @ApiOperation({ summary: "Get affiliate's program summary (Admin)", description: "Retrieve subscription summary, metrics, and certification status of a specific affiliate. Access restricted to Administrator role." })
   @ApiParam({ name: "id", description: "The unique identifier of the affiliate." })

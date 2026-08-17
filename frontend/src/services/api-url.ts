@@ -16,6 +16,6 @@ export function resolveApiBaseUrl(): string {
 
 /** URL absoluto da API — exclusivo do servidor. Nunca usar no browser. */
 export function resolveServerApiBaseUrl(): string {
-  const raw = (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api").trim();
+  const raw = (process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:3332/api").trim();
   return raw.replace(/^['"]|['"]$/g, "").replace(/\/+$/, "");
 }
