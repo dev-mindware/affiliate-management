@@ -115,7 +115,7 @@ export class NotificationsStreamService implements OnModuleInit, OnModuleDestroy
         .catch((err) => this.logger.warn(`Failed to store SSE ticket in Redis: ${err?.message || err}`));
     }
 
-    const publicUrl = (this.config.get<string>("API_PUBLIC_URL") || "http://localhost:3333")
+    const publicUrl = (this.config.get<string>("API_PUBLIC_URL") || "https://partner.mindware-vps.cloud")
       .trim()
       .replace(/^['"]|['"]$/g, "")
       .replace(/\/+$/, "");
