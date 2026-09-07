@@ -66,7 +66,7 @@ A implementacao activa da API vive em `src/`. A base Python/FastAPI anterior foi
 * **Elite**: 38% de comissão recorrente (+23% bónus, >= 250 clientes ativos)
 
 ### 2. Levantamentos (Carteira)
-* O valor mínimo de levantamento permitido para afiliados é de **8.000 Kz**.
+* O valor mínimo de levantamento permitido para afiliados é de **5.000 Kz**.
 
 ### 3. Integração de Webhooks (`/webhook/*`)
 Os webhooks de entrada exigem segurança reforçada:

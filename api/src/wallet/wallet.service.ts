@@ -31,6 +31,10 @@ export class WalletService {
 
   // Adiciona diretamente ao saldo disponivel (comissao ja validada/aprovada).
   async addAvailable(affiliateId: string, amount: number, tx: any = this.prisma) {
+    const existingWallet = await tx.wallet.findUnique({ where: { affiliateId } });
+    const oldBalance = Number(existingWallet?.saldoDisponivel || 0);
+    const newBalance = oldBalance + amount;
+
     await tx.wallet.upsert({
       where: { affiliateId },
       update: {
@@ -40,10 +44,22 @@ export class WalletService {
       create: { affiliateId, saldoDisponivel: amount, totalGanho: amount },
     });
     await tx.affiliate.update({ where: { id: affiliateId }, data: { totalEarned: { increment: amount } } });
+
+    if (oldBalance < WITHDRAWAL_MINIMUM && newBalance >= WITHDRAWAL_MINIMUM) {
+      const affiliate = await tx.affiliate.findUnique({ where: { id: affiliateId } });
+      if (affiliate?.email) {
+        this.mail.sendWithdrawalThresholdReached(
+          { nomeCompleto: affiliate.nomeCompleto, email: affiliate.email },
+          newBalance,
+        ).catch(() => {});
+      }
+    }
   }
 
   async movePendingToAvailable(affiliateId: string, amount: number, tx: any = this.prisma) {
     const wallet = await tx.wallet.upsert({ where: { affiliateId }, update: {}, create: { affiliateId } });
+    const oldBalance = Number(wallet.saldoDisponivel || 0);
+    const newBalance = oldBalance + amount;
     const novoPendente = Math.max(0, Number(wallet.saldoPendente || 0) - amount);
     await tx.wallet.update({
       where: { affiliateId },
@@ -54,6 +70,16 @@ export class WalletService {
       },
     });
     await tx.affiliate.update({ where: { id: affiliateId }, data: { totalEarned: { increment: amount } } });
+
+    if (oldBalance < WITHDRAWAL_MINIMUM && newBalance >= WITHDRAWAL_MINIMUM) {
+      const affiliate = await tx.affiliate.findUnique({ where: { id: affiliateId } });
+      if (affiliate?.email) {
+        this.mail.sendWithdrawalThresholdReached(
+          { nomeCompleto: affiliate.nomeCompleto, email: affiliate.email },
+          newBalance,
+        ).catch(() => {});
+      }
+    }
   }
 
   async rejectPending(affiliateId: string, amount: number, tx: any = this.prisma) {

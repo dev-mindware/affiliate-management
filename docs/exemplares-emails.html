@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exemplares de Emails — Portal de Parceiros Mindgest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #9956f6;
+      --primary-dark: #7c3aed;
+      --bg: #0d0f17;
+      --sidebar-bg: #141724;
+      --card-bg: #1e2235;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #2e354f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #sidebar {
+      width: 380px;
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-title span { color: var(--primary); }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background-color: rgba(153, 86, 246, 0.2);
+      color: #c084fc;
+      margin-top: 6px;
+    }
+    .template-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .template-item {
+      padding: 14px 16px;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      color: var(--text);
+    }
+    .template-item:hover {
+      background: rgba(153, 86, 246, 0.08);
+      border-color: rgba(153, 86, 246, 0.3);
+    }
+    .template-item.active {
+      background: linear-gradient(135deg, rgba(153, 86, 246, 0.25) 0%, rgba(124, 58, 237, 0.2) 100%);
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(153, 86, 246, 0.2);
+    }
+    .template-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .template-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #090a0f;
+      overflow: hidden;
+    }
+    .top-bar {
+      padding: 16px 24px;
+      background: var(--sidebar-bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .preview-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .subject-line {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .subject-line strong {
+      color: #ffffff;
+    }
+    .device-controls {
+      display: flex;
+      gap: 8px;
+      background: var(--bg);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .device-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .device-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .preview-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px;
+      overflow-y: auto;
+      background-color: #0b0d14;
+    }
+    .preview-frame-wrapper {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transition: width 0.3s ease;
+      overflow: hidden;
+      width: 640px;
+      min-height: 820px;
+    }
+    iframe {
+      width: 100%;
+      min-height: 820px;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR COM A LISTA DE EMAILS -->
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-title">Mindgest <span>Partners</span></div>
+      <div class="badge">Catálogo Oficial de Emails</div>
+    </div>
+
+    <div class="template-list" id="templateList">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+  </aside>
+
+  <!-- ÁREA DE PRÉ-VISUALIZAÇÃO -->
+  <main id="main">
+    <div class="top-bar">
+      <div class="preview-info">
+        <div id="activeSubject" class="subject-line">Assunto: <strong>A carregar...</strong></div>
+      </div>
+      <div class="device-controls">
+        <button class="device-btn active" onclick="setDevice('desktop')">🖥️ Desktop (640px)</button>
+        <button class="device-btn" onclick="setDevice('mobile')">📱 Mobile (380px)</button>
+      </div>
+    </div>
+
+    <div class="preview-container">
+      <div class="preview-frame-wrapper" id="frameWrapper">
+        <iframe id="previewFrame"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Templates de email gerados
+    const templates = [
+      {
+        id: "onboarding",
+        icon: "✉️",
+        title: "1. Boas-vindas pós-cadastro",
+        desc: "Vídeo explicativo YouTube, subscrição, envio de apresentação e WhatsApp.",
+        subject: "Bem-vindo ao Portal de Parceiros Mindware — Próximos Passos",
+        getHtml: () => getOnboardingHtml()
+      },
+      {
+        id: "approved",
+        icon: "🎉",
+        title: "2. Conta de Parceiro Aprovada",
+        desc: "Código de parceiro oficial, link de login e orientações de início.",
+        subject: "A sua conta no Portal de Parceiros Mindware foi Aprovada! 🎉",
+        getHtml: () => getApprovedHtml()
+      },
+      {
+        id: "marketing_boost",
+        icon: "📈",
+        title: "3. Reforço de Marketing (Poucos Clientes)",
+        desc: "Alerta estratégico de poucos clientes, tabela de níveis até 38% e dicas práticas.",
+        subject: "Aumente as suas comissões: Dicas e reforço de divulgação para o seu perfil 📈",
+        getHtml: () => getMarketingBoostHtml()
+      },
+      {
+        id: "password_reset",
+        icon: "🔑",
+        title: "4. Recuperação de Palavra-passe",
+        desc: "Link e botão de segurança para redefinir senha com expiração de 1 hora.",
+        subject: "Recuperação de Palavra-passe — Portal de Parceiros Mindware",
+        getHtml: () => getPasswordResetHtml()
+      },
+      {
+        id: "commission_earned",
+        icon: "💰",
+        title: "5. Nova Comissão Registada / Aprovada",
+        desc: "Crédito de comissão em Kwanzas (Kz), cliente referido e acesso à carteira.",
+        subject: "Nova Comissão de 25.000,00 Kz no Portal de Parceiros! 💰",
+        getHtml: () => getCommissionEarnedHtml()
+      },
+      {
+        id: "withdrawal_admin",
+        icon: "🔔",
+        title: "6. Pedido de Levantamento (Para Admin)",
+        desc: "Alerta aos administradores com dados bancários e valor para transferência.",
+        subject: "[Admin] Novo Pedido de Levantamento: 45.000,00 Kz - Jonatão Cardoso",
+        getHtml: () => getWithdrawalAdminHtml()
+      },
+      {
+        id: "withdrawal_approved",
+        icon: "✅",
+        title: "7. Levantamento Aprovado (Afiliado)",
+        desc: "Confirmação de pagamento efetuado na conta bancária com anexo do comprovativo.",
+        subject: "Levantamento de 45.000,00 Kz Aprovado com Sucesso! ✅",
+        getHtml: () => getWithdrawalApprovedHtml()
+      },
+      {
+        id: "withdrawal_rejected",
+        icon: "⚠️",
+        title: "8. Levantamento Rejeitado (Afiliado)",
+        desc: "Notificação com motivo da rejeição e devolução do saldo para a carteira.",
+        subject: "Atualização sobre o seu Pedido de Levantamento — 45.000,00 Kz",
+        getHtml: () => getWithdrawalRejectedHtml()
+      },
+      {
+        id: "partner_levelup",
+        icon: "🏆",
+        title: "9. Subida de Nível (Silver/Gold/Platinum/Elite)",
+        desc: "Gamificação: +5% a +23% de bónus recorrente mensal desbloqueado.",
+        subject: "🏆 Parabéns! Subiu de Nível no Programa de Parceiros: SILVER (20% Recorrente)",
+        getHtml: () => getLevelUpHtml()
+      },
+      {
+        id: "proximity_alert",
+        icon: "⚡",
+        title: "10. Alerta de Proximidade (Falta 1 Cliente)",
+        desc: "Urgência: apenas 1 cliente ativo restante para desbloquear o próximo nível e bónus.",
+        subject: "⚡ Falta apenas 1 cliente para alcançar o nível GOLD e ganhar 27% recorrente!",
+        getHtml: () => getProximityAlertHtml()
+      },
+      {
+        id: "client_payment_failed",
+        icon: "🛡️",
+        title: "11. Prevenção Anti-Churn (Falha de Pagamento)",
+        desc: "Alerta ao parceiro para intervir antes da perda de comissão recorrente.",
+        subject: "⚠️ Atenção: Falha no pagamento da mensalidade de um cliente seu (Mindgest)",
+        getHtml: () => getClientPaymentFailedHtml()
+      },
+      {
+        id: "withdrawal_threshold",
+        icon: "🎯",
+        title: "12. Limiar de Levantamento Atingido (5.000 Kz)",
+        desc: "Notificação de saldo disponível suficiente para solicitar transferência bancária.",
+        subject: "🎯 Saldo Disponível Atingiu o Mínimo de Levantamento: 12.500,00 Kz!",
+        getHtml: () => getWithdrawalThresholdHtml()
+      },
+      {
+        id: "certification_approved",
+        icon: "🎓",
+        title: "13. Certificação Comercial Aprovada",
+        desc: "Desbloqueio do Plano Mindgest PRO e certificação comercial oficial.",
+        subject: "🎓 Parabéns! A sua Certificação Comercial Mindgest foi Aprovada!",
+        getHtml: () => getCertificationApprovedHtml()
+      },
+      {
+        id: "monthly_statement",
+        icon: "📊",
+        title: "14. Extrato Mensal de Rendimentos",
+        desc: "Resumo do mês com clientes ativos, comissões faturadas e saldo atual.",
+        subject: "📊 O seu Extrato Mensal de Parceiro Mindgest — Setembro 2026",
+        getHtml: () => getMonthlyStatementHtml()
+      }
+    ];
+
+    let currentIdx = 0;
+
+    function renderList() {
+      const listEl = document.getElementById("templateList");
+      listEl.innerHTML = "";
+      templates.forEach((t, i) => {
+        const item = document.createElement("button");
+        item.className = "template-item" + (i === currentIdx ? " active" : "");
+        item.onclick = () => selectTemplate(i);
+        item.innerHTML = `
+          <div class="template-title">${t.icon} ${t.title}</div>
+          <div class="template-desc">${t.desc}</div>
+        `;
+        listEl.appendChild(item);
+      });
+    }
+
+    function selectTemplate(idx) {
+      currentIdx = idx;
+      renderList();
+      const t = templates[idx];
+      document.getElementById("activeSubject").innerHTML = `Assunto: <strong>${t.subject}</strong>`;
+      const frame = document.getElementById("previewFrame");
+      frame.srcdoc = t.getHtml();
+    }
+
+    function setDevice(type) {
+      document.querySelectorAll(".device-btn").forEach(b => b.classList.remove("active"));
+      event.target.classList.add("active");
+      const wrapper = document.getElementById("frameWrapper");
+      if (type === "mobile") {
+        wrapper.style.width = "380px";
+      } else {
+        wrapper.style.width = "640px";
+      }
+    }
+
+    // Gerador do layout base Mindgest
+    function baseLayout(title, badge, content, ctaText, ctaUrl) {
+      return `
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Outfit', sans-serif; margin: 0; padding: 0; background-color: #f8f7fb; color: #374151; -webkit-font-smoothing: antialiased; }
+    .wrapper { max-width: 600px; margin: 24px auto; background: #ffffff; border-radius: 14px; overflow: hidden; border: 1px solid #eae6f5; box-shadow: 0 4px 20px -2px rgba(153, 86, 246, 0.08); }
+    .header-bar { height: 4px; background: linear-gradient(90deg, #9956f6 0%, #7c3aed 100%); }
+    .header { padding: 28px 24px 20px 24px; text-align: center; border-bottom: 1px solid #f0ecf9; background: #ffffff; }
+    .brand-logo { font-size: 26px; font-weight: 800; color: #18181b; letter-spacing: -0.5px; margin: 0; line-height: 1; }
+    .brand-logo span { color: #9956f6; }
+    .brand-badge { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-top: 8px; letter-spacing: 0.08em; background-color: #f3eeff; color: #7c3aed; }
+    .content-body { padding: 32px 28px; line-height: 1.7; font-size: 14px; color: #3f3f46; }
+    .content-title { font-size: 18px; font-weight: 700; color: #18181b; margin-top: 0; margin-bottom: 18px; text-align: center; letter-spacing: -0.2px; }
+    .info-box { background-color: #fbfaff; border: 1px solid #ede8fc; border-radius: 10px; padding: 20px; margin: 20px 0; }
+    .info-title { font-size: 12px; font-weight: 700; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 10px 0; }
+    .info-list { padding-left: 18px; margin: 0; }
+    .info-list li { margin-bottom: 8px; color: #52525b; font-size: 13px; }
+    .youtube-box { background: linear-gradient(135deg, #faf8ff 0%, #f4edff 100%); border: 1px solid #ede8fc; border-radius: 10px; padding: 22px; margin: 24px 0; text-align: center; }
+    .youtube-btn { display: inline-block; background-color: #ff0000; color: #ffffff !important; padding: 10px 22px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 13px; margin-top: 10px; box-shadow: 0 2px 8px rgba(255, 0, 0, 0.25); }
+    .alert-box { background-color: #fefce8; border-left: 3px solid #eab308; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0; font-size: 13px; color: #713f12; line-height: 1.6; }
+    .success-box { background-color: #f0fdf4; border-left: 3px solid #22c55e; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0; font-size: 13px; color: #14532d; line-height: 1.6; }
+    .highlight-card { background-color: #faf5ff; border: 1px dashed #d8b4fe; border-radius: 8px; padding: 14px 18px; margin: 18px 0; text-align: center; }
+    .whatsapp-badge { display: inline-block; background-color: #25D366; color: #ffffff !important; font-weight: 600; padding: 5px 14px; border-radius: 16px; font-size: 12px; text-decoration: none; margin-top: 6px; }
+    .cta-btn { background-color: #9956f6; color: #ffffff !important; padding: 13px 32px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px; display: inline-block; box-shadow: 0 4px 12px rgba(153, 86, 246, 0.3); }
+    .footer { padding: 26px 20px; text-align: center; border-top: 1px solid #ede8fc; background-color: #fbfaff; font-size: 12px; color: #71717a; }
+    .footer-links a { text-decoration: none; margin: 0 6px; font-weight: 500; font-size: 12px; color: #7c3aed; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header-bar"></div>
+    <div class="header">
+      <div class="brand-logo">Mindgest <span>Partners</span></div>
+      <div class="brand-badge">${badge}</div>
+    </div>
+    <div class="content-body">
+      ${title ? `<h2 class="content-title">${title}</h2>` : ''}
+      ${content}
+      ${ctaText ? `<div style="text-align: center; margin: 30px 0 16px 0;"><a href="${ctaUrl || '#'}" class="cta-btn">${ctaText}</a></div>` : ''}
+    </div>
+    <div class="footer">
+      <div style="font-size: 16px; font-weight: 800; color: #18181b;">Mindgest Partners</div>
+      <div style="font-size: 11px; margin: 2px 0 6px 0;">Programa Oficial de Parceiros e Afiliados Mindware</div>
+      <p style="font-size: 11px; margin-bottom: 12px;">Mindware - Comércio e Serviços, Lda</p>
+      <div class="footer-links">
+        <a href="https://mindware.ao" target="_blank">Website Oficial</a> &bull;
+        <a href="https://parceiros.mindware.ao" target="_blank">Portal de Parceiros</a> &bull;
+        <a href="mailto:geral@mindware.ao">geral@mindware.ao</a> &bull;
+        <a href="https://wa.me/244943100922" target="_blank">WhatsApp: 943 100 922</a>
+      </div>
+      <div style="font-size: 11px; margin-top: 12px; color: #a1a1aa;">
+        Esta é uma mensagem automática do Portal de Parceiros Mindgest.<br>
+        &copy; 2026 Mindware. Todos os direitos reservados.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+      `;
+    }
+
+    function getOnboardingHtml() {
+      const content = `
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">
+          Saudações cordiais, <strong>Jonatão Cardoso</strong>.
+        </p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Verificámos o seu registo no <strong>Portal de Parceiros da Mindware</strong> e agradecemos o interesse em fazer parte do nosso programa.
+        </p>
+        <div class="youtube-box">
+          <p style="margin: 0 0 6px 0; font-weight: 700; color: #18181b; font-size: 15px;">
+            Como Funciona o Programa de Parceiros?
+          </p>
+          <p style="margin: 0 0 14px 0; font-size: 13px; color: #6b7280; line-height: 1.5;">
+            Para conhecer melhor o funcionamento do programa, recomendamos que assista ao vídeo explicativo:
+          </p>
+          <a href="https://youtu.be/7vC-tyr3uS0" target="_blank" class="youtube-btn">
+            ▶ Assistir ao Vídeo Explicativo
+          </a>
+        </div>
+        <div class="info-box">
+          <div class="info-title">Após assistir ao vídeo, solicitamos que siga estes passos:</div>
+          <ol class="info-list" style="padding-left: 20px;">
+            <li><strong>Subscreva</strong> o nosso canal do YouTube;</li>
+            <li><strong>Envie</strong> para <a href="mailto:geral@mindware.ao" style="color: #7c3aed; font-weight: 600; text-decoration: none;">geral@mindware.ao</a> uma breve apresentação sobre a sua experiência ou capacidade de divulgação e vendas;</li>
+            <li><strong>Após a aprovação</strong>, entre em contacto com a nossa equipa para receber os materiais necessários para a divulgação do Mindgest.</li>
+          </ol>
+        </div>
+        <div class="highlight-card">
+          <span style="font-size: 12px; color: #6b7280; text-transform: uppercase; font-weight: 600;">Portal de Parceiros:</span><br>
+          <a href="https://parceiros.mindware.ao" target="_blank" style="font-size: 15px; font-weight: 700; color: #7c3aed; text-decoration: none;">
+            https://parceiros.mindware.ao
+          </a>
+        </div>
+        <div style="background-color: #f0fdf4; border-left: 3px solid #22c55e; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0; font-size: 13px; color: #14532d; line-height: 1.6;">
+          Para esclarecimentos ou acompanhamento, estamos disponíveis através do WhatsApp:<br>
+          <a href="https://wa.me/244943100922" target="_blank" class="whatsapp-badge">
+            💬 WhatsApp: 943 100 922
+          </a>
+        </div>
+        <p style="margin: 22px 0 0 0; color: #52525b; font-size: 14px; line-height: 1.6;">
+          Com os melhores cumprimentos,<br>
+          <strong style="color: #18181b;">Equipa Mindware</strong>
+        </p>
+      `;
+      return baseLayout("Registo no Portal de Parceiros", "PROGRAMA DE PARCEIROS", content, "Aceder ao Portal de Parceiros", "https://parceiros.mindware.ao");
+    }
+
+    function getApprovedHtml() {
+      const content = `
+        <div class="success-box">
+          <strong>Excelente notícia!</strong> A sua candidatura ao Programa de Parceiros Mindware foi analisada e <strong>aprovada com sucesso</strong>.
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          A partir de agora já pode aceder a todas as funcionalidades do Portal de Parceiros, partilhar o seu link exclusivo, recomendar novos clientes e começar a acumular comissões recorrentes.
+        </p>
+        <div class="highlight-card">
+          <div style="font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;">O Seu Código de Parceiro Oficial</div>
+          <div style="font-size: 22px; font-weight: 800; color: #7c3aed; letter-spacing: 1px;">MWD-AO-4921</div>
+          <div style="font-size: 12px; color: #71717a; margin-top: 6px;">Utilize este código para identificar as suas indicações.</div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">Como começar a faturar com o Mindgest:</div>
+          <ul class="info-list">
+            <li><strong>Aceda à plataforma</strong> com o seu email e a sua palavra-passe.</li>
+            <li><strong>Copie o seu link de parceiro</strong> no painel principal e partilhe com empresas, lojas, restaurantes e prestadores de serviços.</li>
+            <li><strong>Indique novos clientes para o Mindgest</strong>: Sempre que um cliente subscrever um plano do Mindgest (Base, Smart ou Pro) com a sua referência, a comissão é creditada automaticamente.</li>
+            <li><strong>Acompanhe em tempo real</strong> as subscrições ativas e as comissões recorrentes na carteira, com levantamentos disponíveis a partir de 5.000 Kz.</li>
+          </ul>
+        </div>
+      `;
+      return baseLayout("Conta de Parceiro Aprovada!", "CONTA ATIVA", content, "Aceder ao Meu Painel", "https://parceiros.mindware.ao/auth/login");
+    }
+
+    function getMarketingBoostHtml() {
+      const content = `
+        <div class="alert-box">
+          🚀 <strong>Dica Estratégica:</strong> Aumente as suas comissões recorrentes no Programa de Parceiros.
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Notámos que a sua conta está com <strong>poucos clientes ativos (2 clientes)</strong> no momento.
+        </p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Sugerimos que <strong>reforce as suas ações de marketing e divulgação</strong> para acelerar os seus ganhos. No Mindgest Partners, quanto mais clientes mantiver ativos, maior é a sua percentagem de comissão recorrente todos os meses:
+        </p>
+        <div class="info-box">
+          <div class="info-title">Escalada de Níveis e Comissões Recorrentes:</div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+            <tr style="border-bottom: 1px solid #ede8fc;">
+              <td style="padding: 6px 0; color: #374151;"><strong>Base</strong> (&lt; 15 clientes)</td>
+              <td style="text-align: right; font-weight: 700; color: #7c3aed;">15% Recorrente</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ede8fc;">
+              <td style="padding: 6px 0; color: #374151;"><strong>Prata (Silver)</strong> (15-39 clientes)</td>
+              <td style="text-align: right; font-weight: 700; color: #7c3aed;">20% Recorrente (+5% bónus)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ede8fc;">
+              <td style="padding: 6px 0; color: #374151;"><strong>Ouro (Gold)</strong> (40-99 clientes)</td>
+              <td style="text-align: right; font-weight: 700; color: #7c3aed;">27% Recorrente (+12% bónus)</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ede8fc;">
+              <td style="padding: 6px 0; color: #374151;"><strong>Platina (Platinum)</strong> (100-249 clientes)</td>
+              <td style="text-align: right; font-weight: 700; color: #7c3aed;">33% Recorrente (+18% bónus)</td>
+            </tr>
+            <tr>
+              <td style="padding: 6px 0; color: #374151;"><strong>Elite</strong> (&ge; 250 clientes)</td>
+              <td style="text-align: right; font-weight: 700; color: #7c3aed;">38% Recorrente (+23% bónus)</td>
+            </tr>
+          </table>
+        </div>
+        <div class="info-box" style="background-color: #f8fafc; border-color: #e2e8f0;">
+          <div class="info-title" style="color: #475569;">Sugestões Práticas de Divulgação do Mindgest:</div>
+          <ul class="info-list">
+            <li><strong>Status e Redes Sociais:</strong> Publique vídeos demonstrando como o Mindgest emite faturas certificadas pela AGT em segundos.</li>
+            <li><strong>Abordagem Direta:</strong> Fale com comerciantes, prestadores de serviços e oficinas que precisem de faturar no computador ou telemóvel.</li>
+            <li><strong>Partilha do Link de Parceiro:</strong> Garanta que os seus clientes se registam no Mindgest através do seu link exclusivo para associar as assinaturas à sua carteira.</li>
+          </ul>
+        </div>
+      `;
+      return baseLayout("Acelere os seus Ganhos como Parceiro", "CRESCIMENTO", content, "Aceder ao Portal e Materiais", "https://parceiros.mindware.ao/affiliate/dashboard");
+    }
+
+    function getPasswordResetHtml() {
+      const content = `
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Recebemos um pedido para redefinir a palavra-passe da sua conta no <strong>Portal de Parceiros Mindware</strong>.
+        </p>
+        <p style="margin: 0 0 20px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Para escolher uma nova palavra-passe com segurança, clique no botão abaixo:
+        </p>
+        <div class="alert-box">
+          <strong>Importante:</strong> Este link é válido por <strong>1 hora</strong>. Caso não tenha solicitado esta redefinição, por favor ignore este email.
+        </div>
+      `;
+      return baseLayout("Recuperação de Palavra-passe", "SEGURANÇA", content, "Redefinir Palavra-passe", "https://parceiros.mindware.ao/auth/reset-password?token=example-token");
+    }
+
+    function getCommissionEarnedHtml() {
+      const content = `
+        <div class="success-box">
+          💰 <strong>Comissão Disponível para Levantamento!</strong>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Temos uma excelente notícia sobre a sua atividade no programa:
+        </p>
+        <div class="highlight-card" style="background-color: #f0fdf4; border-color: #86efac;">
+          <div style="font-size: 12px; font-weight: 600; color: #15803d; text-transform: uppercase; margin-bottom: 4px;">Valor da Comissão</div>
+          <div style="font-size: 26px; font-weight: 800; color: #16a34a;">25.000,00 Kz</div>
+          <div style="font-size: 13px; color: #374151; margin-top: 6px;">Cliente: <strong>Restaurante & Lounge Baía</strong> &bull; Origem: Assinatura Mindgest (Plano SMART) &bull; Período: Mensal Recorrente</div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">Estado da Carteira:</div>
+          <p style="margin: 0; font-size: 13px; color: #52525b; line-height: 1.6;">
+            O valor de <strong>25.000,00 Kz</strong> já foi creditado ao seu saldo disponível. Pode solicitar o levantamento bancário quando desejar (a partir de 5.000 Kz).
+          </p>
+        </div>
+      `;
+      return baseLayout("Comissão Aprovada!", "COMISSÃO", content, "Ver Minha Carteira", "https://parceiros.mindware.ao/affiliate/wallet");
+    }
+
+    function getWithdrawalAdminHtml() {
+      const content = `
+        <div class="alert-box" style="background-color: #f0f9ff; border-left-color: #0284c7; color: #075985;">
+          🔔 <strong>Novo Pedido de Levantamento Submetido</strong> que aguarda análise e processamento bancário.
+        </div>
+        <table style="width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px;">
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">Afiliado:</td>
+            <td style="padding: 8px 0; color: #18181b; font-weight: 700;">Jonatão Cardoso</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">Email:</td>
+            <td style="padding: 8px 0; color: #18181b;">jonatao@exemplo.ao</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">Valor do Saque:</td>
+            <td style="padding: 8px 0; color: #16a34a; font-weight: 800; font-size: 16px;">45.000,00 Kz</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">Banco de Destino:</td>
+            <td style="padding: 8px 0; color: #18181b;">Banco Angolano de Investimentos (BAI)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 8px 0; color: #6b7280; font-weight: 600;">Conta / IBAN:</td>
+            <td style="padding: 8px 0; color: #18181b; font-family: monospace;">AO06.0040.0000.1234.5678.9012.3</td>
+          </tr>
+        </table>
+      `;
+      return baseLayout("Novo Pedido de Levantamento", "ADMIN ALERTA", content, "Gerir Levantamentos", "https://parceiros.mindware.ao/admin/withdrawals");
+    }
+
+    function getWithdrawalApprovedHtml() {
+      const content = `
+        <div class="success-box">
+          ✅ <strong>Transferência Processada!</strong> O seu levantamento foi aprovado com sucesso.
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Confirmamos que a transferência do seu levantamento no valor de <strong>45.000,00 Kz</strong> foi efetuada para a sua conta bancária (Banco BAI).
+        </p>
+        <p style="margin: 0 0 16px 0; color: #15803d; font-weight: 600;">📎 O comprovativo bancário oficial segue em anexo a este email.</p>
+        <div class="highlight-card">
+          <div style="font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase;">Valor Transferido</div>
+          <div style="font-size: 24px; font-weight: 800; color: #16a34a; margin-top: 4px;">45.000,00 Kz</div>
+        </div>
+      `;
+      return baseLayout("Levantamento Aprovado", "PAGAMENTO EFETUADO", content, "Aceder ao Meu Histórico", "https://parceiros.mindware.ao/affiliate/wallet");
+    }
+
+    function getWithdrawalRejectedHtml() {
+      const content = `
+        <div class="alert-box" style="background-color: #fef2f2; border-left-color: #ef4444; color: #991b1b;">
+          ⚠️ <strong>Aviso sobre o Pedido de Levantamento</strong>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Informamos que o seu pedido de levantamento no valor de <strong>45.000,00 Kz</strong> não pôde ser aprovado neste momento.
+        </p>
+        <div class="info-box">
+          <div class="info-title" style="color: #b91c1c;">Motivo indicado pela administração:</div>
+          <p style="margin: 0; font-size: 13px; color: #4b5563; font-style: italic;">
+            "O IBAN registado não corresponde à titularidade da conta informada. Por favor confirme os dados no seu perfil."
+          </p>
+        </div>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          O valor de <strong>45.000,00 Kz</strong> foi integralmente devolvido ao seu saldo disponível na carteira.
+        </p>
+      `;
+      return baseLayout("Levantamento Não Aprovado", "CARTEIRA ATUALIZADA", content, "Rever Dados e Carteira", "https://parceiros.mindware.ao/affiliate/wallet");
+    }
+
+    function getLevelUpHtml() {
+      const content = `
+        <div class="success-box" style="background-color: #fdf4ff; border-left-color: #c026d3; color: #86198f;">
+          🏆 <strong>PARABÉNS! SUBIU DE NÍVEL NO PROGRAMA DE PARCEIROS!</strong>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          O seu trabalho na divulgação do <strong>Mindgest</strong> continua a dar frutos. Com os novos clientes subscritores registados sob o seu código, o seu perfil atingiu o escalão:
+        </p>
+        <div style="text-align: center; margin: 24px 0;">
+          <div style="display: inline-block; background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%); border: 2px solid #a855f7; border-radius: 12px; padding: 18px 36px; box-shadow: 0 4px 14px rgba(168, 85, 247, 0.15);">
+            <div style="font-size: 12px; font-weight: 800; color: #7e22ce; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">NOVO ESCALÃO ALCANÇADO</div>
+            <div style="font-size: 26px; font-weight: 800; color: #581c87;">🌟 NÍVEL SILVER</div>
+            <div style="font-size: 14px; color: #6b21a8; font-weight: 600; margin-top: 6px;">+5% de Bónus Recorrente Adicional</div>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">Vantagens Imediatas do Nível Silver:</div>
+          <ul class="info-list">
+            <li><strong>20% de Comissão Recorrente Mensal</strong> em todas as renovações de planos Mindgest;</li>
+            <li>Badge Silver visível no seu painel de parceiro;</li>
+            <li>Prioridade no suporte da equipa Mindware.</li>
+          </ul>
+        </div>
+        <p style="margin: 0 0 16px 0; color: #52525b; font-size: 13px;">
+          Próxima meta: <strong>Nível GOLD (40 clientes)</strong> para passar a auferir <strong>27% de comissão recorrente (+12% de bónus)</strong>!
+        </p>
+      `;
+      return baseLayout("Subida de Nível — Nível SILVER", "GAMIFICAÇÃO & BÓNUS", content, "Ver o Meu Progresso", "https://parceiros.mindware.ao/affiliate/dashboard");
+    }
+
+    function getProximityAlertHtml() {
+      const content = `
+        <div class="alert-box" style="background-color: #fffbeb; border-left-color: #f59e0b; color: #92400e;">
+          ⚡ <strong>ESTÁ A APENAS 1 CLIENTE DE DESBLOQUEAR MAIS RENDIMENTOS!</strong>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Verificámos que conta atualmente com <strong>39 clientes ativos</strong> a subscrever o <strong>Mindgest</strong> sob o seu código de parceiro.
+        </p>
+        <div style="text-align: center; margin: 20px 0;">
+          <div style="background: #fff7ed; border: 1px dashed #f97316; border-radius: 10px; padding: 18px 24px; display: inline-block;">
+            <div style="font-size: 12px; font-weight: 700; color: #c2410c; text-transform: uppercase;">Próximo Nível ao seu Alcance</div>
+            <div style="font-size: 24px; font-weight: 800; color: #ea580c; margin-top: 4px;">NÍVEL GOLD (40 Clientes)</div>
+            <div style="font-size: 13px; color: #7c2d12; margin-top: 4px;">Falta apenas: <strong>1 cliente ativo</strong> &bull; Nova comissão: <strong>27% mensal</strong> (+7%)</div>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">💡 Dica para fechar este cliente hoje:</div>
+          <p style="margin: 0; font-size: 13px; color: #52525b; line-height: 1.6;">
+            Apresente o Mindgest a lojas, restaurantes ou prestadores de serviços do seu círculo que necessitem de faturação certificada pela AGT. Uma única subscrição hoje garante-lhe um aumento permanente em todas as suas mensalidades recorrentes!
+          </p>
+        </div>
+      `;
+      return baseLayout("Falta Apenas 1 Cliente para o Nível GOLD!", "ALERTA DE PROXIMIDADE", content, "Aceder aos Links de Divulgação", "https://parceiros.mindware.ao/affiliate/marketing");
+    }
+
+    function getClientPaymentFailedHtml() {
+      const content = `
+        <div class="alert-box" style="background-color: #fef2f2; border-left-color: #ef4444; color: #991b1b;">
+          🛡️ <strong>ALERTA DE RISCO DE COMISSÃO: FALHA DE PAGAMENTO</strong>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          A renovação da subscrição do software <strong>Mindgest (Plano Standard)</strong> do seu cliente <strong>Restaurante O Pescador (Manuel Silva)</strong> não foi concluída com sucesso no valor de <strong>45.000,00 Kz</strong>.
+        </p>
+        <table style="width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px; background: #fafafa; border-radius: 8px; border: 1px solid #e5e7eb;">
+          <tr style="border-bottom: 1px solid #e5e7eb;">
+            <td style="padding: 10px 14px; color: #6b7280; font-weight: 600;">Cliente Referido:</td>
+            <td style="padding: 10px 14px; color: #18181b; font-weight: 700;">Manuel Silva (923 456 789)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e5e7eb;">
+            <td style="padding: 10px 14px; color: #6b7280; font-weight: 600;">Plano Mindgest:</td>
+            <td style="padding: 10px 14px; color: #18181b;">Standard Mensal</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 14px; color: #6b7280; font-weight: 600;">Prazo de Regularização:</td>
+            <td style="padding: 10px 14px; color: #dc2626; font-weight: 700;">7 dias de carência</td>
+          </tr>
+        </table>
+        <div class="info-box">
+          <div class="info-title">Como garantir a continuidade da sua comissão:</div>
+          <p style="margin: 0; font-size: 13px; color: #52525b; line-height: 1.6;">
+            A nossa equipa enviou lembretes ao cliente, mas o seu contacto de proximidade tem uma taxa de retenção muito superior. Sugerimos que envie uma mensagem rápida ao cliente a alertar para que regularize o pagamento e evite interrupções no funcionamento do Mindgest.
+          </p>
+        </div>
+      `;
+      return baseLayout("Falha de Pagamento de Mensalidade — Aja Rápido", "PREVENÇÃO ANTI-CHURN", content, "Ver Detalhes do Cliente", "https://parceiros.mindware.ao/affiliate/referrals");
+    }
+
+    function getWithdrawalThresholdHtml() {
+      const content = `
+        <div class="success-box">
+          🎯 <strong>MÍNIMO DE LEVANTAMENTO ATINGIDO!</strong> O seu dinheiro está pronto para transferência.
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Boas notícias! O seu saldo de comissões aprovadas ultrapassou o limiar mínimo de <strong>5.000,00 Kz</strong> para pedidos de levantamento.
+        </p>
+        <div class="highlight-card" style="background-color: #f0fdf4; border-color: #86efac;">
+          <div style="font-size: 12px; font-weight: 600; color: #15803d; text-transform: uppercase;">Saldo Disponível para Saque</div>
+          <div style="font-size: 26px; font-weight: 800; color: #16a34a; margin-top: 4px;">12.500,00 Kz</div>
+        </div>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Pode aceder agora à sua carteira, selecionar a sua conta bancária (ou cadastrar um novo IBAN) e submeter o pedido com um único clique.
+        </p>
+      `;
+      return baseLayout("Saldo Atingiu o Mínimo de Levantamento: 12.500,00 Kz", "SAQUE DISPONÍVEL", content, "Solicitar Levantamento Agora", "https://parceiros.mindware.ao/affiliate/wallet");
+    }
+
+    function getCertificationApprovedHtml() {
+      const content = `
+        <div class="success-box" style="background-color: #f0fdfa; border-left-color: #0d9488; color: #115e59;">
+          🎓 <strong>CERTIFICAÇÃO COMERCIAL CONCLUÍDA COM SUCESSO!</strong>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Temos a honra de informar que a administração da Mindware aprovou a sua <strong>Certificação Comercial Oficial Mindgest</strong>.
+        </p>
+        <div style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 1px solid #6ee7b7; border-radius: 10px; padding: 20px; margin: 20px 0; text-align: center;">
+          <div style="font-size: 12px; font-weight: 700; color: #065f46; text-transform: uppercase;">Distinção Oficial</div>
+          <div style="font-size: 20px; font-weight: 800; color: #047857; margin-top: 4px;">PARCEIRO COMERCIAL CERTIFICADO</div>
+          <div style="font-size: 12px; color: #064e3b; margin-top: 6px;">Código de Parceiro: <strong>MW-884210</strong> &bull; Selo de Qualidade Mindware</div>
+        </div>
+        <div class="info-box">
+          <div class="info-title">Novos Benefícios Desbloqueados:</div>
+          <ul class="info-list">
+            <li><strong>Desbloqueio do Plano Mindgest PRO:</strong> Pode agora propor e subscrever empresas de grande porte com soluções à medida;</li>
+            <li><strong>Margens de Preço Customizáveis:</strong> Liberdade de precificação acima do valor líquido base Mindware;</li>
+            <li><strong>Apoio Executivo & Suporte Prioritário VIP.</strong></li>
+          </ul>
+        </div>
+      `;
+      return baseLayout("Certificação Comercial Mindgest Aprovada! 🎓", "PARCEIRO CERTIFICADO", content, "Aceder ao Painel Comercial", "https://parceiros.mindware.ao/affiliate/commercial");
+    }
+
+    function getMonthlyStatementHtml() {
+      const content = `
+        <div class="info-box" style="background-color: #f8fafc; border-color: #cbd5e1;">
+          <div class="info-title" style="color: #475569;">📊 EXTRATO MENSAL CONSOLIDADO &bull; SETEMBRO 2026</div>
+        </div>
+        <p style="margin: 0 0 16px 0; font-size: 15px; color: #18181b;">Olá, <strong>Jonatão Cardoso</strong>,</p>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Aqui está o balanço oficial da sua atividade como parceiro do <strong>Mindgest</strong> durante o último mês:
+        </p>
+        <table style="width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 13px;">
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 10px 0; color: #6b7280; font-weight: 600;">Clientes Mindgest Ativos:</td>
+            <td style="padding: 10px 0; color: #18181b; font-weight: 800; font-size: 15px;">42 clientes</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 10px 0; color: #6b7280; font-weight: 600;">Nível do Programa:</td>
+            <td style="padding: 10px 0; color: #7c3aed; font-weight: 800;">GOLD (27% Recorrente)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 10px 0; color: #6b7280; font-weight: 600;">Total Comissões do Mês:</td>
+            <td style="padding: 10px 0; color: #16a34a; font-weight: 800; font-size: 16px;">84.000,00 Kz</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #ede8fc;">
+            <td style="padding: 10px 0; color: #6b7280; font-weight: 600;">Saldo Disponível em Carteira:</td>
+            <td style="padding: 10px 0; color: #18181b; font-weight: 800; font-size: 15px;">56.000,00 Kz</td>
+          </tr>
+        </table>
+        <p style="margin: 0 0 16px 0; color: #3f3f46; font-size: 14px; line-height: 1.7;">
+          Obrigado pelo seu compromisso na expansão do Mindgest em Angola. Vamos juntos continuar a crescer!
+        </p>
+      `;
+      return baseLayout("O seu Extrato Mensal — Setembro 2026", "EXTRATO MENSAL", content, "Consultar Carteira e Histórico", "https://parceiros.mindware.ao/affiliate/wallet");
+    }
+
+    // Inicialização
+    selectTemplate(0);
+  </script>
+</body>
+</html>

@@ -82,6 +82,15 @@ export class AffiliatesController {
   }
 
   @Roles(UserRole.ADMIN)
+  @Post("admin/affiliates/:id/marketing-reminder")
+  @ApiOperation({ summary: "Send marketing boost email", description: "Sends a motivational email with marketing tips and progression advice to an affiliate with few clients." })
+  @ApiParam({ name: "id", description: "The unique identifier of the affiliate record." })
+  @ApiResponse({ status: 200, description: "Marketing reminder email sent successfully." })
+  sendMarketingReminder(@Param("id") id: string) {
+    return this.affiliates.sendMarketingBoost(id);
+  }
+
+  @Roles(UserRole.ADMIN)
   @Post("admin/approvals/:id/reject")
   @ApiOperation({ summary: "Reject affiliate registration", description: "Reject a pending affiliate registration, transitioning their status to REJECTED. Access restricted to Administrator role." })
   @ApiParam({ name: "id", description: "The unique identifier of the affiliate record." })

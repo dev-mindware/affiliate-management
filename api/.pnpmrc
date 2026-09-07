@@ -1,2 +1,5 @@
-only-built-dependencies=[]
-strict-dep-builds=false
+only-built-dependencies[]=@prisma/engines
+only-built-dependencies[]=prisma
+only-built-dependencies[]=@scarf/scarf
+only-built-dependencies[]=unrs-resolver
+only-built-dependencies[]=@nestjs/core

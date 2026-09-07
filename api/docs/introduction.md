@@ -17,7 +17,7 @@ Use `npm run seed` para criar o admin inicial, os serviços comerciais existente
   - Ouro (Gold): 27% recorrente (bónus de 12%, $\ge 40$ clientes)
   - Platina (Platinum): 33% recorrente (bónus de 18%, $\ge 100$ clientes)
   - Elite: 38% recorrente (bónus de 23%, $\ge 250$ clientes)
-- **Saque Mínimo:** O valor mínimo para solicitação de levantamento da carteira de afiliados é de **8.000 Kz**.
+- **Saque Mínimo:** O valor mínimo para solicitação de levantamento da carteira de afiliados é de **5.000 Kz**.
 - **Segurança de Webhooks:**
   - Validação `timingSafeEqual` para comparação do secret do webhook.
   - Replay protection utilizando o cabeçalho `x-webhook-timestamp` (limite de tolerância de 5 minutos / 300s).

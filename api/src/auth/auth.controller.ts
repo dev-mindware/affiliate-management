@@ -4,7 +4,7 @@ import type { Response } from "express";
 import { AuthService } from "./auth.service";
 import { CurrentUser } from "./decorators/current-user.decorator";
 import { Public } from "./decorators/public.decorator";
-import { FormLoginDto, LoginDto, RegisterDto } from "./dto/auth.dto";
+import { ForgotPasswordDto, FormLoginDto, LoginDto, RegisterDto, ResetPasswordDto } from "./dto/auth.dto";
 
 @ApiTags("auth")
 @Controller("auth")
@@ -13,7 +13,7 @@ export class AuthController {
 
   @Public()
   @Post("register")
-  @ApiOperation({ summary: "Register a new affiliate", description: "Creates a new affiliate account that will be set to PENDING_APPROVAL status." })
+  @ApiOperation({ summary: "Register a new affiliate", description: "Creates a new affiliate account that will be set to PENDING_APPROVAL status and sends an onboarding email." })
   @ApiResponse({ status: 201, description: "Affiliate successfully registered." })
   @ApiResponse({ status: 400, description: "Email already registered or validation error." })
   register(@Body() body: RegisterDto) {
@@ -58,6 +58,23 @@ export class AuthController {
   logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie("refresh_token");
     return { msg: "Logout realizado com sucesso" };
+  }
+
+  @Public()
+  @Post("forgot-password")
+  @ApiOperation({ summary: "Request Password Reset", description: "Sends an email with password recovery link if the email exists." })
+  @ApiResponse({ status: 200, description: "Password reset email sent if account exists." })
+  forgotPassword(@Body() body: ForgotPasswordDto) {
+    return this.auth.forgotPassword(body.email);
+  }
+
+  @Public()
+  @Post("reset-password")
+  @ApiOperation({ summary: "Reset Password", description: "Resets the user password using a valid reset token." })
+  @ApiResponse({ status: 200, description: "Password successfully updated." })
+  @ApiResponse({ status: 400, description: "Invalid or expired token." })
+  resetPassword(@Body() body: ResetPasswordDto) {
+    return this.auth.resetPassword(body.token, body.new_password);
   }
 
   @ApiBearerAuth()

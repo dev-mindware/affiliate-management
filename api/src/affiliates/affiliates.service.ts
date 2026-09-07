@@ -6,6 +6,7 @@ import { dateRange, normalizePagination, orderBy, paginated } from "../common/fi
 import { affiliateDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
 import { WalletService } from "../wallet/wallet.service";
+import { MailService } from "../mail/mail.service";
 import { AffiliateFilterDto } from "./dto/affiliate-filter.dto";
 
 function affiliateCode() {
@@ -14,7 +15,11 @@ function affiliateCode() {
 
 @Injectable()
 export class AffiliatesService {
-  constructor(private prisma: PrismaService, private wallet: WalletService) {}
+  constructor(
+    private prisma: PrismaService,
+    private wallet: WalletService,
+    private mail: MailService,
+  ) {}
 
   async list(filter: AffiliateFilterDto) {
     const p = normalizePagination(filter);
@@ -144,7 +149,29 @@ export class AffiliatesService {
       data: { status: AffiliateStatus.ACTIVE, approvedAt: new Date(), approvedBy: adminId },
     });
     await this.wallet.ensureWallet(affiliate.id);
+
+    // Enviar email de conta aprovada com código de parceiro e orientações
+    await this.mail.sendAffiliateApproved({
+      nomeCompleto: affiliate.nomeCompleto,
+      codigoAfiliado: affiliate.codigoAfiliado,
+      email: affiliate.email,
+    });
+
     return affiliateDto(affiliate);
+  }
+
+  async sendMarketingBoost(id: string) {
+    const affiliate = await this.find(id);
+    const activeClients = await this.prisma.partnerSubscription.count({
+      where: { affiliateId: id, status: "ACTIVE" },
+    });
+    await this.mail.sendMarketingBoostReminder({
+      nomeCompleto: affiliate.nomeCompleto,
+      email: affiliate.email,
+      activeClients,
+      codigoAfiliado: affiliate.codigoAfiliado,
+    });
+    return { message: "Email de reforço de marketing enviado com sucesso para o afiliado." };
   }
 
   async reject(id: string) {

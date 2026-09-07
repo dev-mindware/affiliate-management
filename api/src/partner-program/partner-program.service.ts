@@ -20,6 +20,7 @@ import { WalletService, WITHDRAWAL_MINIMUM } from "../wallet/wallet.service";
 import { SubscriptionFilterDto } from "./dto/subscription-filter.dto";
 import { RankingFilterDto } from "./dto/ranking-filter.dto";
 import { NotificationsService } from "../notifications/notifications.service";
+import { MailService } from "../mail/mail.service";
 
 const CUSTOM_MINIMUM = 14899.22;
 
@@ -29,6 +30,7 @@ export class PartnerProgramService {
     private prisma: PrismaService,
     private wallet: WalletService,
     private notifications: NotificationsService,
+    private mail: MailService,
   ) {}
 
   async ensureDefaultPlans() {
@@ -90,11 +92,45 @@ export class PartnerProgramService {
   }
 
   async refreshAffiliate(affiliate: any) {
+    const fullAffiliate = affiliate?.email && affiliate?.partnerLevel !== undefined
+      ? affiliate
+      : await this.prisma.affiliate.findUnique({ where: { id: affiliate.id } });
+
     const activeClients = await this.activeClients(affiliate.id);
-    const { level } = this.resolveLevel(activeClients);
-    const certificationStatus = activeClients >= 15 && affiliate.certificationStatus === CertificationStatus.NOT_ELIGIBLE
+    const { level, next, missing, bonus } = this.resolveLevel(activeClients);
+    const certificationStatus = activeClients >= 15 && fullAffiliate?.certificationStatus === CertificationStatus.NOT_ELIGIBLE
       ? CertificationStatus.ELIGIBLE
-      : affiliate.certificationStatus;
+      : fullAffiliate?.certificationStatus;
+
+    if (fullAffiliate?.email) {
+      const levelRank: Record<PartnerLevel, number> = {
+        [PartnerLevel.NONE]: 0,
+        [PartnerLevel.SILVER]: 1,
+        [PartnerLevel.GOLD]: 2,
+        [PartnerLevel.PLATINUM]: 3,
+        [PartnerLevel.ELITE]: 4,
+      };
+      const oldRank = levelRank[fullAffiliate.partnerLevel as PartnerLevel] ?? 0;
+      const newRank = levelRank[level] ?? 0;
+
+      if (newRank > oldRank) {
+        this.mail.sendPartnerLevelUp(
+          { nomeCompleto: fullAffiliate.nomeCompleto, email: fullAffiliate.email },
+          { novoNivel: level, novoPercentual: bonus },
+        ).catch(() => {});
+      } else if (missing === 1 && next) {
+        const nextBonus = this.resolveLevel(activeClients + 1).bonus;
+        this.mail.sendProximityAlert(
+          { nomeCompleto: fullAffiliate.nomeCompleto, email: fullAffiliate.email },
+          {
+            proximoNivel: next,
+            percentualAlvo: nextBonus,
+            clientesAtuais: activeClients,
+          },
+        ).catch(() => {});
+      }
+    }
+
     return this.prisma.affiliate.update({
       where: { id: affiliate.id },
       data: { partnerLevel: level, certificationStatus },
@@ -222,6 +258,18 @@ export class PartnerProgramService {
       });
     }
 
+    if (affiliateRecord?.email) {
+      await this.mail.sendCommissionEarned(
+        { nomeCompleto: affiliateRecord.nomeCompleto, email: affiliateRecord.email },
+        {
+          valorComissao: commissionAmount,
+          clientNome: data.client_name,
+          tipo: `Assinatura Mindgest (${data.plan_code})`,
+          statusAprovada: true,
+        },
+      );
+    }
+
     return { subscription, commission, duplicated: false };
   }
 
@@ -259,6 +307,23 @@ export class PartnerProgramService {
     const subscription = await this.prisma.partnerSubscription.update({ where: { id }, data: { status, notes } });
     const blockingStatuses: PartnerSubscriptionStatus[] = [PartnerSubscriptionStatus.CANCELLED, PartnerSubscriptionStatus.PAYMENT_FAILED, PartnerSubscriptionStatus.SUSPENDED, PartnerSubscriptionStatus.REFUNDED, PartnerSubscriptionStatus.CHARGEBACK];
     if (blockingStatuses.includes(status)) {
+      if (status === PartnerSubscriptionStatus.PAYMENT_FAILED) {
+        const subWithDetails = await this.prisma.partnerSubscription.findUnique({
+          where: { id },
+          include: { affiliate: true, plan: true },
+        });
+        if (subWithDetails?.affiliate?.email) {
+          this.mail.sendClientPaymentFailedAlert(
+            { nomeCompleto: subWithDetails.affiliate.nomeCompleto, email: subWithDetails.affiliate.email },
+            {
+              clientName: subWithDetails.clientName,
+              planCode: subWithDetails.plan?.name || "Mindgest",
+              amount: Number(subWithDetails.amountPaid || 0),
+            },
+          ).catch(() => {});
+        }
+      }
+
       // Estorna comissoes ainda pendentes E as ja aprovadas/disponiveis, porque
       // agora a comissao fica disponivel imediatamente ao aprovar a subscricao.
       const commissions = await this.prisma.commission.findMany({
@@ -343,6 +408,14 @@ export class PartnerProgramService {
         entity: "PartnerCertification",
         entityId: approved.id,
       });
+    }
+
+    if (approved.email) {
+      this.mail.sendCertificationApproved({
+        nomeCompleto: approved.nomeCompleto,
+        email: approved.email,
+        codigoAfiliado: approved.codigoAfiliado,
+      }).catch(() => {});
     }
 
     return affiliateDto(approved);

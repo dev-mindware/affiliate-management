@@ -8,6 +8,7 @@ import { PrismaService } from "../prisma/prisma.service";
 import { WalletService } from "../wallet/wallet.service";
 import { CommissionFilterDto } from "./dto/commission-filter.dto";
 import { NotificationsService } from "../notifications/notifications.service";
+import { MailService } from "../mail/mail.service";
 
 @Injectable()
 export class CommissionsService {
@@ -15,6 +16,7 @@ export class CommissionsService {
     private prisma: PrismaService,
     private wallet: WalletService,
     private notifications: NotificationsService,
+    private mail: MailService,
   ) {}
 
   async list(filter: CommissionFilterDto) {
@@ -96,6 +98,18 @@ export class CommissionsService {
       });
     }
 
+    if (affiliate?.email) {
+      await this.mail.sendCommissionEarned(
+        { nomeCompleto: affiliate.nomeCompleto, email: affiliate.email },
+        {
+          valorComissao: service.comissao,
+          clientNome: data.client_nome,
+          tipo: `Serviço (${service.nome})`,
+          statusAprovada: false,
+        },
+      );
+    }
+
     return commissionDto(commission);
   }
 
@@ -115,6 +129,18 @@ export class CommissionsService {
         entity: "Commission",
         entityId: updated.id,
       });
+    }
+
+    if (affiliate?.email) {
+      await this.mail.sendCommissionEarned(
+        { nomeCompleto: affiliate.nomeCompleto, email: affiliate.email },
+        {
+          valorComissao: commission.valorComissao,
+          clientNome: commission.clientNome,
+          tipo: "Serviço",
+          statusAprovada: true,
+        },
+      );
     }
 
     return commissionDto(updated);
