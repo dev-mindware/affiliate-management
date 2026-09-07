@@ -16,6 +16,8 @@ export function proxy(request: NextRequest) {
     pathname === '/auth/forgot-password' ||
     pathname === '/auth/reset-password' ||
     pathname === '/exemplares-emails.html' ||
+    pathname.startsWith('/marketing') ||
+    pathname.endsWith('.zip') ||
     pathname.startsWith('/api/public')
 
   const accessToken = request.cookies.get(ACCESS_TOKEN_KEY)?.value
@@ -47,6 +49,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public (public folder)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|public|manifest.webmanifest|robots.txt|sitemap.xml|.*\\.(?:png|svg|jpg|jpeg|gif|json|ico|webmanifest|txt|xml|html)).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|public|manifest.webmanifest|robots.txt|sitemap.xml|.*\\.(?:png|svg|jpg|jpeg|gif|json|ico|webmanifest|txt|xml|html|zip|webp|pdf)).*)',
   ],
 }

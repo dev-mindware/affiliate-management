@@ -40,6 +40,11 @@ export const adminMenuItems: MenuStructure = {
       icon: <Icon name="FileText" />,
     },
     {
+      name: "Materiais de Apoio",
+      url: "/materiais",
+      icon: <Icon name="FolderDown" />,
+    },
+    {
       name: "Configurações",
       url: "/definitions",
       icon: <Icon name="Settings" />,
@@ -68,6 +73,11 @@ export const affiliateMenuItems: MenuStructure = {
       name: "Carteira",
       url: "/wallet",
       icon: <Icon name="Wallet" />,
+    },
+    {
+      name: "Materiais de Apoio",
+      url: "/materiais",
+      icon: <Icon name="FolderDown" />,
     },
     {
       name: "Planos",

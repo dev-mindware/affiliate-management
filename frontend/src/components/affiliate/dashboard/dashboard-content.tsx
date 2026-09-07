@@ -197,6 +197,47 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
         </section>
       )}
 
+      {/* Materials Promo Callout Banner */}
+      <section className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-background p-4 sm:p-5 shadow-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-start sm:items-center gap-3.5">
+            <div className="p-2.5 rounded-xl bg-primary text-primary-foreground shrink-0 shadow-sm">
+              <Icon name="FolderDown" className="size-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h4 className="text-sm sm:text-base font-bold text-foreground">
+                  Materiais de Apoio & Divulgação
+                </h4>
+                <Badge variant="default" className="text-[10px] px-1.5 py-0 h-4">
+                  Novo
+                </Badge>
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Banners oficiais do Mindgest e roteiros de vendas para divulgar e aumentar as suas comissões.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href="/mindgest-materiais-parceiros.zip"
+              download
+              className="inline-flex items-center gap-1.5 rounded-lg border bg-background/80 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors shadow-2xs"
+            >
+              <Icon name="Download" className="size-3.5" />
+              <span>Baixar ZIP (2.8 MB)</span>
+            </a>
+            <Link
+              href="/materiais"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-2xs"
+            >
+              <span>Ver Materiais</span>
+              <Icon name="ArrowRight" className="size-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Metric Cards Grid - 2x2 on Mobile */}
       <section className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {/* Card 1: Saldo Disponível */}

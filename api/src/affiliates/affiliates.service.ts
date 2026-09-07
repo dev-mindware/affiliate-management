@@ -54,8 +54,47 @@ export class AffiliatesService {
   }
 
   async create(body: any) {
-    const userExists = await this.prisma.user.findUnique({ where: { email: body.email } });
+    const email = String(body.email || "").trim().toLowerCase();
+    if (!email) throw new BadRequestException("O email é obrigatório");
+
+    const userExists = await this.prisma.user.findFirst({
+      where: { email: { equals: email, mode: "insensitive" } },
+    });
     if (userExists) throw new BadRequestException("Já existe um utilizador com este email");
+
+    const affiliateExists = await this.prisma.affiliate.findFirst({
+      where: { email: { equals: email, mode: "insensitive" } },
+    });
+    if (affiliateExists) throw new BadRequestException("Já existe um afiliado registado com este email");
+
+    if (body.telefone) {
+      const digitsPhone = String(body.telefone).replace(/\D/g, "");
+      if (digitsPhone.length >= 9) {
+        const last9 = digitsPhone.slice(-9);
+        const existingPhone = await this.prisma.affiliate.findFirst({
+          where: { telefone: { contains: last9 } },
+        });
+        if (existingPhone) {
+          throw new BadRequestException("Já existe um afiliado registado com este número de telefone");
+        }
+      }
+    }
+
+    if (body.conta_bancaria) {
+      const cleanIban = String(body.conta_bancaria).replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+      if (cleanIban.length >= 10) {
+        const affiliatesWithIban = await this.prisma.affiliate.findMany({
+          where: { contaBancaria: { not: null } },
+          select: { contaBancaria: true },
+        });
+        const duplicateIban = affiliatesWithIban.find(
+          (a) => a.contaBancaria && a.contaBancaria.replace(/[^A-Za-z0-9]/g, "").toUpperCase() === cleanIban,
+        );
+        if (duplicateIban) {
+          throw new BadRequestException("Já existe um afiliado registado com este IBAN / conta bancária");
+        }
+      }
+    }
 
     const affiliate = await this.prisma.$transaction(async (tx) => {
       let code = affiliateCode();
@@ -65,7 +104,7 @@ export class AffiliatesService {
 
       const user = await tx.user.create({
         data: {
-          email: body.email,
+          email,
           passwordHash: await bcrypt.hash(body.password || "Mindware123", 10),
           role: UserRole.AFFILIATE,
           isActive: true,
@@ -76,7 +115,7 @@ export class AffiliatesService {
         data: {
           userId: user.id,
           nomeCompleto: body.nome_completo,
-          email: body.email,
+          email,
           telefone: body.telefone,
           contaBancaria: body.conta_bancaria,
           banco: body.banco,
@@ -96,10 +135,20 @@ export class AffiliatesService {
 
   async update(id: string, body: any) {
     const current = await this.find(id);
-    if (body.email && body.email !== current.email) {
-      const userExists = await this.prisma.user.findUnique({ where: { email: body.email } });
+    const email = body.email ? String(body.email).trim().toLowerCase() : undefined;
+
+    if (email && email !== current.email.toLowerCase()) {
+      const userExists = await this.prisma.user.findFirst({
+        where: { email: { equals: email, mode: "insensitive" } },
+      });
       if (userExists && userExists.id !== current.userId) {
         throw new BadRequestException("Já existe um utilizador com este email");
+      }
+      const affiliateExists = await this.prisma.affiliate.findFirst({
+        where: { email: { equals: email, mode: "insensitive" }, id: { not: id } },
+      });
+      if (affiliateExists) {
+        throw new BadRequestException("Já existe um afiliado registado com este email");
       }
     }
 

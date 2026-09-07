@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AffiliateStatus, UserRole } from "@prisma/client";
+import { AffiliateStatus, Prisma, UserRole } from "@prisma/client";
 import * as bcrypt from "bcryptjs";
 import { affiliateDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
@@ -19,27 +19,103 @@ export class AuthService {
   ) {}
 
   async register(body: any) {
-    const exists = await this.prisma.user.findUnique({ where: { email: body.email } });
-    if (exists) throw new BadRequestException("Email ja registado");
-    const user = await this.prisma.user.create({
-      data: {
-        email: body.email,
-        passwordHash: await bcrypt.hash(body.password, 10),
-        role: UserRole.AFFILIATE,
-        affiliate: {
-          create: {
-            nomeCompleto: body.nome_completo,
-            email: body.email,
-            telefone: body.telefone,
-            contaBancaria: body.conta_bancaria,
-            banco: body.banco,
-            codigoAfiliado: affiliateCode(),
-            status: AffiliateStatus.PENDING_APPROVAL,
-          },
-        },
-      },
+    const email = String(body.email || "").trim().toLowerCase();
+    if (!email) throw new BadRequestException("O email é obrigatório");
+
+    // 1. Não permitir registo duplicado por email (User ou Affiliate, case-insensitive)
+    const existingUser = await this.prisma.user.findFirst({
+      where: { email: { equals: email, mode: "insensitive" } },
       include: { affiliate: true },
     });
+    const existingAffiliate = await this.prisma.affiliate.findFirst({
+      where: { email: { equals: email, mode: "insensitive" } },
+    });
+
+    if (existingUser || existingAffiliate) {
+      const status = existingUser?.affiliate?.status || existingAffiliate?.status;
+      if (status === AffiliateStatus.PENDING_APPROVAL) {
+        throw new BadRequestException(
+          "Já existe um registo com este endereço de email em análise pela administração. Aguarde a aprovação da sua conta.",
+        );
+      }
+      if (status === AffiliateStatus.ACTIVE) {
+        throw new BadRequestException(
+          "Já existe uma conta ativa com este endereço de email. Não é permitido criar mais de um registo de afiliado.",
+        );
+      }
+      throw new BadRequestException(
+        "Este email já se encontra registado no sistema. Não é permitido que um afiliado se registe mais de uma vez.",
+      );
+    }
+
+    // 2. Não permitir registo duplicado por número de telefone (se fornecido)
+    if (body.telefone) {
+      const cleanPhone = String(body.telefone).replace(/\D/g, "");
+      if (cleanPhone.length >= 9) {
+        const last9 = cleanPhone.slice(-9);
+        const existingPhone = await this.prisma.affiliate.findFirst({
+          where: {
+            telefone: {
+              contains: last9,
+            },
+          },
+        });
+        if (existingPhone) {
+          throw new BadRequestException(
+            "Já existe um afiliado registado com este número de telefone. Não é permitido registar-se mais de uma vez.",
+          );
+        }
+      }
+    }
+
+    // 3. Não permitir registo duplicado por conta bancária / IBAN (se fornecido)
+    if (body.conta_bancaria) {
+      const cleanIban = String(body.conta_bancaria).replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+      if (cleanIban.length >= 10) {
+        const affiliatesWithIban = await this.prisma.affiliate.findMany({
+          where: { contaBancaria: { not: null } },
+          select: { contaBancaria: true },
+        });
+        const duplicateIban = affiliatesWithIban.find(
+          (a) => a.contaBancaria && a.contaBancaria.replace(/[^A-Za-z0-9]/g, "").toUpperCase() === cleanIban,
+        );
+        if (duplicateIban) {
+          throw new BadRequestException(
+            "Já existe um afiliado registado com este IBAN / conta bancária. Não é permitido registar-se mais de uma vez.",
+          );
+        }
+      }
+    }
+
+    let user;
+    try {
+      user = await this.prisma.user.create({
+        data: {
+          email,
+          passwordHash: await bcrypt.hash(body.password, 10),
+          role: UserRole.AFFILIATE,
+          affiliate: {
+            create: {
+              nomeCompleto: body.nome_completo,
+              email,
+              telefone: body.telefone,
+              contaBancaria: body.conta_bancaria,
+              banco: body.banco,
+              codigoAfiliado: affiliateCode(),
+              status: AffiliateStatus.PENDING_APPROVAL,
+            },
+          },
+        },
+        include: { affiliate: true },
+      });
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        throw new BadRequestException(
+          "Já existe um registo no sistema com estes dados. Não é permitido mais de um cadastro por afiliado.",
+        );
+      }
+      throw error;
+    }
 
     // Enviar email com as orientações e passos a seguir pós-cadastro
     if (user.affiliate) {
