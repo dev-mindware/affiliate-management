@@ -26,7 +26,7 @@ export interface UpdatePreferencesPayload {
 
 export interface UpdateTourProgressPayload {
   status: "in_progress" | "completed" | "skipped" | "IN_PROGRESS" | "COMPLETED" | "SKIPPED";
-  lastStepIndex?: number;
+  lastStepIndex?: number | null;
   tourVersion?: number;
 }
 

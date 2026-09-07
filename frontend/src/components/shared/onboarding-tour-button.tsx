@@ -1,14 +1,12 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Button, Icon } from "@workspace/ui";
 import {
   OnboardingTourId,
   ONBOARDING_TOURS,
 } from "@/constants/onboarding-tours";
-import {
-  useAutoOnboardingTour,
-  useOnboardingTour,
-} from "@/hooks/affiliate";
+import { useOnboardingTour } from "@/hooks/affiliate";
 
 interface OnboardingTourButtonProps {
   tourId: OnboardingTourId;
@@ -21,8 +19,43 @@ export function OnboardingTourButton({
   autoStart = true,
   className = "",
 }: OnboardingTourButtonProps) {
-  const { startTour, tourButtonEnabled } = useOnboardingTour(tourId);
-  useAutoOnboardingTour(tourId, autoStart);
+  const {
+    startTour,
+    tourButtonEnabled,
+    hasCompleted,
+    hasSkipped,
+    autoStartEnabled,
+    isLoading,
+  } = useOnboardingTour(tourId);
+
+  const attemptedRef = useRef(false);
+
+  useEffect(() => {
+    if (
+      !autoStart ||
+      isLoading ||
+      !autoStartEnabled ||
+      hasCompleted ||
+      hasSkipped ||
+      attemptedRef.current
+    ) {
+      return;
+    }
+
+    let isMounted = true;
+    const timer = window.setTimeout(async () => {
+      if (!isMounted || attemptedRef.current) return;
+      const started = await startTour();
+      if (started) {
+        attemptedRef.current = true;
+      }
+    }, 900);
+
+    return () => {
+      isMounted = false;
+      window.clearTimeout(timer);
+    };
+  }, [autoStart, autoStartEnabled, hasCompleted, hasSkipped, isLoading, startTour]);
 
   if (!tourButtonEnabled) return null;
 

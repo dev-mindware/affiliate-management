@@ -109,8 +109,9 @@ export class OnboardingService {
         status: dto.status,
         ...(dto.lastStepIndex !== undefined && { lastStepIndex: dto.lastStepIndex }),
         ...(dto.tourVersion !== undefined && { tourVersion: dto.tourVersion }),
-        ...(isCompleted && { completedAt: now }),
-        ...(isSkipped && { skippedAt: now }),
+        ...(isCompleted && { completedAt: now, skippedAt: null }),
+        ...(isSkipped && { skippedAt: now, completedAt: null }),
+        ...(dto.status === OnboardingTourStatus.IN_PROGRESS && { completedAt: null, skippedAt: null }),
       },
     });
 

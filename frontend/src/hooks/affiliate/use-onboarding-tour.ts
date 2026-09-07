@@ -7,7 +7,11 @@ import {
   ONBOARDING_TOURS,
   OnboardingTourId,
 } from "@/constants/onboarding-tours";
-import { onboardingService } from "@/services/onboarding-service";
+import {
+  onboardingService,
+  type OnboardingPreferencesResponse,
+  type UpdateTourProgressPayload,
+} from "@/services/onboarding-service";
 
 export const ONBOARDING_QUERY_KEY = ["onboarding"];
 
@@ -25,48 +29,42 @@ export function useUpdateOnboardingPreferences() {
   return useMutation({
     mutationFn: (payload: { autoStartEnabled?: boolean; tourButtonEnabled?: boolean }) =>
       onboardingService.updatePreferences(payload),
-    onSuccess: () => {
+    onSuccess: (updated) => {
+      queryClient.setQueryData<OnboardingPreferencesResponse>(
+        ONBOARDING_QUERY_KEY,
+        (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            preferences: {
+              ...old.preferences,
+              autoStartEnabled: updated.autoStartEnabled,
+              tourButtonEnabled: updated.tourButtonEnabled,
+            },
+            updatedAt: updated.updatedAt,
+          };
+        }
+      );
       queryClient.invalidateQueries({ queryKey: ONBOARDING_QUERY_KEY });
     },
   });
 }
 
-function getLocalTourStatus(tourId: string): string | null {
-  if (typeof window === "undefined") return null;
-  try {
-    return localStorage.getItem(`affiliate_tour_${tourId}`);
-  } catch {
-    return null;
-  }
-}
-
-function setLocalTourStatus(tourId: string, status: string | null) {
-  if (typeof window === "undefined") return;
-  try {
-    if (status) {
-      localStorage.setItem(`affiliate_tour_${tourId}`, status);
-    } else {
-      localStorage.removeItem(`affiliate_tour_${tourId}`);
-    }
-  } catch {}
-}
-
 export function useResetAllOnboardingTours() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: () => {
-      if (typeof window !== "undefined") {
-        try {
-          for (const key of Object.keys(localStorage)) {
-            if (key.startsWith("affiliate_tour_")) {
-              localStorage.removeItem(key);
-            }
-          }
-        } catch {}
-      }
-      return onboardingService.resetAllTours();
-    },
+    mutationFn: () => onboardingService.resetAllTours(),
     onSuccess: () => {
+      queryClient.setQueryData<OnboardingPreferencesResponse>(
+        ONBOARDING_QUERY_KEY,
+        (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            tours: {},
+          };
+        }
+      );
       queryClient.invalidateQueries({ queryKey: ONBOARDING_QUERY_KEY });
     },
   });
@@ -75,11 +73,20 @@ export function useResetAllOnboardingTours() {
 export function useResetOnboardingTour() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (tourId: OnboardingTourId) => {
-      setLocalTourStatus(tourId, null);
-      return onboardingService.resetTour(tourId);
-    },
-    onSuccess: () => {
+    mutationFn: (tourId: OnboardingTourId) => onboardingService.resetTour(tourId),
+    onSuccess: (_, tourId) => {
+      queryClient.setQueryData<OnboardingPreferencesResponse>(
+        ONBOARDING_QUERY_KEY,
+        (old) => {
+          if (!old) return old;
+          const nextTours = { ...old.tours };
+          delete nextTours[tourId];
+          return {
+            ...old,
+            tours: nextTours,
+          };
+        }
+      );
       queryClient.invalidateQueries({ queryKey: ONBOARDING_QUERY_KEY });
     },
   });
@@ -96,22 +103,48 @@ export function useOnboardingTour(tourId: OnboardingTourId) {
   };
 
   const currentTourProgress = data?.tours?.[tourId];
-  const localStatus = getLocalTourStatus(tourId);
   const serverStatus = currentTourProgress?.status?.toLowerCase();
 
-  const hasCompleted = serverStatus === "completed" || localStatus === "completed";
-  const hasSkipped = serverStatus === "skipped" || localStatus === "skipped";
+  const hasCompleted = serverStatus === "completed";
+  const hasSkipped = serverStatus === "skipped";
+  const isInProgress = serverStatus === "in_progress";
 
   const { mutateAsync: saveProgress } = useMutation({
-    mutationFn: (variables: {
-      status: "in_progress" | "completed" | "skipped";
-      lastStepIndex?: number;
-      tourVersion?: number;
-    }) => onboardingService.updateTourProgress(tourId, variables),
-    onSuccess: () => {
+    mutationFn: (variables: UpdateTourProgressPayload) =>
+      onboardingService.updateTourProgress(tourId, variables),
+    onSuccess: (saved) => {
+      queryClient.setQueryData<OnboardingPreferencesResponse>(
+        ONBOARDING_QUERY_KEY,
+        (old) => {
+          if (!old) return old;
+          return {
+            ...old,
+            tours: {
+              ...old.tours,
+              [tourId]: {
+                status: saved.status.toLowerCase() as any,
+                lastStepIndex: saved.lastStepIndex ?? null,
+                tourVersion: saved.tourVersion ?? 1,
+                completedAt: saved.completedAt,
+                skippedAt: saved.skippedAt,
+                updatedAt: saved.updatedAt,
+              },
+            },
+          };
+        }
+      );
       queryClient.invalidateQueries({ queryKey: ONBOARDING_QUERY_KEY });
     },
   });
+
+  useEffect(() => {
+    return () => {
+      if (activeDriverRef.current) {
+        activeDriverRef.current.destroy();
+        activeDriverRef.current = null;
+      }
+    };
+  }, []);
 
   const startTour = useCallback(async () => {
     if (typeof window === "undefined") return false;
@@ -119,7 +152,7 @@ export function useOnboardingTour(tourId: OnboardingTourId) {
     const tourDef = ONBOARDING_TOURS[tourId];
     if (!tourDef || !tourDef.steps || tourDef.steps.length === 0) return false;
 
-    // Resolve active steps present and visible in the DOM
+    // Resolver elementos presentes e visíveis no DOM
     const availableSteps: DriveStep[] = [];
     for (const step of tourDef.steps) {
       const allMatching = Array.from(document.querySelectorAll(step.selector));
@@ -148,14 +181,25 @@ export function useOnboardingTour(tourId: OnboardingTourId) {
     }
 
     if (availableSteps.length === 0) {
-      console.warn(`[OnboardingTour] Nenhum elemento visível encontrado no DOM para o tour "${tourId}".`);
       return false;
+    }
+
+    // Registra início do tour na API caso ainda esteja pendente
+    if (!hasCompleted && !isInProgress) {
+      saveProgress({
+        status: "in_progress",
+        lastStepIndex: 0,
+        tourVersion: tourDef.version,
+      }).catch((err) => {
+        console.warn("[OnboardingTour] Aviso ao marcar início do tour na API:", err);
+      });
     }
 
     activeDriverRef.current?.destroy();
 
     let lastActiveIndex = 0;
     let tourFinished = false;
+    const wasAlreadyCompleted = hasCompleted;
 
     const d = driver({
       steps: availableSteps,
@@ -183,40 +227,52 @@ export function useOnboardingTour(tourId: OnboardingTourId) {
           }
         } catch {}
       },
-      onPopoverRender: (popover) => {
-        const idx = d.getActiveIndex();
-        const isLast = idx !== undefined && idx >= availableSteps.length - 1;
-        if (isLast) {
-          const doneBtn = popover.wrapper.querySelector(".driver-popover-next-btn");
-          if (doneBtn) {
-            doneBtn.addEventListener(
-              "click",
-              () => {
-                tourFinished = true;
-                setLocalTourStatus(tourId, "completed");
-              },
-              { once: true }
-            );
-          }
+      onDoneClick: () => {
+        tourFinished = true;
+        saveProgress({
+          status: "completed",
+          lastStepIndex: availableSteps.length - 1,
+          tourVersion: tourDef.version,
+        }).catch((err) => {
+          console.error("[OnboardingTour] Falha ao persistir conclusão na API:", err);
+        });
+        d.destroy();
+      },
+      onNextClick: () => {
+        if (d.isLastStep()) {
+          tourFinished = true;
+          saveProgress({
+            status: "completed",
+            lastStepIndex: availableSteps.length - 1,
+            tourVersion: tourDef.version,
+          }).catch((err) => {
+            console.error("[OnboardingTour] Falha ao persistir conclusão na API:", err);
+          });
+          d.destroy();
+        } else {
+          d.moveNext();
         }
       },
       onCloseClick: () => {
+        tourFinished = false;
         d.destroy();
       },
       onDestroyed: () => {
-        const isLastStep = lastActiveIndex >= availableSteps.length - 1;
-        const finalStatus = isLastStep || tourFinished ? "completed" : "skipped";
+        if (!tourFinished) {
+          // Se já estava concluído previamente, fechar a revisão não deve marcar como ignorado
+          if (!wasAlreadyCompleted) {
+            const isLastStep = lastActiveIndex >= availableSteps.length - 1;
+            const finalStatus = isLastStep ? "completed" : "skipped";
 
-        setLocalTourStatus(tourId, finalStatus);
-
-        saveProgress({
-          status: finalStatus,
-          lastStepIndex: lastActiveIndex,
-          tourVersion: tourDef.version,
-        }).catch((err) => {
-          console.warn("[OnboardingTour] Não foi possível sincronizar com o servidor:", err);
-        });
-
+            saveProgress({
+              status: finalStatus,
+              lastStepIndex: lastActiveIndex,
+              tourVersion: tourDef.version,
+            }).catch((err) => {
+              console.error("[OnboardingTour] Falha ao persistir status do tour na API:", err);
+            });
+          }
+        }
         activeDriverRef.current = null;
       },
     });
@@ -224,12 +280,13 @@ export function useOnboardingTour(tourId: OnboardingTourId) {
     activeDriverRef.current = d;
     d.drive(0);
     return true;
-  }, [saveProgress, tourId]);
+  }, [hasCompleted, isInProgress, saveProgress, tourId]);
 
   return {
     startTour,
     hasCompleted,
     hasSkipped,
+    isInProgress,
     autoStartEnabled: preferences.autoStartEnabled,
     tourButtonEnabled: preferences.tourButtonEnabled,
     isLoading,
@@ -256,8 +313,10 @@ export function useAutoOnboardingTour(tourId: OnboardingTourId, enabled = true) 
     let isMounted = true;
     const timer = window.setTimeout(async () => {
       if (!isMounted || attemptedRef.current) return;
-      attemptedRef.current = true;
-      await startTour();
+      const started = await startTour();
+      if (started) {
+        attemptedRef.current = true;
+      }
     }, 900);
 
     return () => {
