@@ -5,3 +5,4 @@ export * from "./auth";
 export * from "./templates";
 export * from "./page-wrapper";
 export { PageWrapper } from "./page-wrapper";
+export * from "./shared/onboarding-tour-button";

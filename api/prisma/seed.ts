@@ -20,7 +20,7 @@ async function main() {
 
   const email = process.env.FIRST_ADMIN_EMAIL || "admin@mindware.ao";
   const password = process.env.FIRST_ADMIN_PASSWORD || "admin-password";
-  await prisma.user.upsert({
+  const adminUser = await prisma.user.upsert({
     where: { email },
     update: {},
     create: {
@@ -30,6 +30,30 @@ async function main() {
       isActive: true,
     },
   });
+
+  const adminAffiliate = await prisma.affiliate.findUnique({ where: { userId: adminUser.id } });
+  if (!adminAffiliate) {
+    await prisma.affiliate.create({
+      data: {
+        userId: adminUser.id,
+        nomeCompleto: "Administrador Mindware",
+        email: adminUser.email,
+        codigoAfiliado: "MWD-AO-0001",
+        status: "ACTIVE",
+        partnerType: "AFFILIATE",
+        partnerLevel: "NONE",
+        certificationStatus: "APPROVED",
+        wallet: {
+          create: {
+            saldoDisponivel: 0,
+            saldoPendente: 0,
+            totalGanho: 0,
+            totalLevantado: 0,
+          },
+        },
+      },
+    });
+  }
 
   // Clean up duplicates of services and re-route references
   const allServices = await prisma.service.findMany({ orderBy: { id: "asc" } });

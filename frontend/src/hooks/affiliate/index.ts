@@ -6,3 +6,5 @@ export * from "./use-dashboard";
 export * from "./use-profile";
 export * from "./use-notifications";
 export * from "./use-my-clients";
+export * from "./use-onboarding-tour";
+export * from "./use-commission-simulator";

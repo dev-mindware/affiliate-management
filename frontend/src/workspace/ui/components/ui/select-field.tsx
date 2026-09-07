@@ -31,7 +31,10 @@ export function SelectField({
   return (
     <div className={`flex flex-col ${className ?? ""}`}>
       <label className="text-sm font-medium mb-1">{label}</label>
-      <Select value={String(value)} onValueChange={onValueChange}>
+      <Select
+        value={value !== undefined && value !== "" ? String(value) : undefined}
+        onValueChange={onValueChange}
+      >
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

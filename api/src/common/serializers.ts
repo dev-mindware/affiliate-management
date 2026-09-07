@@ -5,6 +5,7 @@ export function page<T>(items: T[], total: number, pageNumber: number, limit: nu
 }
 
 export function affiliateDto(a: any) {
+  if (!a) return null;
   return {
     id: a.id,
     user_id: a.userId,

@@ -67,12 +67,12 @@ export default function ClientesPage() {
       header: "Plano",
       render: (_, item) => {
         const plan = item.current_plan;
-        let color = "bg-primary/10 text-primary border-primary/20";
-        if (plan === "PRO") {
-          color = "bg-purple-500/10 text-purple-600 border-purple-200 dark:text-purple-400 dark:border-purple-900/50";
-        } else if (plan === "SMART") {
-          color = "bg-blue-500/10 text-blue-600 border-blue-200 dark:text-blue-400 dark:border-blue-900/50";
-        }
+        const color =
+          plan === "PRO"
+            ? "bg-primary/10 text-primary border-primary/20"
+            : plan === "SMART"
+            ? "bg-muted text-foreground border-border"
+            : "bg-muted text-muted-foreground border-border";
         return (
           <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold border ${color}`}>
             {plan}
@@ -85,31 +85,31 @@ export default function ClientesPage() {
       header: "Estado",
       render: (_, item) => {
         const status = item.subscription_status;
-        let color = "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200";
+        let color = "bg-muted text-muted-foreground border-border";
         let label = status;
 
         if (status === "NEW") {
-          color = "bg-emerald-500/15 text-emerald-600 border border-emerald-500/20 dark:text-emerald-400";
+          color = "bg-primary/10 text-primary border border-primary/20";
           label = "Nova Subscrição";
         } else if (status === "RENEWED") {
-          color = "bg-blue-500/15 text-blue-600 border border-blue-500/20 dark:text-blue-400";
+          color = "bg-muted text-foreground border border-border";
           label = "Renovada";
         } else if (status === "EXPIRED") {
-          color = "bg-amber-500/15 text-amber-600 border border-amber-500/20 dark:text-amber-400";
+          color = "bg-muted text-muted-foreground border border-border";
           label = "Expirada";
         } else if (status === "CANCELLED") {
-          color = "bg-destructive/15 text-destructive border border-destructive/20";
+          color = "bg-destructive/10 text-destructive border border-destructive/20";
           label = "Cancelada";
         } else if (status === "TRIALING") {
-          color = "bg-violet-500/15 text-violet-600 border border-violet-500/20 dark:text-violet-400";
-          label = "Período de Teste (Trial)";
+          color = "bg-muted text-muted-foreground border border-border";
+          label = "Período de Teste";
         } else if (status === "PENDING") {
-          color = "bg-yellow-500/15 text-yellow-600 border border-yellow-500/20 dark:text-yellow-400";
+          color = "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20";
           label = "Pendente";
         }
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ${color}`}>
+          <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold border ${color}`}>
             {label}
           </span>
         );
@@ -126,14 +126,16 @@ export default function ClientesPage() {
   }
 
   return (
-    <PageWrapper subRoute="Meus Clientes">
+    <PageWrapper subRoute="Meus Clientes" tourId="clientes">
       <div className="space-y-6">
-        <TitleList
-          title="Meus Clientes Indicados"
-          suTitle="Visualize as empresas registradas na plataforma principal que usaram o seu código de afiliado."
-        />
+        <div data-tour="clients-header">
+          <TitleList
+            title="Meus Clientes Indicados"
+            suTitle="Visualize as empresas registradas na plataforma principal que usaram o seu código de afiliado."
+          />
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-card p-4 rounded-xl border">
+        <div data-tour="clients-search" className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-card p-4 rounded-xl border">
           <div className="relative">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
             <input
@@ -184,6 +186,16 @@ export default function ClientesPage() {
           </div>
         </div>
 
+        {/* Anti-churn advice callout */}
+        <div data-tour="anti-churn-badge" className="rounded-xl border bg-card p-3.5 flex items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2">
+            <Icon name="ShieldAlert" className="size-4 text-primary shrink-0" />
+            <span className="text-muted-foreground">
+              <strong className="text-foreground">Prevenção Anti-Churn:</strong> Dispõe de 7 dias de carência para auxiliar clientes com pagamento pendente a renovar a licença e manter a sua comissão recorrente.
+            </span>
+          </div>
+        </div>
+
         {isLoading ? (
           <ListSkeleton />
         ) : (
@@ -197,12 +209,10 @@ export default function ClientesPage() {
               ) : (
                 data.data.map((item) => {
                   const plan = item.current_plan;
-                  let planColor = "bg-primary/10 text-primary border-primary/20";
-                  if (plan === "PRO") {
-                    planColor = "bg-purple-500/10 text-purple-600 border-purple-200 dark:text-purple-400";
-                  } else if (plan === "SMART") {
-                    planColor = "bg-blue-500/10 text-blue-600 border-blue-200 dark:text-blue-400";
-                  }
+                  const planColor =
+                    plan === "PRO"
+                      ? "bg-primary/10 text-primary border-primary/20"
+                      : "bg-muted text-foreground border-border";
 
                   return (
                     <MobileCard
@@ -236,7 +246,7 @@ export default function ClientesPage() {
             </div>
 
             {/* Desktop View: Generic Table */}
-            <div className="hidden sm:block">
+            <div data-tour="clients-table" className="hidden sm:block">
               <GenericTable<ReferredClient>
                 data={data?.data || []}
                 columns={columns}
@@ -247,7 +257,7 @@ export default function ClientesPage() {
             </div>
 
             {data && data.totalPages > 1 && (
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t text-xs sm:text-sm">
+              <div data-tour="clients-support-note" className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t text-xs sm:text-sm">
                 <span className="text-muted-foreground">
                   Página {data.page} de {data.totalPages} ({data.total} clientes no total)
                 </span>

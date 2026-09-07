@@ -71,8 +71,8 @@ export function DefSetup({ disabledTabs = [], extraTabs = [] }: DefSetupProps) {
         isDesktop: boolean = true,
     ) => {
         const baseClasses = isDesktop
-            ? "flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-all rounded-lg hover:bg-accent/50 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:shadow-none shadow-none border-none justify-start"
-            : "data-[state=active]:bg-muted data-[state=active]:after:bg-primary relative overflow-hidden rounded-none border py-2 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 first:rounded-s last:rounded-e";
+            ? "flex w-full items-center gap-3 px-3 py-2 text-sm font-medium transition-all rounded-none hover:bg-accent/50 data-[state=active]:bg-primary/10 data-[state=active]:text-primary data-[state=active]:shadow-none shadow-none border-none justify-start"
+            : "data-[state=active]:bg-muted data-[state=active]:after:bg-primary relative overflow-hidden rounded-none border py-2 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5";
 
         return (
             <TabsTrigger key={tab.id} value={tab.id} className={baseClasses}>
@@ -104,7 +104,7 @@ export function DefSetup({ disabledTabs = [], extraTabs = [] }: DefSetupProps) {
           className="flex flex-row gap-8 w-full items-start"
           onValueChange={handleTabChange}
         >
-          <div className="w-64 shrink-0 bg-muted/30 rounded-xl border p-2">
+          <div className="w-64 shrink-0 bg-muted/30 rounded-none border p-2">
             <TabsList className="flex flex-col gap-1 bg-transparent rounded-none w-full h-auto">
               <div className="px-2 py-3 space-y-6">
                 {generalTabs.length > 0 && (
@@ -134,7 +134,7 @@ export function DefSetup({ disabledTabs = [], extraTabs = [] }: DefSetupProps) {
             </TabsList>
           </div>
 
-          <div className="flex-1 bg-card rounded-xl border shadow-sm min-h-[500px]">
+          <div className="flex-1 bg-card rounded-none border shadow-sm min-h-[500px]">
             {enabledTabs.map((tab) => (
               <TabsContent 
                 key={tab.id} 
@@ -159,12 +159,12 @@ export function DefSetup({ disabledTabs = [], extraTabs = [] }: DefSetupProps) {
           onValueChange={handleTabChange}
         >
           <div className="relative -mx-4 px-4 sm:mx-0 sm:px-0">
-            <TabsList className="h-auto w-full min-w-full inline-flex p-0 bg-muted/30 rounded-lg overflow-x-auto overflow-y-hidden scrollbar-hide">
+            <TabsList className="h-auto w-full min-w-full inline-flex p-0 bg-muted/30 rounded-none overflow-x-auto overflow-y-hidden scrollbar-hide">
               {enabledTabs.map((tab) => renderTabTrigger(tab, false))}
             </TabsList>
           </div>
 
-          <div className="mt-6 bg-card rounded-xl border p-6 shadow-sm">
+          <div className="mt-6 bg-card rounded-none border p-6 shadow-sm">
             {enabledTabs.map((tab) => (
               <TabsContent
                 key={tab.id}

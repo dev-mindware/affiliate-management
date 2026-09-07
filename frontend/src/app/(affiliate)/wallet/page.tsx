@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export default function WalletPage() {
   return (
-    <PageWrapper subRoute="Carteira">
+    <PageWrapper subRoute="Carteira" tourId="wallet">
       <div className="space-y-6">
         <TitleList
           title="Carteira"

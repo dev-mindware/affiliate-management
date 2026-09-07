@@ -19,6 +19,7 @@ import { WithdrawalsModule } from "./withdrawals/withdrawals.module";
 import { NotificationsModule } from "./notifications/notifications.module";
 import { MailModule } from "./mail/mail.module";
 import { StorageModule } from "./storage/storage.module";
+import { OnboardingModule } from "./onboarding/onboarding.module";
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { StorageModule } from "./storage/storage.module";
     NotificationsModule,
     MailModule,
     StorageModule,
+    OnboardingModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

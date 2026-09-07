@@ -11,7 +11,7 @@ export default function DashboardPage() {
     .replace(/^['"]|['"]$/g, "");
 
   return (
-    <PageWrapper subRoute="Dashboard">
+    <PageWrapper subRoute="Dashboard" tourId="dashboard">
       <Suspense fallback={<div>Carregando dashboard...</div>}>
         <DashboardPageContent mindgestAppUrl={mindgestAppUrl} />
       </Suspense>

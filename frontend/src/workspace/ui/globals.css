@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "driver.js/dist/driver.css";
 
 @source "./components/**/*.{ts,tsx}";
 
@@ -472,3 +473,154 @@ body {
 .animate-pulse-twice {
   animation: pulse-twice 1s ease-in-out 2;
 }
+
+/* Onboarding tours - Affiliate & Mindgest style */
+.driver-popover.affiliate-tour-popover {
+  box-sizing: border-box;
+  max-width: min(380px, calc(100vw - 28px));
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+  border-radius: 16px;
+  background: var(--popover);
+  color: var(--popover-foreground);
+  box-shadow:
+    0 16px 40px -4px rgba(28, 25, 23, 0.20),
+    0 4px 16px -2px rgba(28, 25, 23, 0.08),
+    0 0 0 1px color-mix(in srgb, var(--primary) 15%, transparent);
+  padding: 18px 20px;
+  font-family: inherit;
+  z-index: 10000000;
+}
+
+/* Arrow styling matching popover background and dark/light modes */
+.driver-popover.affiliate-tour-popover .driver-popover-arrow {
+  border-width: 6px;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-arrow-side-left {
+  border-left-color: var(--popover) !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-arrow-side-right {
+  border-right-color: var(--popover) !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-arrow-side-top {
+  border-top-color: var(--popover) !important;
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-arrow-side-bottom {
+  border-bottom-color: var(--popover) !important;
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-title {
+  color: var(--foreground);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  padding-right: 20px;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-description {
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-progress-text {
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-navigation-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.driver-popover.affiliate-tour-popover button {
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 6px 14px;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-next-btn {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-next-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-prev-btn {
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-prev-btn:hover {
+  background: var(--muted);
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-close-btn {
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.driver-popover.affiliate-tour-popover .driver-popover-close-btn:hover {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driver-overlay,
+  .driver-popover {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

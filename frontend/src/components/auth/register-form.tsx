@@ -48,6 +48,14 @@ export function RegisterForm() {
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     mode: "onChange",
+    defaultValues: {
+      nome_completo: "",
+      email: "",
+      password: "",
+      telefone: "",
+      banco: "",
+      conta_bancaria: "",
+    },
   });
 
   async function handleRegister(data: RegisterFormData) {
@@ -123,7 +131,7 @@ export function RegisterForm() {
               render={({ field }) => (
                 <SelectField
                   label="Banco"
-                  value={field.value}
+                  value={field.value ?? ""}
                   onValueChange={(val) => {
                     field.onChange(val);
                     const bank = ANGOLAN_BANKS.find((b) => b.name === val);
@@ -152,7 +160,7 @@ export function RegisterForm() {
                 type="text"
                 label="IBAN"
                 placeholder="AO06.0040.0000.5660.0824.1017.4"
-                value={field.value}
+                value={field.value ?? ""}
                 onChange={(e) => field.onChange(formatIban(e.target.value))}
                 error={errors.conta_bancaria?.message}
               />

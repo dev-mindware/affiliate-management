@@ -129,8 +129,111 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
 
   return (
     <div className="space-y-6">
+      {/* ── Link de Afiliado & Código Exclusivo ── */}
+      <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
+                <Icon name="Link" className="size-4" />
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-foreground">
+                Seu Link de Afiliado & Código Exclusivo
+              </h3>
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Partilhe este link com novos clientes do Mindgest para vincular comissões perpétuas.
+            </p>
+          </div>
+
+          {profile?.codigo_afiliado && (
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(
+                  `Olá! Registe a sua empresa no software de faturação certificado Mindgest através deste link: ${referralLink}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border bg-background hover:bg-muted text-foreground px-3.5 py-2 text-xs font-semibold transition-all shadow-2xs shrink-0"
+              >
+                <Icon name="Share2" className="size-3.5 text-muted-foreground" />
+                <span>Partilhar no WhatsApp</span>
+              </a>
+            </div>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {/* Card Código */}
+          <div data-tour="referral-code" className="rounded-xl border bg-background/80 p-3.5 flex items-center justify-between gap-3 shadow-2xs">
+            <div className="min-w-0 space-y-0.5">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                Código de Afiliado
+              </span>
+              <p className="text-base font-mono font-bold text-primary truncate select-all">
+                {profile?.codigo_afiliado || "A carregar..."}
+              </p>
+            </div>
+            <button
+              type="button"
+              disabled={!profile?.codigo_afiliado}
+              onClick={() => {
+                if (profile?.codigo_afiliado) {
+                  navigator.clipboard.writeText(profile.codigo_afiliado);
+                  toast.success("Código de afiliado copiado!");
+                }
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border bg-muted/60 hover:bg-muted text-xs font-semibold text-foreground transition-colors shrink-0 disabled:opacity-50"
+            >
+              <Icon name="Copy" className="size-3.5" />
+              <span>Copiar</span>
+            </button>
+          </div>
+
+          {/* Card Link */}
+          <div data-tour="referral-link" className="md:col-span-2 rounded-xl border bg-background/80 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xs">
+            <div className="min-w-0 space-y-0.5 flex-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                Link Oficial de Indicação
+              </span>
+              <p className="text-xs font-mono text-foreground/80 truncate select-all">
+                {referralLink || `${mindgestBase}/auth/register?ref=...`}
+              </p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                disabled={!referralLink}
+                onClick={() => {
+                  if (referralLink) {
+                    navigator.clipboard.writeText(referralLink);
+                    toast.success("Link de convite copiado!");
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-primary text-primary-foreground px-3.5 py-1.5 text-xs font-semibold hover:bg-primary/90 transition-colors shadow-2xs disabled:opacity-50"
+              >
+                <Icon name="Copy" className="size-3.5" />
+                <span>Copiar Link</span>
+              </button>
+              {referralLink && (
+                <a
+                  href={referralLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1.5 rounded-lg border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+                  title="Testar link no navegador"
+                >
+                  <Icon name="ExternalLink" className="size-3.5" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Mindgest Partners Program Career Level ── */}
       {program && (
-        <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
+        <section data-tour="partner-program" className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-3">
               <div className="flex flex-wrap items-center gap-2">
@@ -147,46 +250,10 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
                     ? ` - faltam ${program.clients_to_next_level} para ${levelLabels[program.next_level]}`
                     : " - nível máximo alcançado"}
                 </p>
-                {profile?.codigo_afiliado && (
-                  <div className="mt-3 flex flex-col gap-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase">Código de Indicação:</span>
-                      <code className="px-2.5 py-1 bg-muted rounded border text-xs font-mono font-bold text-primary select-all">
-                        {profile.codigo_afiliado}
-                      </code>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          navigator.clipboard.writeText(profile.codigo_afiliado);
-                          toast.success("Código de afiliado copiado com sucesso!");
-                        }}
-                        className="text-xs text-primary hover:underline font-semibold"
-                      >
-                        Copiar
-                      </button>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase">Link de Convite:</span>
-                      <code className="max-w-full truncate px-2.5 py-1 bg-muted rounded border text-xs font-mono text-muted-foreground select-all">
-                        {referralLink}
-                      </code>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          navigator.clipboard.writeText(referralLink);
-                          toast.success("Link de convite copiado! Partilhe com os seus clientes.");
-                        }}
-                        className="text-xs text-primary hover:underline font-semibold"
-                      >
-                        Copiar link
-                      </button>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
 
-            <div className="w-full lg:max-w-sm">
+            <div data-tour="level-progress" className="w-full lg:max-w-sm">
               <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
                 <span>Progresso do nível</span>
                 <span>{program.recurring_bonus_percent}% bónus recorrente</span>
@@ -198,10 +265,10 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
       )}
 
       {/* Materials Promo Callout Banner */}
-      <section className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-background p-4 sm:p-5 shadow-xs">
+      <section data-tour="materials-banner" className="rounded-2xl border bg-card p-4 sm:p-5 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-start sm:items-center gap-3.5">
-            <div className="p-2.5 rounded-xl bg-primary text-primary-foreground shrink-0 shadow-sm">
+            <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
               <Icon name="FolderDown" className="size-5" />
             </div>
             <div>
@@ -209,9 +276,6 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
                 <h4 className="text-sm sm:text-base font-bold text-foreground">
                   Materiais de Apoio & Divulgação
                 </h4>
-                <Badge variant="default" className="text-[10px] px-1.5 py-0 h-4">
-                  Novo
-                </Badge>
               </div>
               <p className="text-xs text-muted-foreground mt-0.5">
                 Banners oficiais do Mindgest e roteiros de vendas para divulgar e aumentar as suas comissões.
@@ -222,7 +286,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
             <a
               href="/mindgest-materiais-parceiros.zip"
               download
-              className="inline-flex items-center gap-1.5 rounded-lg border bg-background/80 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors shadow-2xs"
+              className="inline-flex items-center gap-1.5 rounded-lg border bg-background px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition-colors shadow-2xs"
             >
               <Icon name="Download" className="size-3.5" />
               <span>Baixar ZIP (2.8 MB)</span>
@@ -241,7 +305,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
       {/* Metric Cards Grid - 2x2 on Mobile */}
       <section className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {/* Card 1: Saldo Disponível */}
-        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+        <div data-tour="kpi-available" className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
               Saldo Disponível
@@ -256,15 +320,15 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
             </h4>
           </div>
           <div className="flex items-center">
-            <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-              <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+              <span className="size-1.5 rounded-full bg-primary" />
               Pronto a retirar
             </span>
           </div>
         </div>
 
         {/* Card 2: Saldo Pendente */}
-        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+        <div data-tour="kpi-pending" className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
               Saldo Pendente
@@ -287,7 +351,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
         </div>
 
         {/* Card 3: Total Ganho */}
-        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+        <div data-tour="kpi-total" className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
               Total Ganho
@@ -309,7 +373,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
         </div>
 
         {/* Card 4: Clientes Ativos */}
-        <div className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+        <div data-tour="kpi-clients" className="rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
               Clientes Ativos
@@ -332,7 +396,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
 
         {/* Card 5: Sua Posição */}
         {kpis?.rank_info && (
-          <div className="col-span-2 sm:col-span-1 rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
+          <div data-tour="kpi-rank" className="col-span-2 sm:col-span-1 rounded-2xl border bg-card p-3.5 sm:p-5 shadow-xs flex flex-col justify-between hover:border-primary/30 transition-all">
             <div className="flex items-center justify-between gap-2">
               <span className="text-[11px] sm:text-xs font-semibold text-muted-foreground uppercase tracking-wide truncate">
                 Sua Posição
@@ -358,15 +422,11 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
       </section>
 
       {/* Chart Section */}
-      <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
+      <section data-tour="commission-chart" className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
         <div className="mb-4 sm:mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <h3 className="text-base sm:text-xl font-bold text-foreground">Evolução das Comissões</h3>
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                <Icon name="TrendingUp" className="size-3" />
-                Desempenho
-              </span>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground">
               {chartPeriod === "monthly" ? "Total de comissões por dia (mês atual)" : "Total de comissões por mês (ano atual)"}
@@ -444,11 +504,11 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
       </section>
 
       {/* Recent Withdrawals Section */}
-      <section className="rounded-2xl border bg-card p-4 sm:p-6 shadow-xs">
-        <div className="mb-4 sm:mb-6 flex items-center justify-between">
+      <section data-tour="recent-withdrawals" className="space-y-3">
+        <div className="flex items-center justify-between">
           <div className="space-y-0.5">
             <h3 className="text-base sm:text-xl font-bold text-foreground">Levantamentos Recentes</h3>
-            <p className="text-xs sm:text-sm text-muted-foreground">Os seus últimos pedidos de levantamento</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Os seus últimos 5 pedidos de levantamento</p>
           </div>
           <Link
             href="/wallet"
@@ -458,14 +518,14 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
           </Link>
         </div>
 
-        {/* Mobile View: Clean Card Activity List */}
-        <div className="block sm:hidden space-y-2.5">
+        {/* Mobile View: Clean Card Activity List (max 5) */}
+        <div className="block sm:hidden space-y-2.5 w-full">
           {isWithdrawalsLoading ? (
             Array.from({ length: 3 }).map((_, index) => (
               <Skeleton key={index} className="h-16 w-full rounded-xl" />
             ))
           ) : !withdrawals || withdrawals.length === 0 ? (
-            <div className="text-center py-8 px-4 text-muted-foreground text-xs">
+            <div className="text-center py-8 px-4 rounded-xl border bg-card text-muted-foreground text-xs">
               <Icon name="History" className="size-8 mx-auto mb-2 opacity-50" />
               Ainda não solicitou nenhum levantamento.
             </div>
@@ -473,7 +533,7 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
             withdrawals.slice(0, 5).map((item: any) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-3 rounded-xl border bg-muted/30 hover:bg-muted/60 transition-colors"
+                className="flex items-center justify-between p-3 rounded-xl border bg-card hover:bg-muted/40 transition-colors"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="size-9 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
@@ -507,10 +567,10 @@ export function DashboardContent({ mindgestAppUrl }: DashboardContentProps) {
           )}
         </div>
 
-        {/* Desktop View: Table View */}
-        <div className="hidden sm:block">
+        {/* Desktop View: Full Width Table (max 5) */}
+        <div className="hidden sm:block w-full">
           <GenericTable
-            data={withdrawals || []}
+            data={(withdrawals || []).slice(0, 5)}
             columns={withdrawalColumns}
             isLoading={isWithdrawalsLoading}
             emptyTitle="Sem levantamentos"

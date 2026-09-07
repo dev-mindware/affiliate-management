@@ -124,8 +124,10 @@ model User {
   role         UserRole       @default(AFFILIATE)
   isActive     Boolean        @default(true) @map("is_active")
   createdAt    DateTime       @default(now()) @map("created_at")
-  affiliate    Affiliate?
-  notifications Notification[]
+  affiliate             Affiliate?
+  notifications         Notification[]
+  onboardingPreferences OnboardingPreferences?
+  onboardingProgress    OnboardingTourProgress[]
 
   @@map("users")
 }
@@ -333,3 +335,42 @@ model Notification {
   @@index([userId, readAt])
   @@index([createdAt])
 }
+
+enum OnboardingTourStatus {
+  IN_PROGRESS @map("in_progress")
+  COMPLETED   @map("completed")
+  SKIPPED     @map("skipped")
+
+  @@map("onboarding_tour_status_enum")
+}
+
+model OnboardingPreferences {
+  id                String   @id @default(uuid()) @db.Uuid
+  userId            String   @unique @map("user_id") @db.Uuid
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  autoStartEnabled  Boolean  @default(true) @map("auto_start_enabled")
+  tourButtonEnabled Boolean  @default(true) @map("tour_button_enabled")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  @@map("onboarding_preferences")
+}
+
+model OnboardingTourProgress {
+  id            String               @id @default(uuid()) @db.Uuid
+  userId        String               @map("user_id") @db.Uuid
+  user          User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tourId        String               @map("tour_id")
+  status        OnboardingTourStatus @default(IN_PROGRESS)
+  lastStepIndex Int?                 @map("last_step_index")
+  tourVersion   Int                  @default(1) @map("tour_version")
+  startedAt     DateTime             @default(now()) @map("started_at")
+  completedAt   DateTime?            @map("completed_at")
+  skippedAt     DateTime?            @map("skipped_at")
+  updatedAt     DateTime             @updatedAt @map("updated_at")
+
+  @@unique([userId, tourId])
+  @@index([userId])
+  @@map("onboarding_tour_progress")
+}
+

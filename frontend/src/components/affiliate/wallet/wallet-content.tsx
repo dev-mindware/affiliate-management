@@ -1,6 +1,6 @@
 "use client";
 
-import { useWallet, useWithdrawalRequests, useWalletChart } from "@/hooks/affiliate";
+import { useWallet, useWithdrawalRequests, useWalletChart, useProfile } from "@/hooks/affiliate";
 import {
     ChartConfig,
     ChartContainer,
@@ -61,6 +61,7 @@ function WithdrawalActivityItem({ item }: { item: any }) {
 
 export function WalletContent() {
     const { data: wallet, isLoading: isLoadingWallet } = useWallet();
+    const { data: profile } = useProfile();
     const { data: withdrawals, isLoading: isLoadingWithdrawals } = useWithdrawalRequests();
     const { data: chartData, isLoading: isLoadingChart } = useWalletChart();
     const { openModal } = useModalStore();
@@ -102,22 +103,18 @@ export function WalletContent() {
             <div className="block sm:hidden space-y-4">
 
                 {/* Hero Balance Card */}
-                <div className="relative overflow-hidden rounded-3xl bg-primary p-6 text-primary-foreground">
-                    {/* Decorative blobs */}
-                    <div className="absolute -top-8 -right-8 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-                    <div className="absolute -bottom-10 -left-6 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
-
-                    <div className="relative">
-                        <div className="flex items-center gap-2 mb-1">
-                            <Icon name="Wallet" className="h-4 w-4 opacity-80" />
-                            <p className="text-xs font-medium opacity-80 uppercase tracking-wider">Saldo Disponível</p>
+                <div className="rounded-2xl border bg-card p-5 text-foreground space-y-3">
+                    <div>
+                        <div className="flex items-center gap-2 mb-1 text-muted-foreground">
+                            <Icon name="Wallet" className="size-4 text-primary" />
+                            <p className="text-xs font-semibold uppercase tracking-wider">Saldo Disponível</p>
                         </div>
-                        <p className="text-4xl font-extrabold tracking-tight mb-1">
+                        <p className="text-3xl font-extrabold tracking-tight">
                             {formatCurrency(wallet?.saldo_disponivel ?? 0)}
                         </p>
-                        <div className="flex items-center gap-2 mt-3 pt-3 border-t border-white/20">
-                            <Icon name="Clock" className="h-3.5 w-3.5 opacity-70" />
-                            <span className="text-xs opacity-70">
+                        <div className="flex items-center gap-2 mt-2 pt-2 border-t text-muted-foreground">
+                            <Icon name="Clock" className="size-3.5" />
+                            <span className="text-xs">
                                 Pendente: {formatCurrency(wallet?.saldo_pendente ?? 0)}
                             </span>
                         </div>
@@ -126,7 +123,7 @@ export function WalletContent() {
                     <Button
                         onClick={() => openModal("request-withdrawal")}
                         disabled={!canWithdraw}
-                        className="mt-5 w-full bg-white text-primary font-bold hover:bg-white/90 rounded-xl"
+                        className="w-full"
                         size="sm"
                     >
                         <Icon name="ArrowUpRight" className="h-4 w-4 mr-2" />
@@ -231,7 +228,7 @@ export function WalletContent() {
                 {/* Metric Cards Row */}
                 <div className="grid grid-cols-3 gap-4">
                     {/* Available Balance */}
-                    <div className="rounded-2xl border bg-card p-5 flex flex-col justify-between">
+                    <div data-tour="wallet-available" className="rounded-2xl border bg-card p-5 flex flex-col justify-between">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Saldo Disponível</span>
                             <div className="h-8 w-8 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -241,6 +238,7 @@ export function WalletContent() {
                         <p className="text-2xl font-extrabold text-foreground">{formatCurrency(wallet?.saldo_disponivel ?? 0)}</p>
                         <p className="text-xs text-muted-foreground mt-1 mb-4">Valor pronto para saque.</p>
                         <Button
+                            data-tour="btn-request-withdrawal"
                             className="w-full"
                             size="sm"
                             onClick={() => openModal("request-withdrawal")}
@@ -248,31 +246,61 @@ export function WalletContent() {
                         >
                             Solicitar Saque
                         </Button>
-                        <p className="text-[10px] text-muted-foreground mt-2 text-center">Mínimo: {formatCurrency(WITHDRAWAL_MINIMUM)}</p>
+                        <p data-tour="wallet-min-threshold" className="text-[10px] text-muted-foreground mt-2 text-center font-medium">
+                            Limiar Mínimo Oficial: {formatCurrency(WITHDRAWAL_MINIMUM)}
+                        </p>
                     </div>
 
                     {/* Pending Balance */}
-                    <div className="rounded-2xl border bg-card p-5">
+                    <div data-tour="wallet-pending" className="rounded-2xl border bg-card p-5">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Saldo Pendente</span>
-                            <div className="h-8 w-8 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                                <Icon name="Clock" className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                            <div className="h-8 w-8 rounded-xl bg-muted flex items-center justify-center">
+                                <Icon name="Clock" className="h-4 w-4 text-muted-foreground" />
                             </div>
                         </div>
                         <p className="text-2xl font-extrabold text-foreground">{formatCurrency(wallet?.saldo_pendente ?? 0)}</p>
-                        <p className="text-xs text-muted-foreground mt-1">Comissões em processamento.</p>
+                        <p className="text-xs text-muted-foreground mt-1">Comissões em processamento ou liquidação.</p>
                     </div>
 
                     {/* Total Received */}
                     <div className="rounded-2xl border bg-card p-5">
                         <div className="flex items-center justify-between mb-3">
                             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Total Recebido</span>
-                            <div className="h-8 w-8 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                                <Icon name="CircleCheck" className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                            <div className="h-8 w-8 rounded-xl bg-primary/10 flex items-center justify-center">
+                                <Icon name="CircleCheck" className="h-4 w-4 text-primary" />
                             </div>
                         </div>
                         <p className="text-2xl font-extrabold text-foreground">{formatCurrency(wallet?.total_levantado ?? 0)}</p>
-                        <p className="text-xs text-muted-foreground mt-1">Histórico total de pagamentos.</p>
+                        <p className="text-xs text-muted-foreground mt-1">Histórico total de transferências pagas.</p>
+                    </div>
+                </div>
+
+                {/* Bank Details & Terms Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div data-tour="bank-details-card" className="rounded-2xl border bg-card p-4 sm:p-5 flex items-center justify-between gap-4">
+                        <div className="space-y-1">
+                            <div className="flex items-center gap-2">
+                                <Icon name="Landmark" className="size-4 text-primary" />
+                                <span className="text-xs font-bold text-foreground">Coordenadas Bancárias para Pagamento</span>
+                            </div>
+                            <p className="text-xs text-muted-foreground font-mono">
+                                {[profile?.banco || "Banco não definido", profile?.conta_bancaria || "IBAN não cadastrado"].join(" • ")}
+                            </p>
+                        </div>
+                        <a href="/definitions" className="text-xs font-semibold text-primary hover:underline shrink-0">
+                            Alterar IBAN
+                        </a>
+                    </div>
+
+                    <div data-tour="wallet-terms" className="rounded-2xl border bg-card p-4 sm:p-5 flex items-center gap-3">
+                        <div className="p-2 rounded-xl bg-primary/10 text-primary shrink-0">
+                            <Icon name="ShieldCheck" className="size-4" />
+                        </div>
+                        <div className="text-xs">
+                            <p className="font-bold text-foreground">Sem Taxas Administrativas</p>
+                            <p className="text-muted-foreground text-[11px]">Receba 100% das suas comissões em 24h a 48h úteis diretamente na sua conta.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -315,8 +343,13 @@ export function WalletContent() {
                 </div>
 
                 {/* History Table — Desktop */}
-                <div className="bg-card border rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
-                    <h3 className="text-base font-bold text-foreground">Histórico de Saques</h3>
+                <div data-tour="withdrawals-table" className="bg-card border rounded-2xl p-5 sm:p-6 shadow-xs space-y-4">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-base font-bold text-foreground">Histórico de Saques</h3>
+                        <span data-tour="receipt-info" className="text-xs text-muted-foreground">
+                            Comprovativos oficiais anexados após liquidação
+                        </span>
+                    </div>
                     <GenericTable
                         data={withdrawals || []}
                         columns={columns}

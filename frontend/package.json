@@ -36,6 +36,7 @@
     "clsx": "^2.1.1",
     "cookies-next": "^6.1.0",
     "date-fns": "^4.1.0",
+    "driver.js": "^1.8.0",
     "input-otp": "^1.4.2",
     "jose": "^6.0.12",
     "lucide-react": "^0.511.0",

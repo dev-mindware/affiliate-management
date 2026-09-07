@@ -2,7 +2,7 @@ import { MaterialsContent, PageWrapper, TitleList } from "@/components";
 
 export default function MateriaisPage() {
   return (
-    <PageWrapper subRoute="Materiais de Apoio">
+    <PageWrapper subRoute="Materiais de Apoio" tourId="materiais">
       <div className="space-y-6">
         <TitleList
           title="Materiais de Apoio & Divulgação"
