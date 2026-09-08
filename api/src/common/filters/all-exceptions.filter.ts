@@ -28,6 +28,9 @@ export class AllExceptionsFilter implements ExceptionFilter {
       message = this.extractMessage(resPayload);
       error = exception.name;
     } else if (exception instanceof Prisma.PrismaClientKnownRequestError) {
+      this.logger.error(
+        `Prisma Error [${exception.code}]: ${exception.message} | meta: ${JSON.stringify(exception.meta)}`
+      );
       // Prisma known request errors handling
       switch (exception.code) {
         case "P2002": // Unique constraint violation
