@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, Logger, OnModuleInit, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { AffiliateStatus, Prisma, UserRole } from "@prisma/client";
 import * as bcrypt from "bcryptjs";
@@ -11,12 +11,55 @@ function affiliateCode() {
 }
 
 @Injectable()
-export class AuthService {
+export class AuthService implements OnModuleInit {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     private prisma: PrismaService,
     private jwt: JwtService,
     private mail: MailService,
   ) {}
+
+  async onModuleInit() {
+    await this.initAdminFromEnv();
+  }
+
+  async initAdminFromEnv() {
+    const email = (process.env.FIRST_ADMIN_EMAIL || "admin@mindware.ao").trim().toLowerCase();
+    const password = process.env.FIRST_ADMIN_PASSWORD || "admin-password";
+    if (!email || !password) return;
+
+    try {
+      const passwordHash = await bcrypt.hash(password, 10);
+      const admin = await this.prisma.user.upsert({
+        where: { email },
+        update: {
+          role: UserRole.ADMIN,
+          isActive: true,
+          passwordHash,
+        },
+        create: {
+          email,
+          passwordHash,
+          role: UserRole.ADMIN,
+          isActive: true,
+        },
+      });
+
+      // O administrador gere o sistema e não deve figurar como afiliado
+      const adminAffiliate = await this.prisma.affiliate.findFirst({
+        where: { OR: [{ userId: admin.id }, { email }] },
+      });
+      if (adminAffiliate) {
+        await this.prisma.affiliate.delete({ where: { id: adminAffiliate.id } });
+        this.logger.log(`Registo indevido de afiliado para o admin ${email} foi removido.`);
+      }
+
+      this.logger.log(`Conta de administrador sincronizada com sucesso a partir do .env: ${email}`);
+    } catch (error: any) {
+      this.logger.warn(`Falha ao sincronizar administrador inicial: ${error?.message || error}`);
+    }
+  }
 
   async register(body: any) {
     const email = String(body.email || "").trim().toLowerCase();

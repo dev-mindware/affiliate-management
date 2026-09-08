@@ -35,6 +35,12 @@ export class AffiliatesService {
         { codigoAfiliado: { contains: filter.search, mode: "insensitive" } },
       ];
     }
+    // Administradores nunca devem ser listados como afiliados parceiros
+    where.NOT = {
+      user: {
+        role: UserRole.ADMIN,
+      },
+    };
     const [items, total] = await Promise.all([
       this.prisma.affiliate.findMany({
         where,
@@ -179,6 +185,14 @@ export class AffiliatesService {
 
   async remove(id: string) {
     const affiliate = await this.find(id);
+
+    if (affiliate.userId) {
+      const user = await this.prisma.user.findUnique({ where: { id: affiliate.userId } });
+      if (user?.role === UserRole.ADMIN) {
+        throw new BadRequestException("Não é permitido eliminar uma conta de administrador através da gestão de afiliados.");
+      }
+    }
+
     try {
       await this.prisma.$transaction(async (tx) => {
         await tx.affiliate.delete({ where: { id } });

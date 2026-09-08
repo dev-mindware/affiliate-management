@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { dateRange, normalizePagination, orderBy, paginated } from "../common/filters/pagination";
 import { serviceDto } from "../common/serializers";
 import { PrismaService } from "../prisma/prisma.service";
@@ -32,8 +32,18 @@ export class ServicesService {
   }
 
   async create(body: any) {
+    const nome = String(body.nome || "").trim();
+    if (!nome) throw new BadRequestException("O nome do serviço é obrigatório.");
+
+    const existing = await this.prisma.service.findFirst({
+      where: { nome: { equals: nome, mode: "insensitive" } },
+    });
+    if (existing) {
+      throw new BadRequestException("Já existe um serviço registado com este nome.");
+    }
+
     return serviceDto(await this.prisma.service.create({ data: {
-      nome: body.nome,
+      nome,
       descricao: body.descricao,
       preco: Number(body.preco),
       comissao: Number(body.comissao),
@@ -42,6 +52,19 @@ export class ServicesService {
   }
 
   async update(id: number, body: any) {
+    if (body.nome) {
+      const nome = String(body.nome).trim();
+      const existing = await this.prisma.service.findFirst({
+        where: {
+          nome: { equals: nome, mode: "insensitive" },
+          id: { not: id },
+        },
+      });
+      if (existing) {
+        throw new BadRequestException("Já existe outro serviço registado com este nome.");
+      }
+      body.nome = nome;
+    }
     return serviceDto(await this.prisma.service.update({ where: { id }, data: body }));
   }
 
