@@ -33,6 +33,8 @@ export class AffiliatesService {
         { nomeCompleto: { contains: filter.search, mode: "insensitive" } },
         { email: { contains: filter.search, mode: "insensitive" } },
         { codigoAfiliado: { contains: filter.search, mode: "insensitive" } },
+        { telefone: { contains: filter.search, mode: "insensitive" } },
+        { contaBancaria: { contains: filter.search, mode: "insensitive" } },
       ];
     }
     // Administradores nunca devem ser listados como afiliados parceiros

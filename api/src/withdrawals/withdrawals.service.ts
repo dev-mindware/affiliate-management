@@ -30,6 +30,15 @@ export class WithdrawalsService {
     const where: any = { ...dateRange(filter) };
     if (filter.status) where.status = toWithdrawalStatus(filter.status);
     if (filter.affiliateId) where.affiliateId = filter.affiliateId;
+    if (filter.search) {
+      where.OR = [
+        { affiliate: { nomeCompleto: { contains: filter.search, mode: "insensitive" } } },
+        { affiliate: { email: { contains: filter.search, mode: "insensitive" } } },
+        { affiliate: { codigoAfiliado: { contains: filter.search, mode: "insensitive" } } },
+        { contaBancaria: { contains: filter.search, mode: "insensitive" } },
+        { banco: { contains: filter.search, mode: "insensitive" } },
+      ];
+    }
     const [items, total] = await Promise.all([
       this.prisma.withdrawalRequest.findMany({
         where,

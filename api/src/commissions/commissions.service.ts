@@ -29,6 +29,9 @@ export class CommissionsService {
       where.OR = [
         { clientNome: { contains: filter.search, mode: "insensitive" } },
         { clientTelefone: { contains: filter.search, mode: "insensitive" } },
+        { affiliate: { nomeCompleto: { contains: filter.search, mode: "insensitive" } } },
+        { affiliate: { email: { contains: filter.search, mode: "insensitive" } } },
+        { affiliate: { codigoAfiliado: { contains: filter.search, mode: "insensitive" } } },
       ];
     }
     const [items, total] = await Promise.all([
